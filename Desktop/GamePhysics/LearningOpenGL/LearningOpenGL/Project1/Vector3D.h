@@ -16,17 +16,17 @@ public:
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-	Vector3D operator*(const float&) const;
-	Vector3D operator/(const float&) const;
+	Vector3D operator*(const float& rhs);
+	Vector3D operator/(const float& rhs);
 
-	float operatordot(const Vector3D&) const;
-	Vector3D operatorcross(const Vector3D&) const;
+	float operatordot(const Vector3D& rhs);
+	Vector3D operatorcross(const Vector3D& rhs);
 
-	Vector3D operator+(const Vector3D&) const;
-	Vector3D operator-(const Vector3D&) const;
+	Vector3D operator+(const Vector3D& rhs);
+	Vector3D operator-(const Vector3D& rhs);
 
-	bool operator!=(const Vector3D&) const;
-	bool operator==(const Vector3D&) const;
+	bool operator!=(const Vector3D& rhs);
+	bool operator==(const Vector3D& rhs);
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------

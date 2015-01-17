@@ -2,6 +2,7 @@
 //Create by Robert Bethune
 //Modified http://www2.cs.uregina.ca/~anima/408/Notes/Timelines/Controlling-the-Display-Rate.htm
 //Also https://www3.ntu.edu.sg/home/ehchua/programming/opengl/HowTo_OpenGL_C.html
+//Mouse Info http://www.zeuscmd.com/tutorials/glut/03-MouseInput.php
 //Main.cpp
 //Used for creating a cube and than updating for future project
 //Creation Date 1/17/2015
@@ -12,6 +13,8 @@
 #include "GL/gl.h"
 #include "GL/glut.h"
 #include "GameApp.h"
+#include "InputManager.h"
+#include "Vector3D.h"
 
 using namespace std;
 //--------------------------------------------------------------------------------------------
@@ -20,6 +23,7 @@ void display();
 void update();
 void initialize();
 void cleanup();
+void mousePos(int x, int y);
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
@@ -29,6 +33,7 @@ int g_start_time;
 int g_current_frame_number;
 
 GameApp* gp_GameApp;
+InputManager* gp_InputManager;
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
@@ -36,6 +41,7 @@ int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
 	gp_GameApp = new GameApp();
+	gp_InputManager = new InputManager();
 
 	atexit(cleanup);
 
@@ -51,6 +57,7 @@ void initialize()
 	g_current_frame_number = 0;
 
 	gp_GameApp->Init();
+	gp_InputManager->Init();
 
 	glutInitWindowSize(720, 720);  
 	glutInitWindowPosition(50, 50); 
@@ -58,6 +65,7 @@ void initialize()
 
 	glutDisplayFunc(display);
 	glutIdleFunc(idle);
+	glutPassiveMotionFunc(mousePos);
 	glutMainLoop();
 }
 //--------------------------------------------------------------------------------------------
@@ -83,7 +91,10 @@ void update()
 {
 	glutPostRedisplay();
 	g_current_frame_number++;
-
+	Vector3D vec1 = Vector3D(1, 2, 3);
+	Vector3D vec2 = Vector3D(3, 2, 1);
+	Vector3D vec3 = vec1 - vec2;
+	cout << vec3.X;
 	gp_GameApp->Update();
 }
 //--------------------------------------------------------------------------------------------
@@ -108,3 +119,9 @@ void cleanup()
 	gp_GameApp = NULL;
 }
 //--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+void mousePos(int x, int y)
+{
+	//cout << x << "\n" << y << "\n";
+}

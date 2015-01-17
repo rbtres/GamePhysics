@@ -26,56 +26,56 @@ Vector3D::~Vector3D()
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-Vector3D Vector3D::operator*(const float& rhs) const
+Vector3D Vector3D::operator*(const float& rhs) 
 {
 	return Vector3D(X * rhs, Y * rhs, Z * rhs);
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-Vector3D Vector3D::operator/(const float& rhs) const
+Vector3D Vector3D::operator/(const float& rhs)
 {
 	return Vector3D(X / rhs, Y / rhs, Z / rhs);
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-Vector3D Vector3D::operator+(const Vector3D& rhs) const
+Vector3D Vector3D::operator+(const Vector3D& rhs)
 {
 	return Vector3D(X + rhs.X, Y + rhs.Y, Z + rhs.Z);
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-Vector3D Vector3D::operator-(const Vector3D& rhs) const
+Vector3D Vector3D::operator-(const Vector3D& rhs)
 {
 	return Vector3D(X - rhs.X, Y - rhs.Y, Z - rhs.Z);
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-Vector3D Vector3D::operatorcross(const Vector3D& rhs) const
+Vector3D Vector3D::operatorcross(const Vector3D& rhs)
 {
 	return Vector3D((Y * rhs.Z - Z * rhs.Y), (Z * rhs.X - X * rhs.Z), (X * rhs.Y - Y * rhs.X));
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-float Vector3D::operatordot(const Vector3D& rhs) const
+float Vector3D::operatordot(const Vector3D& rhs)
 {
 	return Y * rhs.Y + X * rhs.X + Z * rhs.Z;
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-bool Vector3D::operator==(const Vector3D& rhs) const
+bool Vector3D::operator==(const Vector3D& rhs) 
 {
 	return (X == rhs.X && Y == rhs.Y && Z == rhs.Z);
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-bool Vector3D::operator!=(const Vector3D & rhs) const
+bool Vector3D::operator!=(const Vector3D & rhs)
 {
 	return (X != rhs.X || Y != rhs.Y || Z != rhs.Z);
 }
