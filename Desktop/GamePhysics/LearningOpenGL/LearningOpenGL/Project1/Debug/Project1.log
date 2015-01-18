@@ -1,23 +1,23 @@
-﻿Build started 1/18/2015 9:25:47 AM.
-     1>Project "C:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Project1\Project1.vcxproj" on node 2 (Build target(s)).
+﻿Build started 1/18/2015 5:59:45 PM.
+     1>Project "C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Project1\Project1.vcxproj" on node 2 (Build target(s)).
      1>RestorePackages:
-         "C:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\.nuget\NuGet.exe" install "C:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Project1\packages.config" -source ""  -NonInteractive -RequireConsent -solutionDir "C:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\ "
+         "C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\.nuget\NuGet.exe" install "C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Project1\packages.config" -source ""  -NonInteractive -RequireConsent -solutionDir "C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\ "
          Restoring NuGet packages...
          To prevent NuGet from downloading packages during build, open the Visual Studio Options dialog, click on the Package Manager node and uncheck 'Allow NuGet to download missing packages'.
          All packages listed in packages.config are already installed.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/ /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/ /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt InputManager.cpp Main.cpp
          Main.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Debug\Project1.exe" /INCREMENTAL /NOLOGO C:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glew32.lib C:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glfw3dll.lib C:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\freeglut.lib OpenGL32.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Debug\Project1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Debug\Project1.lib" /MACHINE:X86 Debug\GameApp.obj
-         Debug\InputManager.obj
-         Debug\Main.obj
-         Debug\Matrix.obj
-         Debug\Vector2D.obj
-         Debug\Vector3D.obj
-         Project1.vcxproj -> C:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Debug\Project1.exe
-     1>Done Building Project "C:\Users\Rob\Desktop\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Project1\Project1.vcxproj" (Build target(s)).
+     1>c:\users\robert.bethune\documents\phyicsgotwo\gamephysics\desktop\gamephysics\learningopengl\learningopengl\project1\main.cpp(129): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+     1>c:\users\robert.bethune\documents\phyicsgotwo\gamephysics\desktop\gamephysics\learningopengl\learningopengl\project1\main.cpp(163): error C2084: function 'void handleKeyDown(unsigned char,int,int)' already has a body
+                 c:\users\robert.bethune\documents\phyicsgotwo\gamephysics\desktop\gamephysics\learningopengl\learningopengl\project1\main.cpp(29) : see previous definition of 'handleKeyDown'
+     1>c:\users\robert.bethune\documents\phyicsgotwo\gamephysics\desktop\gamephysics\learningopengl\learningopengl\project1\main.cpp(171): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         InputManager.cpp
+     1>c:\users\robert.bethune\documents\phyicsgotwo\gamephysics\desktop\gamephysics\learningopengl\learningopengl\project1\inputmanager.cpp(64): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\robert.bethune\documents\phyicsgotwo\gamephysics\desktop\gamephysics\learningopengl\learningopengl\project1\inputmanager.cpp(65): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         Generating Code...
+     1>Done Building Project "C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Project1\Project1.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.83
+Time Elapsed 00:00:02.09

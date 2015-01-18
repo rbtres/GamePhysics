@@ -12,6 +12,21 @@ Matrix::Matrix()
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
+Matrix::Matrix(const Matrix& rhs)
+{
+	m_Rows = rhs.GetRowSize();
+	m_Columns = rhs.GetColumnSize();
+	m_Size = m_Rows * m_Columns;
+	mp_Matrix = new float[m_Size];
+
+	for (int i = 0; i < m_Size; i++)
+	{
+		mp_Matrix[i] = rhs.mp_Matrix[i];
+	}
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
 Matrix::Matrix(int rows, int columns)
 {
 	m_Rows = rows;
@@ -82,9 +97,10 @@ Matrix Matrix::operator*(const Matrix& rhs) const
 	if (m_Columns == rhs.GetRowSize())
 	{
 		Matrix returnMatrix = Matrix(m_Rows, rhs.GetColumnSize());
-		for (int i = 0; i < rhs.GetColumnSize(); i++)
+
+		for (int i = 0; i < m_Rows; i++)
 		{
-			for (int k = 0; k < rhs.GetRowSize(); k++)
+			for (int k = 0; k < m_Columns; k++)
 			{
 				float value = 0;
 
@@ -231,6 +247,6 @@ float Matrix::Det()
 //--------------------------------------------------------------------------------------------
 Matrix Matrix::InvMatrix()
 {
-
+	return Matrix(2, 2);
 }
 //--------------------------------------------------------------------------------------------

@@ -15,6 +15,7 @@
 #include "GameApp.h"
 #include "InputManager.h"
 #include "Vector3D.h"
+#include "Vector2D.h"
 #include "Matrix.h"
 
 using namespace std;
@@ -25,6 +26,10 @@ void update();
 void initialize();
 void cleanup();
 void mousePos(int x, int y);
+void handleKeyDown(unsigned char key, int x, int y);
+void handleKeyUp(unsigned char key, int x, int y);
+void reshape(int width, int height);
+void handleMouse(int button, int state, int x, int y);
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
@@ -34,19 +39,18 @@ int g_start_time;
 int g_current_frame_number;
 
 GameApp* gp_GameApp;
-InputManager* gp_InputManager;
+
+float positionz[10];
+float positionx[10];
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-int main(int argc, char** argv) 
+int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
 	gp_GameApp = new GameApp();
-	gp_InputManager = new InputManager();
-	float* myF = new float[4]{ 4, 1, 1, 4 };
-	Matrix m = Matrix(2, 2, myF);
-	cout << m.Det() << "yay";
-	atexit(cleanup);
+
+	
 
 	initialize();
 	return 0;
@@ -59,16 +63,33 @@ void initialize()
 	g_start_time = glutGet(GLUT_ELAPSED_TIME);
 	g_current_frame_number = 0;
 
-	gp_GameApp->Init();
-	gp_InputManager->Init();
-
-	glutInitWindowSize(720, 720);  
-	glutInitWindowPosition(50, 50); 
+	glutInitWindowSize(720, 720);
+	glutInitWindowPosition(50, 50);
 	glutCreateWindow("Rotating Box Test");
 
+	
+	float lightPosition[] = { 100.0, 100.0, 100.0, 0 };
+
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+
+	glEnable(GL_DEPTH_TEST); //enable the depth testing
+	glEnable(GL_LIGHTING); //enable the lighting
+	glEnable(GL_LIGHT0); //enable LIGHT0, our Diffuse Light
+	glShadeModel(GL_SMOOTH); //set the shader to smooth shader
+	//glDepthFunc(GL_EQUAL);
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+	
+
+	gp_GameApp->Init();
+
+	atexit(cleanup);
 	glutDisplayFunc(display);
 	glutIdleFunc(idle);
 	glutPassiveMotionFunc(mousePos);
+	glutMouseFunc(handleMouse);
+	glutKeyboardFunc(handleKeyDown);
+	glutKeyboardUpFunc(handleKeyUp);
+	glutReshapeFunc(reshape);
 	glutMainLoop();
 }
 //--------------------------------------------------------------------------------------------
@@ -100,14 +121,16 @@ void update()
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void display() 
+void display()
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); 
-	glClear(GL_COLOR_BUFFER_BIT);
-	glRotated(1, 0, 50,0 );
-	glutWireCube(.5);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glPushMatrix();
+	glRotatef(1 * g_current_frame_number, .45f, .45f, .45f);
+	glutSolidCube(.25);
+	glPopMatrix();
 
-	glFlush();  
+	glutSwapBuffers();
 }
 //--------------------------------------------------------------------------------------------
 
@@ -123,5 +146,38 @@ void cleanup()
 //--------------------------------------------------------------------------------------------
 void mousePos(int x, int y)
 {
-	//cout << x << "\n" << y << "\n";
+	Vector2D mousePos = Vector2D((float)x, (float)y);
+	gp_GameApp->HandleMouse(mousePos);
 }
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+void handleKeyDown(unsigned char key, int x, int y)
+{
+	gp_GameApp->HandleKeyDown(key);
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+void handleKeyDown(unsigned char key, int x, int y)
+{
+
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+void handleMouse(int button, int state, int x, int y)
+{
+	gp_GameApp->HandleMouseDown(Vector2D(button, state),Vector2D(x,y));
+}
+//--------------------------------------------------------------------------------------------
+void reshape(int width, int height)
+{
+	glViewport(0, 0, (GLsizei)width, (GLsizei)height);
+	glMatrixMode(GL_PROJECTION);
+
+	glLoadIdentity();
+	gluPerspective(60, (GLfloat)width / (GLfloat)height, 0.1f, 100.0f);
+	glMatrixMode(GL_MODELVIEW);
+}
+//--------------------------------------------------------------------------------------------

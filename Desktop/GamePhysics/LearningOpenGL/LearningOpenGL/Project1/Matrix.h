@@ -12,6 +12,7 @@ class Matrix
 {
 public:
 	Matrix();
+	Matrix(const Matrix&);
 	Matrix(int length, bool identity);
 	Matrix(int rows, int columns);
 	Matrix(int rows, int columns, float* matrixArray);
