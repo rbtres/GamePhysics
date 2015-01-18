@@ -29,10 +29,17 @@ public:
 //--------------------------------------------------------------------------------------------
 	void Set(int row, int column, float value);
 	float Get(int row, int column) const;
+
 	bool SameDim(const Matrix& rhs) const;
+
 	float GetArrayIndex(int i) const { return mp_Matrix[i]; }
+
 	int  GetRowSize() const { return m_Rows; }
 	int  GetColumnSize() const { return m_Columns; }
+
+	float Det();
+	Matrix InvMatrix();
+
 //--------------------------------------------------------------------------------------------
 //============================================================================================
 private:

@@ -15,6 +15,7 @@
 #include "GameApp.h"
 #include "InputManager.h"
 #include "Vector3D.h"
+#include "Matrix.h"
 
 using namespace std;
 //--------------------------------------------------------------------------------------------
@@ -42,7 +43,9 @@ int main(int argc, char** argv)
 	glutInit(&argc, argv);
 	gp_GameApp = new GameApp();
 	gp_InputManager = new InputManager();
-
+	float* myF = new float[4]{ 4, 1, 1, 4 };
+	Matrix m = Matrix(2, 2, myF);
+	cout << m.Det() << "yay";
 	atexit(cleanup);
 
 	initialize();

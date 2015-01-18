@@ -1,6 +1,9 @@
 #include "Matrix.h"
 #include <iostream>
-
+//http://easy-learn-c-language.blogspot.com/2013/02/numerical-methods-determinant-of-nxn.html
+//help on det for nxn 
+//http://www.ccodechamp.com/c-program-to-find-inverse-of-matrix/
+//help on inverse matrix
 //--------------------------------------------------------------------------------------------
 Matrix::Matrix()
 :Matrix(2,true)
@@ -68,7 +71,7 @@ void Matrix::Set(int row, int column, float value)
 //--------------------------------------------------------------------------------------------
 float Matrix::Get(int row, int column) const 
 {
-	return mp_Matrix[m_Size * row + column];
+	return mp_Matrix[m_Columns * row + column];
 }
 //--------------------------------------------------------------------------------------------
 
@@ -185,5 +188,49 @@ Matrix Matrix::operator-(const Matrix& rhs) const
 bool Matrix::SameDim(const Matrix& rhs) const
 {
 	return m_Columns == rhs.GetColumnSize() && m_Rows == rhs.GetRowSize();
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+float Matrix::Det()
+{
+	float ratio, det;
+	if (m_Rows == m_Columns)
+	{
+		for (int i = 0; i < m_Rows; i++)
+		{
+			for (int j = 0; j < m_Columns; j++)
+			{
+				if (j > i)
+				{
+					ratio = Get(j, i) / Get(i, i);
+
+					for (int k = 0; k < m_Rows; k++)
+					{
+						Set(j,k,(Get(j,k)-(ratio*Get(i,k))));
+					}
+				}
+			}
+		}
+		det = 1;
+		for (int i = 0; i < m_Rows; i++)
+		{
+			det *= Get(i,i);
+		}
+		return det;
+	}
+	else
+	{
+		//Det does not exist.
+		//For sake of returning to make inverse send 0
+		return 0;
+	}
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+Matrix Matrix::InvMatrix()
+{
+
 }
 //--------------------------------------------------------------------------------------------
