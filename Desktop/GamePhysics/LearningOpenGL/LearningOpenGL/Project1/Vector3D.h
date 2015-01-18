@@ -1,7 +1,7 @@
 //============================================================================================
 //Create by Robert Bethune
 //Vector3D.h
-//Base Vector Class has addition(+), multiplication(*), dot(dot), and cross(cross)
+//Base Vector3D (x,y,z) Has basic necessary function
 //Creation Date 1/17/2015
 //============================================================================================
 #pragma once
@@ -19,9 +19,6 @@ public:
 	Vector3D operator*(const float& rhs);
 	Vector3D operator/(const float& rhs);
 
-	float operatordot(const Vector3D& rhs);
-	Vector3D operatorcross(const Vector3D& rhs);
-
 	Vector3D operator+(const Vector3D& rhs);
 	Vector3D operator-(const Vector3D& rhs);
 
@@ -30,6 +27,9 @@ public:
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
+	float Dot(const Vector3D& rhs);
+	Vector3D Cross(const Vector3D& rhs);
+
 	float Magnitude();
 	float MagnitudeSqr();
 
@@ -42,8 +42,5 @@ public:
 	float Y;
 	float Z;
 //--------------------------------------------------------------------------------------------
-//============================================================================================
-private:
-
 };
 //============================================================================================

@@ -91,10 +91,7 @@ void update()
 {
 	glutPostRedisplay();
 	g_current_frame_number++;
-	Vector3D vec1 = Vector3D(1, 2, 3);
-	Vector3D vec2 = Vector3D(3, 2, 1);
-	Vector3D vec3 = vec1 - vec2;
-	cout << vec3.X;
+
 	gp_GameApp->Update();
 }
 //--------------------------------------------------------------------------------------------
