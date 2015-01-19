@@ -211,6 +211,7 @@ bool Matrix::SameDim(const Matrix& rhs) const
 float Matrix::Det()
 {
 	float ratio, det;
+	Matrix m = *this;
 	if (m_Rows == m_Columns)
 	{
 		for (int i = 0; i < m_Rows; i++)
@@ -219,11 +220,11 @@ float Matrix::Det()
 			{
 				if (j > i)
 				{
-					ratio = Get(j, i) / Get(i, i);
+					ratio = m.Get(j, i) / m.Get(i, i);
 
 					for (int k = 0; k < m_Rows; k++)
 					{
-						Set(j,k,(Get(j,k)-(ratio*Get(i,k))));
+						m.Set(j,k,(m.Get(j,k)-(ratio*m.Get(i,k))));
 					}
 				}
 			}
@@ -231,7 +232,7 @@ float Matrix::Det()
 		det = 1;
 		for (int i = 0; i < m_Rows; i++)
 		{
-			det *= Get(i,i);
+			det *= m.Get(i,i);
 		}
 		return det;
 	}

@@ -17,6 +17,7 @@
 #include "Vector3D.h"
 #include "Vector2D.h"
 #include "Matrix.h"
+#include <GL/glui.h>
 
 using namespace std;
 //--------------------------------------------------------------------------------------------
@@ -30,6 +31,8 @@ void handleKeyDown(unsigned char key, int x, int y);
 void handleKeyUp(unsigned char key, int x, int y);
 void reshape(int width, int height);
 void handleMouse(int button, int state, int x, int y);
+void buttons(int playInt);
+void setString(char* s);
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
@@ -37,21 +40,27 @@ const unsigned int TARGET_FPS = 60;
 const double TIME_PER_FRAME = 1000.0 / TARGET_FPS;
 int g_start_time;
 int g_current_frame_number;
-
+int g_rotation_number;
+int g_main_win;
+static char* currentText;
 GameApp* gp_GameApp;
+GLUI* gp_Glui;
 
-float positionz[10];
-float positionx[10];
+bool g_isPlaying;
+
+static GLUI_StaticText* text;
+
+const int PLAY_ID = 1, STOP_ID = 2, PAUSE_ID = 3;
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
+	currentText = "";
+	g_isPlaying = true;
 	gp_GameApp = new GameApp();
-
-	
-
+	g_rotation_number = 0;
 	initialize();
 	return 0;
 }
@@ -65,7 +74,7 @@ void initialize()
 
 	glutInitWindowSize(720, 720);
 	glutInitWindowPosition(50, 50);
-	glutCreateWindow("Rotating Box Test");
+	g_main_win = glutCreateWindow("Buttons");
 
 	
 	float lightPosition[] = { 100.0, 100.0, 100.0, 0 };
@@ -84,12 +93,24 @@ void initialize()
 
 	atexit(cleanup);
 	glutDisplayFunc(display);
-	glutIdleFunc(idle);
 	glutPassiveMotionFunc(mousePos);
-	glutMouseFunc(handleMouse);
-	glutKeyboardFunc(handleKeyDown);
 	glutKeyboardUpFunc(handleKeyUp);
-	glutReshapeFunc(reshape);
+	
+	
+
+	GLUI_Master.set_glutKeyboardFunc(handleKeyDown);
+	GLUI_Master.set_glutMouseFunc(handleMouse);
+	GLUI_Master.set_glutReshapeFunc(reshape);
+	GLUI_Master.set_glutIdleFunc(idle);
+
+	gp_Glui = GLUI_Master.create_glui_subwindow(g_main_win, GLUI_SUBWINDOW_BOTTOM);
+	gp_Glui->set_main_gfx_window(g_main_win);
+	gp_Glui->add_button("Play", PLAY_ID, buttons);
+	gp_Glui->add_button("Stop", STOP_ID, buttons);
+	gp_Glui->add_button("Pause", PAUSE_ID, buttons);
+
+	text = gp_Glui->add_statictext(currentText);
+
 	glutMainLoop();
 }
 //--------------------------------------------------------------------------------------------
@@ -97,6 +118,7 @@ void initialize()
 //--------------------------------------------------------------------------------------------
 void idle()
 {
+	
 	double end_frame_time, end_rendering_time, waste_time;
 
 	end_frame_time = g_start_time + (g_current_frame_number + 1) * TIME_PER_FRAME;
@@ -113,8 +135,14 @@ void idle()
 //--------------------------------------------------------------------------------------------
 void update()
 {
-	glutPostRedisplay();
+	
 	g_current_frame_number++;
+	if (g_isPlaying)
+		g_rotation_number++;
+	
+	glutSetWindow(g_main_win);
+
+	glutPostRedisplay();
 
 	gp_GameApp->Update();
 }
@@ -126,7 +154,7 @@ void display()
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
-	glRotatef(1 * g_current_frame_number, .45f, .45f, .45f);
+	glRotatef(1 * g_rotation_number, .45f, .45f, .45f);
 	glutSolidCube(.25);
 	glPopMatrix();
 
@@ -159,7 +187,7 @@ void handleKeyDown(unsigned char key, int x, int y)
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void handleKeyDown(unsigned char key, int x, int y)
+void handleKeyUp(unsigned char key, int x, int y)
 {
 
 }
@@ -173,7 +201,8 @@ void handleMouse(int button, int state, int x, int y)
 //--------------------------------------------------------------------------------------------
 void reshape(int width, int height)
 {
-	glViewport(0, 0, (GLsizei)width, (GLsizei)height);
+	GLUI_Master.auto_set_viewport();
+
 	glMatrixMode(GL_PROJECTION);
 
 	glLoadIdentity();
@@ -181,3 +210,31 @@ void reshape(int width, int height)
 	glMatrixMode(GL_MODELVIEW);
 }
 //--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+void buttons(int buttonInt)
+{
+	switch (buttonInt)
+	{
+	case PAUSE_ID:
+		g_isPlaying = false;
+		setString("Pause");
+		break;
+	case PLAY_ID:
+		g_isPlaying = true;
+		setString("Play");
+		break;
+	case STOP_ID:
+		g_isPlaying = false;
+		setString("Stop");
+		g_rotation_number = 0;
+		break;
+	}
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+void setString(char* s)
+{
+	text->set_text(s);
+}
