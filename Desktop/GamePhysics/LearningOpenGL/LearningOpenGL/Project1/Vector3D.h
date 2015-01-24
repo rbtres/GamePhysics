@@ -3,6 +3,7 @@
 //Vector3D.h
 //Base Vector3D (x,y,z) Has basic necessary function
 //Creation Date 1/17/2015
+//Last Updated 1/24/2015
 //============================================================================================
 #pragma once
 //============================================================================================
@@ -13,6 +14,7 @@ public:
 	Vector3D();
 	Vector3D(float x, float y, float z);
 	~Vector3D();
+	static const Vector3D Zero;
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
@@ -21,6 +23,9 @@ public:
 
 	Vector3D operator+(const Vector3D& rhs);
 	Vector3D operator-(const Vector3D& rhs);
+
+	void operator+=(const Vector3D& rhs);
+	void operator-=(const Vector3D& rhs);
 
 	bool operator!=(const Vector3D& rhs);
 	bool operator==(const Vector3D& rhs);

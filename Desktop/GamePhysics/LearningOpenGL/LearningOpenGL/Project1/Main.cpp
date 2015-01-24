@@ -10,7 +10,6 @@
 #include <iostream>
 #include <windows.h>
 
-#include "GL/gl.h"
 #include "GL/glut.h"
 #include "GameApp.h"
 #include "InputManager.h"
@@ -18,12 +17,15 @@
 #include "Vector2D.h"
 #include "Matrix.h"
 #include <GL/glui.h>
+#include <stdlib.h>
+#include <time.h>  
 
 using namespace std;
+
 //--------------------------------------------------------------------------------------------
 void idle();
 void display();
-void update();
+void update(int mstime);
 void initialize();
 void cleanup();
 void mousePos(int x, int y);
@@ -33,6 +35,7 @@ void reshape(int width, int height);
 void handleMouse(int button, int state, int x, int y);
 void buttons(int playInt);
 void setString(char* s);
+
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
@@ -42,6 +45,8 @@ int g_start_time;
 int g_current_frame_number;
 int g_rotation_number;
 int g_main_win;
+int g_delta_time;
+
 static char* currentText;
 GameApp* gp_GameApp;
 GLUI* gp_Glui;
@@ -56,6 +61,7 @@ const int PLAY_ID = 1, STOP_ID = 2, PAUSE_ID = 3;
 //--------------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
+	srand(time(NULL));
 	glutInit(&argc, argv);
 	currentText = "";
 	g_isPlaying = true;
@@ -127,24 +133,30 @@ void idle()
 
 	if (waste_time < 0.0)
 	{
-		update();
+		g_delta_time = (int)(end_rendering_time - (g_start_time + (g_current_frame_number ) * TIME_PER_FRAME));
+		update(g_delta_time);
 	}
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void update()
+void update(int mstime)
 {
-	
-	g_current_frame_number++;
+	int time = mstime;
+	while (time > 1)
+	{
+		time /= 17;
+		g_current_frame_number++;
+	}
+		
 	if (g_isPlaying)
 		g_rotation_number++;
 	
 	glutSetWindow(g_main_win);
 
 	glutPostRedisplay();
-
-	gp_GameApp->Update();
+	cout << mstime << endl;
+	gp_GameApp->Update(mstime, g_isPlaying);
 }
 //--------------------------------------------------------------------------------------------
 
@@ -153,10 +165,11 @@ void display()
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glPushMatrix();
-	glRotatef(1 * g_rotation_number, .45f, .45f, .45f);
-	glutSolidCube(.25);
-	glPopMatrix();
+	//glPushMatrix();
+	//glRotatef(1 * g_rotation_number, .45f, .45f, .45f);
+	//glutSolidCube(.25);
+	//glPopMatrix();
+	gp_GameApp->Draw();
 
 	glutSwapBuffers();
 }
@@ -228,6 +241,7 @@ void buttons(int buttonInt)
 		g_isPlaying = false;
 		setString("Stop");
 		g_rotation_number = 0;
+		gp_GameApp->Reset();
 		break;
 	}
 }
