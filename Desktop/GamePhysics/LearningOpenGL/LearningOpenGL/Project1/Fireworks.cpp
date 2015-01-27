@@ -47,7 +47,7 @@ void Fireworks::Update(int msTime)
 	{
 		if (!(*it)->Alive())
 		{
-			int amount = (rand() % 3) + 1;
+			int amount = (rand() % 5) + 5;
 
 			std::vector<Particle*> newParticles = CreateParticle((*it)->getPos(), amount);
 			std::vector<Particle*>::iterator iter = newParticles.begin();

@@ -55,7 +55,7 @@ void PhysicsObject::Draw()
 	//Vector3D normalizedRot = m_Rot.Normalize;
 	
 	//glRotatef(m_Rot.X, normalizedRot.X, 0, 0);
-	glutSolidSphere(.1,100,100);
+	glutSolidSphere(.1,10,10);
 	
 	glPopMatrix();
 	
