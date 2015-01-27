@@ -32,6 +32,9 @@ public:
 
 	inline void setAcc(Vector3D acc) { m_Acc = acc; }
 	inline Vector3D getAcc() { return m_Acc; }
+
+	inline void setDamping(float damping) { m_Damping = damping; }
+	inline float getDamping() { return m_Damping; }
 //--------------------------------------------------------------------------------------------
 //============================================================================================
 protected:
@@ -45,6 +48,8 @@ protected:
 	Vector3D m_InitVel;
 	Vector3D m_InitAcc;
 	Vector3D m_InitRot;
+
+	float m_Damping;
 //--------------------------------------------------------------------------------------------
 };
 //============================================================================================
