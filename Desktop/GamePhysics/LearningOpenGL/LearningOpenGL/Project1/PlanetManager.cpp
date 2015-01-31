@@ -19,7 +19,7 @@ void PlanetManager::Init()
 	PhysicsObject* earth = new PhysicsObject();
 	earth->Init(Vector3D(1.5, 0, 0));
 	earth->setMass(5.9726  );
-	earth->setVel(Vector3D(0, 0, 1));
+	earth->setVel(Vector3D(0, 1, 0));
 	GravityGenerator* earthsGenerator = new GravityGenerator();
 	AddForceReg(earth, earthsGenerator);
 
