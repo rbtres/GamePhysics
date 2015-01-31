@@ -64,7 +64,7 @@ int main(int argc, char** argv)
 	srand(time(NULL));
 	glutInit(&argc, argv);
 	currentText = "";
-	g_isPlaying = true;
+	g_isPlaying = false;
 	gp_GameApp = new GameApp();
 	g_rotation_number = 0;
 	initialize();
@@ -155,7 +155,7 @@ void update(int mstime)
 	glutSetWindow(g_main_win);
 
 	glutPostRedisplay();
-	cout << mstime << endl;
+
 	gp_GameApp->Update(mstime, g_isPlaying);
 }
 //--------------------------------------------------------------------------------------------
@@ -165,10 +165,7 @@ void display()
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glPushMatrix();
-	//glRotatef(1 * g_rotation_number, .45f, .45f, .45f);
-	//glutSolidCube(.25);
-	//glPopMatrix();
+
 	gp_GameApp->Draw();
 
 	glutSwapBuffers();

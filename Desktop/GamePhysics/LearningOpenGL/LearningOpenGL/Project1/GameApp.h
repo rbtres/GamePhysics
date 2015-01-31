@@ -6,9 +6,9 @@
 //Last Modified 1/24/2015
 //============================================================================================
 #pragma once
-#include"InputManager.h"
+#include "InputManager.h"
 #include "PhysicsObject.h"
-#include "Fireworks.h"
+#include "PlanetManager.h"
 
 //============================================================================================
 class GameApp
@@ -31,7 +31,7 @@ public:
 //============================================================================================
 private:
 	void update(int msTime);
-	Fireworks m_Firework;
+	PlanetManager* mp_PlanetManager;
 
 };
 //============================================================================================

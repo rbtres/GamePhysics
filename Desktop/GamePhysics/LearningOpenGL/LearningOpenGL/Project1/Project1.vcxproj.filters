@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Object">
       <UniqueIdentifier>{879c5097-9f49-4f6b-bcc2-50ceb82947de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ForceGenerators">
+      <UniqueIdentifier>{972cdad7-b758-4c6c-ab46-f95a77d4a5f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ForceGenerators">
+      <UniqueIdentifier>{53c8dfac-0a30-4e5e-87fe-0e833dc06aad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -54,6 +60,12 @@
     <ClCompile Include="Fireworks.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
+    <ClCompile Include="GravityGenerator.cpp">
+      <Filter>Source Files\ForceGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanetManager.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
@@ -78,6 +90,15 @@
       <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="Fireworks.h">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceGenerator.h">
+      <Filter>Header Files\ForceGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityGenerator.h">
+      <Filter>Header Files\ForceGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetManager.h">
       <Filter>Header Files\Object</Filter>
     </ClInclude>
   </ItemGroup>

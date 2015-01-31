@@ -35,6 +35,13 @@ public:
 
 	inline void setDamping(float damping) { m_Damping = damping; }
 	inline float getDamping() { return m_Damping; }
+
+	inline void addForce(Vector3D force) { m_Force += force; }
+	inline void setForce(Vector3D force) { m_Force = force; }
+	inline Vector3D getForce() { return m_Force; }
+
+	inline void setMass(float mass) { m_Mass = mass; }
+	inline float getMass(){ return m_Mass; }
 //--------------------------------------------------------------------------------------------
 //============================================================================================
 protected:
@@ -50,6 +57,9 @@ protected:
 	Vector3D m_InitRot;
 
 	float m_Damping;
+	float m_Mass;
+	
+	Vector3D m_Force;
 //--------------------------------------------------------------------------------------------
 };
 //============================================================================================

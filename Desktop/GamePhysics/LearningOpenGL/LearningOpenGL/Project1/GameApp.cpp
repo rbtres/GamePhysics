@@ -5,7 +5,7 @@ GameApp::GameApp()
 {
 	p_InputManager = new InputManager();
 
-	m_Firework = Fireworks();
+	mp_PlanetManager = new PlanetManager;
 }
 //--------------------------------------------------------------------------------------------
 
@@ -32,7 +32,6 @@ void GameApp::Update(int msTime, bool isPlaying)
 void GameApp::CleanUp()
 {
 	p_InputManager->CleanUp();
-	m_Firework.CleanUp();
 }
 //--------------------------------------------------------------------------------------------
 
@@ -40,14 +39,15 @@ void GameApp::CleanUp()
 void GameApp::Init()
 {
 	p_InputManager->Init();
-	m_Firework.Init(5,-5,1000);
+	mp_PlanetManager->Init();
+
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
 void GameApp::Draw()
 {
-	m_Firework.Draw();
+	mp_PlanetManager->Draw();
 }
 //--------------------------------------------------------------------------------------------
 
@@ -75,12 +75,12 @@ void GameApp::HandleMouseDown(Vector2D buttonAndState, Vector2D mousePos)
 //--------------------------------------------------------------------------------------------
 void GameApp::update(int msTime)
 {
-	m_Firework.Update(msTime);
+	mp_PlanetManager->Update(msTime);
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
 void GameApp::Reset()
 {
-	m_Firework.Reset();
+	mp_PlanetManager->Reset();
 }

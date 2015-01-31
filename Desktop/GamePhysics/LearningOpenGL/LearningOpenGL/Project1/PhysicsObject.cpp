@@ -1,5 +1,5 @@
 #include "PhysicsObject.h"
-
+#include <iostream>
 //--------------------------------------------------------------------------------------------
 PhysicsObject::PhysicsObject()
 {
@@ -12,6 +12,10 @@ PhysicsObject::PhysicsObject()
 	m_InitVel = m_Vel;
 	m_InitAcc = m_Acc;
 	m_InitRot = m_Rot;
+
+	m_Mass = 0;
+	m_Force = Vector3D::Zero;
+	m_Damping = 0;
 }
 //--------------------------------------------------------------------------------------------
 
@@ -24,9 +28,17 @@ PhysicsObject::~PhysicsObject()
 //--------------------------------------------------------------------------------------------
 void PhysicsObject::Update(int msTime)
 {
-	int time = msTime / 17;
+	float time = (float)msTime / 1000;
+	
+	if (m_Mass != 0)
+	{
+		m_Acc = m_Force / m_Mass;
+	}
+
 	m_Pos += m_Vel * time;
+
 	m_Vel += m_Acc * time;
+	m_Force = Vector3D::Zero;
 }
 //--------------------------------------------------------------------------------------------
 
@@ -52,9 +64,7 @@ void PhysicsObject::Draw()
 	glPushMatrix();
 
 	glTranslatef(m_Pos.X, m_Pos.Y, m_Pos.Z);
-	//Vector3D normalizedRot = m_Rot.Normalize;
-	
-	//glRotatef(m_Rot.X, normalizedRot.X, 0, 0);
+
 	glutSolidSphere(.1,10,10);
 	
 	glPopMatrix();

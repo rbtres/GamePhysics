@@ -109,7 +109,7 @@ float Vector3D::Magnitude()
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-float Vector3D::MagnitudeSqr()
+float Vector3D::MagnitudeSq()
 {
 	return Dot(*this);
 }
@@ -132,3 +132,57 @@ Vector3D Vector3D::Normalized()
 }
 //--------------------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------
+float Vector3D::Distance(const Vector3D& rhs)
+{
+	float distance;
+	
+	distance = sqrtf(DistanceSq(rhs));
+
+	return distance;
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+float Vector3D::DistanceSq(const Vector3D& rhs)
+{
+	float distanceSquared;
+	distanceSquared = (X - rhs.X) * (X - rhs.X) + (Y - rhs.Y) * (Y - rhs.Y)
+		+ (Z - rhs.Z) * (Z - rhs.Z);
+
+	return distanceSquared;
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+float Vector3D::Distance(const Vector3D& lhs, const Vector3D& rhs)
+{
+	float distance;
+
+	distance = sqrtf(DistanceSq(lhs, rhs));
+
+	return distance;
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+float Vector3D::DistanceSq(const Vector3D& lhs, const Vector3D& rhs)
+{
+	float distanceSquared;
+	distanceSquared = (lhs.X - rhs.X) * (lhs.X - rhs.X) + (lhs.Y - rhs.Y) * (lhs.Y - rhs.Y)
+		+ (lhs.Z - rhs.Z) * (lhs.Z - rhs.Z);
+
+	return distanceSquared;
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+Vector3D Vector3D::DistanceSqVec(const Vector3D& lhs, const Vector3D& rhs)
+{
+	Vector3D distanceSqrVec;
+	distanceSqrVec = Vector3D(lhs.X - rhs.X * lhs.X - rhs.X, lhs.Y - rhs.Y * lhs.Y - rhs.Y,
+		lhs.Z - rhs.Z * lhs.Z - rhs.Z);
+
+	return distanceSqrVec;
+}
+//--------------------------------------------------------------------------------------------
