@@ -43,7 +43,7 @@ void Fireworks::Update(int msTime)
 
 	it = m_ParticleVector.begin();
 
-	while (it != m_ParticleVector.end() && toBeAdded.size() < MAXPARTICLES)
+	while (it != m_ParticleVector.end() && toBeAdded.size() < (unsigned int) MAXPARTICLES)
 	{
 		if (!(*it)->Alive())
 		{
@@ -60,7 +60,7 @@ void Fireworks::Update(int msTime)
 		it++;
 	}
 
-	for (int i = 0; i < m_ParticleVector.size(); i++)
+	for (unsigned int i = 0; i < m_ParticleVector.size(); i++)
 	{
 		if (!m_ParticleVector[i]->Alive())
 		{
@@ -70,9 +70,9 @@ void Fireworks::Update(int msTime)
 		}
 	}
 	std::vector<Particle*>::iterator iter = toBeAdded.begin();
-	if (m_ParticleVector.size() < MAXPARTICLES)
+	if (m_ParticleVector.size() < (unsigned int)MAXPARTICLES)
 	{
-		while (iter != toBeAdded.end() && m_ParticleVector.size() < MAXPARTICLES)
+		while (iter != toBeAdded.end() && m_ParticleVector.size() < (unsigned int)MAXPARTICLES)
 		{
 			m_ParticleVector.push_back(*iter);
 			iter++;
@@ -98,7 +98,7 @@ std::vector<Particle*> Fireworks::CreateParticle(Vector3D pos, int amount)
 		velocity = velocity.Normalized() / 10;
 
 		Particle* newParticle = new Particle();
-		newParticle->Init(pos, velocity);
+		newParticle->Init(.1f,pos, velocity);
 		newParticle->SetLife(m_ParticleLife);
 		newParticles.push_back(newParticle);
 	}

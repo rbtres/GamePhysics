@@ -4,9 +4,11 @@
 //Does Two thnigs not just input. Does manage all input. While flushing out system in 
 //first couple weeks it will also manager the camera for sometime
 //Creation Date 1/18/2015
+//Last Updated 2/7/2015
 //============================================================================================
 #include "Vector2D.h"
 #include "Vector3D.h"
+#include "PlanetManager.h"
 #pragma once
 //============================================================================================
 class InputManager
@@ -26,6 +28,7 @@ public:
 	void HandleMouse(Vector2D mousePos);
 	void HandleMouseDown(Vector2D buttonAndState, Vector2D mosPos);
 	void Update(int msTime);
+	void SetPlanetManager(std::vector<PhysicsObject*> p){ mp_PlanetManager = p; }
 	void Enable();
 //--------------------------------------------------------------------------------------------
 
@@ -33,6 +36,7 @@ public:
 	Vector2D getOffset() { return m_offset; }
 //============================================================================================
 private:
+	std::vector<PhysicsObject*> mp_PlanetManager;
 //--------------------------------------------------------------------------------------------
 	Vector2D m_oldPos;
 	Vector2D m_movedPos;
@@ -49,6 +53,7 @@ private:
 	float m_cameraSpeed;
 //--------------------------------------------------------------------------------------------
 	bool m_leftClickDown;
+	int m_planetLookat;
 };
 //============================================================================================
 

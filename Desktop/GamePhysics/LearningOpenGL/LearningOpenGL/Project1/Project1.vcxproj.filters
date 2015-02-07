@@ -31,6 +31,12 @@
     <Filter Include="Source Files\ForceGenerators">
       <UniqueIdentifier>{53c8dfac-0a30-4e5e-87fe-0e833dc06aad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Manager">
+      <UniqueIdentifier>{9a1d8f1d-1ce3-4c5a-9156-5d1db13f50cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Manager">
+      <UniqueIdentifier>{f9816943-3dff-4006-8fe1-eb638063a961}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -44,9 +50,6 @@
     </ClCompile>
     <ClCompile Include="Vector3D.cpp">
       <Filter>Source Files\MathB</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Vector2D.cpp">
       <Filter>Source Files\MathB</Filter>
@@ -63,8 +66,11 @@
     <ClCompile Include="GravityGenerator.cpp">
       <Filter>Source Files\ForceGenerators</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Manager</Filter>
+    </ClCompile>
     <ClCompile Include="PlanetManager.cpp">
-      <Filter>Source Files\Object</Filter>
+      <Filter>Source Files\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,9 +82,6 @@
     </ClInclude>
     <ClInclude Include="Matrix.h">
       <Filter>Header Files\MathB</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Vector2D.h">
       <Filter>Header Files\MathB</Filter>
@@ -98,8 +101,11 @@
     <ClInclude Include="GravityGenerator.h">
       <Filter>Header Files\ForceGenerators</Filter>
     </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Manager</Filter>
+    </ClInclude>
     <ClInclude Include="PlanetManager.h">
-      <Filter>Header Files\Object</Filter>
+      <Filter>Header Files\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

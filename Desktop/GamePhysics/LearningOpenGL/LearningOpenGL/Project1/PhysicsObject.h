@@ -3,6 +3,7 @@
 //PhysicsObject
 //Base PhysicsObject class will be purely virtual just hold some required information
 //Creation Date 1/18/2015
+//Last Updated 2/7/2015
 //============================================================================================
 #pragma once
 #include "Vector3D.h"
@@ -17,7 +18,7 @@ public:
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-	virtual void Init(Vector3D pos = Vector3D::Zero, Vector3D startVel = Vector3D::Zero, Vector3D startAcc = Vector3D::Zero, Vector3D startRot = Vector3D::Zero);
+	virtual void Init(float radius = 0, Vector3D pos = Vector3D::Zero, Vector3D startVel = Vector3D::Zero, Vector3D startAcc = Vector3D::Zero, Vector3D startRot = Vector3D::Zero);
 	virtual void Update(int msTime);
 	virtual void Draw();
 	virtual void Reset();
@@ -58,6 +59,7 @@ protected:
 
 	float m_Damping;
 	float m_Mass;
+	float m_Radius;
 	
 	Vector3D m_Force;
 //--------------------------------------------------------------------------------------------

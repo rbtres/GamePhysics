@@ -3,7 +3,8 @@
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-const long double GravityGenerator::GRAVITY = (6.67384 * pow(10, -11));
+//Au^3 / solar mass * sec ^2
+const long double GravityGenerator::GRAVITY = (3.965 * pow(10, -14));
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
@@ -44,7 +45,7 @@ void GravityGenerator::UpdateForce(PhysicsObject* addedBody, PhysicsObject* othe
 	float magSq = distanceBetweenSq.MagnitudeSq();
 
 	
-	forceBetweenObjects =  normalDir * (-GRAVITY * ((M1 * M2) / (magSq))) * 11000;
+	forceBetweenObjects = normalDir * (-GRAVITY * ((M1 * M2) / (magSq)));
 
 	addedBody->addForce(forceBetweenObjects);
 	

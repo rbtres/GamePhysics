@@ -54,6 +54,7 @@ GLUI* gp_Glui;
 bool g_isPlaying;
 
 static GLUI_StaticText* text;
+static GLUI_StaticText* fpsText;
 
 const int PLAY_ID = 1, STOP_ID = 2, PAUSE_ID = 3;
 //--------------------------------------------------------------------------------------------
@@ -114,8 +115,12 @@ void initialize()
 	gp_Glui->add_button("Play", PLAY_ID, buttons);
 	gp_Glui->add_button("Stop", STOP_ID, buttons);
 	gp_Glui->add_button("Pause", PAUSE_ID, buttons);
-
 	text = gp_Glui->add_statictext(currentText);
+	//gp_Glui->add_column(1);
+	//fpsText = gp_Glui->add_statictext()
+	//gp_Glui->add_column(1);
+
+	
 
 	glutMainLoop();
 }

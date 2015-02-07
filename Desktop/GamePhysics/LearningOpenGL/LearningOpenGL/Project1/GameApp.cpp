@@ -40,6 +40,7 @@ void GameApp::Init()
 {
 	p_InputManager->Init();
 	mp_PlanetManager->Init();
+	p_InputManager->SetPlanetManager(mp_PlanetManager->gp_Planets);
 
 }
 //--------------------------------------------------------------------------------------------
@@ -84,3 +85,4 @@ void GameApp::Reset()
 {
 	mp_PlanetManager->Reset();
 }
+//--------------------------------------------------------------------------------------------

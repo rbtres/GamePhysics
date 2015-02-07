@@ -15,7 +15,7 @@ PhysicsObject::PhysicsObject()
 
 	m_Mass = 0;
 	m_Force = Vector3D::Zero;
-	m_Damping = 0;
+	m_Damping = 1;
 }
 //--------------------------------------------------------------------------------------------
 
@@ -28,7 +28,9 @@ PhysicsObject::~PhysicsObject()
 //--------------------------------------------------------------------------------------------
 void PhysicsObject::Update(int msTime)
 {
-	float time = (float)msTime / 1000;
+	//32557600 = Per Year
+	//86400 = per day
+	float time = (float)msTime / 1000 * 86400;
 	
 	if (m_Mass != 0)
 	{
@@ -38,13 +40,17 @@ void PhysicsObject::Update(int msTime)
 	m_Pos += m_Vel * time;
 
 	m_Vel += m_Acc * time;
+
+	m_Vel = m_Vel * m_Damping;
+
 	m_Force = Vector3D::Zero;
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void PhysicsObject::Init(Vector3D pos, Vector3D startVel, Vector3D startAcc, Vector3D startRot)
+void PhysicsObject::Init(float radius, Vector3D pos, Vector3D startVel, Vector3D startAcc, Vector3D startRot)
 {
+	m_Radius = radius;
 	m_Pos = pos;
 	m_Vel = startVel;
 	m_Acc = startAcc;
@@ -65,7 +71,7 @@ void PhysicsObject::Draw()
 
 	glTranslatef(m_Pos.X, m_Pos.Y, m_Pos.Z);
 
-	glutSolidSphere(.1,10,10);
+	glutSolidSphere(m_Radius,10,10);
 	
 	glPopMatrix();
 	

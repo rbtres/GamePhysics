@@ -57,9 +57,11 @@ public:
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-	void Reset(){};
+	inline void Reset(){ for (auto i : m_SolarSystemRegistry) { i->Planet->Reset(); } };
 	inline void Draw(){ for (auto i : m_SolarSystemRegistry){ i->Planet->Draw(); } }
 	inline ForceRegistration GetForceReg(int index){ return *m_SolarSystemRegistry[index]; }
+	static int DaysPerSecond;
+	std::vector<PhysicsObject*> gp_Planets;
 //--------------------------------------------------------------------------------------------
 //============================================================================================
 private:
