@@ -21,7 +21,7 @@ PlanetManager::~PlanetManager()
 void PlanetManager::Init()
 {
 	PhysicsObject* mercury = new PhysicsObject();
-	mercury->Init(.05f, Vector3D(.31f, 0, 0), Vector3D(0,0, .0000003925392803303289f));
+	mercury->Init(.05f, Vector3D(.31f, 0, 0), Vector3D(0,0, .0000003925392803303289));
 	mercury->setDamping((float).99999999999999999);
 	mercury->setMass((float).0000001666);
 	GravityGenerator* mercuryGen = new GravityGenerator();
@@ -29,7 +29,7 @@ void PlanetManager::Init()
 	gp_Planets.push_back(mercury);
 
 	PhysicsObject* venus = new PhysicsObject();
-	venus->Init(.1, Vector3D(.718f, 0, 0), Vector3D(0,0, .0000002377854700252f));
+	venus->Init(.1, Vector3D(.718f, 0, 0), Vector3D(0,0, .0000002377854700252));
 	venus->setDamping((float).99999999999999999);
 	venus->setMass((float).000002447);
 	GravityGenerator* venusGen = new GravityGenerator();
@@ -37,7 +37,7 @@ void PlanetManager::Init()
 	gp_Planets.push_back(venus);
 
 	PhysicsObject* earth = new PhysicsObject();
-	earth->Init(.03,Vector3D(.98f, 0, 0), Vector3D(0,0, .000000202542998f));
+	earth->Init(.03,Vector3D(.98f, 0, 0), Vector3D(0,0, .000000202542998));
 	earth->setMass((float).000003003);
 	earth->setDamping((float).99999999999999999);
 	GravityGenerator* earthsGenerator = new GravityGenerator();
@@ -45,14 +45,14 @@ void PlanetManager::Init()
 	gp_Planets.push_back(earth);
 
 	PhysicsObject* moon = new PhysicsObject();
-	moon->Init(.01, Vector3D(1.02f, 0, 0), Vector3D(0, 0, .000000007197722768554639f));
+	moon->Init(.01, Vector3D(.95f, 0, 0), Vector3D(0, 0, (.000000202542998 + .000000007197722768554639)));
 	moon->setMass((float).0000000123);
 	moon->setDamping((float).99999999999999999);
 	GravityGenerator* moonGenerator = new GravityGenerator();
-	//AddForceReg(moon, moonGenerator);
+	AddForceReg(moon, moonGenerator);
 
 	PhysicsObject* mars = new PhysicsObject();
-	mars->Init(.08f, Vector3D(1.38f, 0, 0), Vector3D(0,0, .0000001624394778196f));
+	mars->Init(.08f, Vector3D(1.38f, 0, 0), Vector3D(0,0, .0000001624394778196));
 	mars->setDamping((float).99999999999999999);
 	mars->setMass((float).0000003232);
 	GravityGenerator* marsGen = new GravityGenerator();
@@ -60,7 +60,7 @@ void PlanetManager::Init()
 	gp_Planets.push_back(mars);
 
 	PhysicsObject* jupiter = new PhysicsObject();
-	jupiter->Init(1.1f, Vector3D(4.95f, 0, 0), Vector3D(0, 0,.0000000879036575732f));
+	jupiter->Init(1.1f, Vector3D(4.95f, 0, 0), Vector3D(0, 0,.0000000879036575732));
 	jupiter->setDamping((float).99999999999999999);
 	jupiter->setMass((float).0009547919);
 	GravityGenerator* jupiterGen = new GravityGenerator();
@@ -68,7 +68,7 @@ void PlanetManager::Init()
 	gp_Planets.push_back(jupiter);
 
 	PhysicsObject* saturn = new PhysicsObject();
-	saturn->Init(.941f, Vector3D(9.02f, 0, 0), Vector3D(0,0, .0000000654213857054f));
+	saturn->Init(.941f, Vector3D(9.02f, 0, 0), Vector3D(0,0, .0000000654213857054));
 	saturn->setDamping((float).99999999999999999);
 	saturn->setMass((float).000285885);
 	GravityGenerator* saturnGen = new GravityGenerator();
@@ -76,7 +76,7 @@ void PlanetManager::Init()
 	gp_Planets.push_back(saturn);
 
 	PhysicsObject* uranus = new PhysicsObject();
-	uranus->Init(.4f, Vector3D(18.3f, 0, 0), Vector3D(0, 0,.0000000461798016744f));
+	uranus->Init(.4f, Vector3D(18.3f, 0, 0), Vector3D(0, 0,.0000000461798016744));
 	uranus->setDamping((float).99999999999999999);
 	uranus->setMass((float).000043662);
 	GravityGenerator* uranusGen = new GravityGenerator();
