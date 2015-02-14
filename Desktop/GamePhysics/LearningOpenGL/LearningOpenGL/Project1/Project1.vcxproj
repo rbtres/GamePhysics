@@ -79,6 +79,7 @@
     <ClCompile Include="PhysicsObject.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="PlanetManager.cpp" />
+    <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
@@ -93,6 +94,7 @@
     <ClInclude Include="PhysicsObject.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="PlanetManager.h" />
+    <ClInclude Include="SkyBox.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Vector3D.h" />
   </ItemGroup>
