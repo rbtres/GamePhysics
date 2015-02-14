@@ -92,7 +92,6 @@ void initialize()
 	glEnable(GL_LIGHTING); //enable the lighting
 	glEnable(GL_LIGHT0); //enable LIGHT0, our Diffuse Light
 	glShadeModel(GL_SMOOTH); //set the shader to smooth shader
-	//glDepthFunc(GL_EQUAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 	
 

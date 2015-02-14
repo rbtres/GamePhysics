@@ -60,7 +60,6 @@ protected:
 	float m_Damping;
 	float m_Mass;
 	float m_Radius;
-	
 	Vector3D m_Force;
 //--------------------------------------------------------------------------------------------
 };
