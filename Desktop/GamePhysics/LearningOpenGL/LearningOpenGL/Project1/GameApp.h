@@ -6,10 +6,12 @@
 //Last Modified 1/24/2015
 //============================================================================================
 #pragma once
+
 #include "InputManager.h"
 #include "PhysicsObject.h"
 #include "PlanetManager.h"
 
+class SkyBox;
 //============================================================================================
 class GameApp
 {
@@ -32,6 +34,7 @@ public:
 private:
 	void update(int msTime);
 	PlanetManager* mp_PlanetManager;
+	SkyBox* mp_SkyBox;
 
 };
 //============================================================================================

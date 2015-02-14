@@ -1,4 +1,4 @@
-﻿Build started 2/14/2015 4:04:40 PM.
+﻿Build started 2/14/2015 4:22:50 PM.
      1>Project "C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Project1\Project1.vcxproj" on node 2 (Build target(s)).
      1>RestorePackages:
          "C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\.nuget\NuGet.exe" install "C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Project1\packages.config" -source ""  -NonInteractive -RequireConsent -solutionDir "C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\ "
@@ -6,11 +6,31 @@
          To prevent NuGet from downloading packages during build, open the Visual Studio Options dialog, click on the Package Manager node and uncheck 'Allow NuGet to download missing packages'.
          All packages listed in packages.config are already installed.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/ /I"../glui-2.36/include/" /I../soil/soil/src /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SkyBox.cpp
-         SkyBox.cpp
-     1>c:\users\robert.bethune\documents\phyicsgotwo\gamephysics\desktop\gamephysics\learningopengl\learningopengl\packages\nupengl.core.0.0.0.1\build\native\include\gl\glew.h(84): fatal error C1189: #error :  gl.h included before glew.h
-     1>Done Building Project "C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Project1\Project1.vcxproj" (Build target(s)) -- FAILED.
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/ /I"../glui-2.36/include/" /I../soil/soil/src /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameApp.cpp Main.cpp
+         Main.cpp
+     1>c:\users\robert.bethune\documents\phyicsgotwo\gamephysics\desktop\gamephysics\learningopengl\learningopengl\project1\main.cpp(65): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\robert.bethune\documents\phyicsgotwo\gamephysics\desktop\gamephysics\learningopengl\learningopengl\project1\main.cpp(213): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Generating Code...
+         Compiling...
+         GameApp.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Debug\Project1.exe" /INCREMENTAL /NOLOGO /LIBPATH:"../glui-2.36/Debug/" /LIBPATH:../soil/soil/projects/VC9/Debug C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glew32.lib C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glfw3dll.lib C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\freeglut.lib glui32.lib glu32.lib OpenGL32.lib soil.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Debug\Project1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Debug\Project1.lib" /MACHINE:X86 Debug\Fireworks.obj
+         Debug\GameApp.obj
+         Debug\GravityGenerator.obj
+         Debug\InputManager.obj
+         Debug\Main.obj
+         Debug\Matrix.obj
+         Debug\Particle.obj
+         Debug\PhysicsObject.obj
+         Debug\Planet.obj
+         Debug\PlanetManager.obj
+         Debug\SkyBox.obj
+         Debug\Vector2D.obj
+         Debug\Vector3D.obj
+         Project1.vcxproj -> C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Debug\Project1.exe
+     1>Done Building Project "C:\Users\robert.bethune\Documents\PhyicsGoTwo\GamePhysics\Desktop\GamePhysics\LearningOpenGL\LearningOpenGL\Project1\Project1.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.22
+Time Elapsed 00:00:03.30

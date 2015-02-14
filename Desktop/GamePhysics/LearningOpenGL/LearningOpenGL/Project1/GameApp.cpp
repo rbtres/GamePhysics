@@ -1,10 +1,11 @@
+#include "SkyBox.h"
 #include "GameApp.h"
 
 //--------------------------------------------------------------------------------------------
 GameApp::GameApp()
 {
 	p_InputManager = new InputManager();
-
+	mp_SkyBox = new SkyBox();
 	mp_PlanetManager = new PlanetManager;
 }
 //--------------------------------------------------------------------------------------------
