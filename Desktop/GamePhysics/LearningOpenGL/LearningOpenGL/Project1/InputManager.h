@@ -3,8 +3,11 @@
 //InputManager
 //Does Two thnigs not just input. Does manage all input. While flushing out system in 
 //first couple weeks it will also manager the camera for sometime
+//Don't have time to fully implement a event system. I also don't want
+//to couple input specifically with a camera class, so currently both in one is best solution
+//til event system can be made.
 //Creation Date 1/18/2015
-//Last Updated 2/7/2015
+//Last Updated 2/14/2015
 //============================================================================================
 #include "Vector2D.h"
 #include "Vector3D.h"
@@ -30,6 +33,7 @@ public:
 	void Update(int msTime);
 	void SetPlanetManager(std::vector<PhysicsObject*> p){ mp_PlanetManager = p; }
 	void Enable();
+	int GetCurrentPlanet(){ return m_planetLookat; }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------

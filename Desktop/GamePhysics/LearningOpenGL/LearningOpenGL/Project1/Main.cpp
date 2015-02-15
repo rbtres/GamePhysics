@@ -1,10 +1,14 @@
 //============================================================================================
 //Create by Robert Bethune
+//Worked with Evan, Jake & Alex
 //Modified http://www2.cs.uregina.ca/~anima/408/Notes/Timelines/Controlling-the-Display-Rate.htm
 //Also https://www3.ntu.edu.sg/home/ehchua/programming/opengl/HowTo_OpenGL_C.html
 //Mouse Info http://www.zeuscmd.com/tutorials/glut/03-MouseInput.php
 //Main.cpp
 //Used for creating a cube and than updating for future project
+//holds most of opengl linkers.
+//Not as clean as I would like. Does more than it should
+//however with time restraints and problems this is currently the method I had time to implement
 //Creation Date 1/17/2015
 //============================================================================================
 #include <iostream>
@@ -21,7 +25,6 @@
 #include <time.h>  
 
 using namespace std;
-
 //--------------------------------------------------------------------------------------------
 void idle();
 void display();
@@ -35,7 +38,8 @@ void reshape(int width, int height);
 void handleMouse(int button, int state, int x, int y);
 void buttons(int playInt);
 void setString(char* s);
-
+void setPlanetText(char* s);
+void setFPSText(const char * s);
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
@@ -54,6 +58,7 @@ GLUI* gp_Glui;
 bool g_isPlaying;
 
 static GLUI_StaticText* text;
+static GLUI_StaticText* planetText;
 static GLUI_StaticText* fpsText;
 
 const int PLAY_ID = 1, STOP_ID = 2, PAUSE_ID = 3;
@@ -63,10 +68,11 @@ const int PLAY_ID = 1, STOP_ID = 2, PAUSE_ID = 3;
 int main(int argc, char** argv)
 {
 	srand(time(NULL));
+	gp_GameApp = new GameApp();
 	glutInit(&argc, argv);
 	currentText = "";
 	g_isPlaying = false;
-	gp_GameApp = new GameApp();
+
 	g_rotation_number = 0;
 	initialize();
 	return 0;
@@ -84,16 +90,16 @@ void initialize()
 	g_main_win = glutCreateWindow("Buttons");
 
 	
-	float lightPosition[] = { 100.0, 100.0, 100.0, 0 };
-
+	float lightPosition[] = { -2, 0, 0, 0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 
 	glEnable(GL_DEPTH_TEST); //enable the depth testing
 	glEnable(GL_LIGHTING); //enable the lighting
+	float global_ambient[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient);
 	glEnable(GL_LIGHT0); //enable LIGHT0, our Diffuse Light
 	glShadeModel(GL_SMOOTH); //set the shader to smooth shader
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-	
 
 	gp_GameApp->Init();
 
@@ -103,7 +109,6 @@ void initialize()
 	glutKeyboardUpFunc(handleKeyUp);
 	
 	
-
 	GLUI_Master.set_glutKeyboardFunc(handleKeyDown);
 	GLUI_Master.set_glutMouseFunc(handleMouse);
 	GLUI_Master.set_glutReshapeFunc(reshape);
@@ -115,8 +120,9 @@ void initialize()
 	gp_Glui->add_button("Stop", STOP_ID, buttons);
 	gp_Glui->add_button("Pause", PAUSE_ID, buttons);
 	text = gp_Glui->add_statictext(currentText);
-	//gp_Glui->add_column(1);
-	//fpsText = gp_Glui->add_statictext()
+	gp_Glui->add_column(1);
+	planetText = gp_Glui->add_statictext("None");
+	fpsText = gp_Glui->add_statictext("FPS: 60");
 	//gp_Glui->add_column(1);
 
 	
@@ -139,6 +145,12 @@ void idle()
 	{
 		g_delta_time = (int)(end_rendering_time - (g_start_time + (g_current_frame_number ) * TIME_PER_FRAME));
 		update(g_delta_time);
+		int x = 1000 / g_delta_time;
+		string d = to_string(x);
+		string c = "Fps: ";
+		string f = c + d;
+		const char* s = f.c_str();
+		setFPSText(s);
 	}
 }
 //--------------------------------------------------------------------------------------------
@@ -167,12 +179,47 @@ void update(int mstime)
 //--------------------------------------------------------------------------------------------
 void display()
 {
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	gp_GameApp->Draw();
 
 	glutSwapBuffers();
+	//Sending this into the gp_gameapp and will update by the actuall 
+	//input manager / camera hybrid class.
+	switch (gp_GameApp->p_InputManager->GetCurrentPlanet())
+	{
+	case -1: setPlanetText("None");
+		break;
+	case 0:
+		setPlanetText("Sun");
+		break;
+	case 1:
+		setPlanetText("Mercury");
+		break;
+	case 2:
+		setPlanetText("Venus");
+		break;
+	case 3:
+		setPlanetText("Earth & Sun");
+		break;
+	case 4:
+		setPlanetText("Mars");
+		break;
+	case 5:
+		setPlanetText("Jupiter");
+		break;
+	case 6:
+		setPlanetText("Saturn");
+		break;
+	case 7:
+		setPlanetText("Uranus");
+		break;
+	case 8:
+		setPlanetText("Neptune");
+		break;
+
+	}
 }
 //--------------------------------------------------------------------------------------------
 
@@ -253,3 +300,18 @@ void setString(char* s)
 {
 	text->set_text(s);
 }
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+void setPlanetText(char* s)
+{
+	planetText->set_text(s);
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+void setFPSText(const char* s)
+{
+	fpsText->set_text(s);
+}
+//--------------------------------------------------------------------------------------------

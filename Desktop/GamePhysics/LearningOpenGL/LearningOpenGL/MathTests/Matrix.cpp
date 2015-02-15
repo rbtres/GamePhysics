@@ -17,6 +17,11 @@ namespace MathTests
 			Assert::AreEqual((float)2, t.Get(0, 0));
 			Assert::AreEqual((float)2, t.Get(1, 1));
 		}
-
+		TEST_METHOD(MatrixSetAndGet)
+		{
+			Matrix m = Matrix(2, true);
+			m.Set(1, 1, 4);
+			Assert::AreEqual((float)4, m.Get(1, 1));
+		}
 	};
 }

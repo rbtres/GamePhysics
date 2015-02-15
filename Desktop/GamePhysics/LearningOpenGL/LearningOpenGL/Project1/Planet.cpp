@@ -34,7 +34,7 @@ void Planet::LoadImg()
 {	
 	int width;
 	int height;
-
+	//same as SkyBox.cpp load
 	glGenTextures(1, &m_Tex);
 	glBindTexture(GL_TEXTURE_2D, m_Tex);
 
@@ -49,6 +49,9 @@ void Planet::LoadImg()
 //--------------------------------------------------------------------------------------------
 void Planet::Draw()
 {
+	//This draw reqires an actual gluQuadrice texture over just the GLuint like skybox
+	//Create it in new than set it at each draw to the current text.
+	//Not binding nad setting before tends to use just one texture for all planets
 	glEnable(GL_TEXTURE_2D);
 
 	glBindTexture(GL_TEXTURE_2D, m_Tex);
@@ -68,6 +71,7 @@ void Planet::Draw()
 	gluSphere(m_Sphere,m_Radius, 25, 25);
 	
 	glPopMatrix();
+	glDisable(GL_TEXTURE_2D);
 }
 //--------------------------------------------------------------------------------------------
 

@@ -1,9 +1,16 @@
 #include "SkyBox.h"
-
+//https://www.opengl.org/discussion_boards/showthread.php/182361-Skybox
 #include "SOIL.h"
+//--------------------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------
 SkyBox::SkyBox()
 {
+	//this method in case I wanted to save things later.
+	//As well this can be moved into an init requiring the vector
+	//Could do double vector for future.
+	//this way it can be in a texture class.
+	//Call get textures(vector<char*> location, vector<GLuint> texLoc);
 	std::vector<char*> stars;
 	stars.push_back("Stars/Stars_front.jpg");
 	stars.push_back("Stars/Stars_back.jpg");
@@ -11,69 +18,167 @@ SkyBox::SkyBox()
 	stars.push_back("Stars/Stars_right.jpg");
 	stars.push_back("Stars/Stars_top.jpg");
 	stars.push_back("Stars/Stars_bottom.jpg");
-
-	LoadSkybox(stars);
+	
+	LoadSkybox(stars[0], &m_Front);
+	LoadSkybox(stars[1], &m_Back);
+	LoadSkybox(stars[2], &m_Left);
+	LoadSkybox(stars[3], &m_Right);
+	LoadSkybox(stars[4], &m_Top);
+	LoadSkybox(stars[5], &m_Bottom);
 }
+//--------------------------------------------------------------------------------------------
 
-
+//--------------------------------------------------------------------------------------------
 SkyBox::~SkyBox()
 {
 }
-void SkyBox::LoadSkybox(std::vector<char*> locname)
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+void SkyBox::LoadSkybox(char* locname, GLuint* tex)
 {
 	int width;
 	int height;
-	glGenTextures(1, &m_Tex);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, m_Tex);
+	//Turn texture on to be safe before using them.
+	glEnable(GL_TEXTURE_2D);
+	//Generates than binds textures
+	glGenTextures(1, tex);
+	glBindTexture(GL_TEXTURE_2D, *tex);
 	
-	//_front _back _left _right _top _bottom
-	unsigned char* image = SOIL_load_image(locname[0], &width, &height, 0, SOIL_LOAD_RGB);
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	//uses SOIL free gl library to do create image, than binds it to a GL_TEXTURE_2D
+	//this is binded to the GLuint from above free it once its binded. The data is still there
+	unsigned char* image = SOIL_load_image(locname, &width, &height, 0, SOIL_LOAD_RGB);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
-
-	image = SOIL_load_image(locname[1], &width, &height, 0, SOIL_LOAD_RGB);
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + 1, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	SOIL_free_image_data(image);
-
-	image = SOIL_load_image(locname[2], &width, &height, 0, SOIL_LOAD_RGB);
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + 2, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	SOIL_free_image_data(image);
-
-	image = SOIL_load_image(locname[3], &width, &height, 0, SOIL_LOAD_RGB);
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + 3, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	SOIL_free_image_data(image);
-
-	image = SOIL_load_image(locname[4], &width, &height, 0, SOIL_LOAD_RGB);
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + 4, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	SOIL_free_image_data(image);
-
-	image = SOIL_load_image(locname[5], &width, &height, 0, SOIL_LOAD_RGB);
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + 5, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	SOIL_free_image_data(image);
-
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-
 }
+//--------------------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------
 void SkyBox::RenderSkyBox()
 {
-	glDepthMask(0);
-	glEnable(GL_TEXTURE_CUBE_MAP);
+	//Renders a cube in basic format than around you.
+	//Currently having problems because disabling lighting causes white background
+	//and with lighting on it reflects etc. weird problem.
+	//each GLuint tells which piece of a skybox is rendering there
+	glEnable(GL_TEXTURE_2D);
+	glDisable(GL_LIGHT0);
+	glDisable(GL_LIGHTING);
 
-	glBindTexture(GL_TEXTURE_CUBE_MAP, m_Tex);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	GLfloat width = 30;
+	GLfloat height = 30;
+	GLfloat length = 30;
 
-	//gluQuadricDrawStyle(m_SkyBox, GLU_FILL);
-	//gluQuadricTexture(m_SkyBox, GL_TRUE);
-	//gluQuadricNormals(m_SkyBox, GLU_SMOOTH);
+	glBindTexture(GL_TEXTURE_2D, m_Top);
 
-	glPushMatrix();
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	glDepthMask(1);
+	glBegin(GL_QUADS);
 
+	glNormal3f(0.0f, 1.0f, 0.0f);
+	glTexCoord2d(1.0f, 0.0f);
+	glVertex3f(width, height, -length);
+	glTexCoord2d(1.0f, 1.0f);
+	glVertex3f(-width, height, -length);
+	glTexCoord2d(0.0, 1.0f);
+	glVertex3f(-width, height, length);
+	glTexCoord2d(0.0, 0.0f);
+	glVertex3f(width, height, length);
+
+	glEnd();
+
+	glBindTexture(GL_TEXTURE_2D, m_Front);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	
+	glBegin(GL_QUADS);
+	
+	glNormal3f(0.0f, 0.0f, -1.0f);
+	glTexCoord2d(0.0f, 0.0f);
+	glVertex3f(width, height, length);
+	glTexCoord2d(1.0f, 0.0f);
+	glVertex3f(-width, height, length);
+	glTexCoord2d(1.0f, 1.0f);
+	glVertex3f(-width, -height, length);
+	glTexCoord2d(0.0f, 1.0f);
+	glVertex3f(width, -height, length);
+	
+	glEnd();
+
+	glBindTexture(GL_TEXTURE_2D, m_Left);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glBegin(GL_QUADS);
+	glNormal3f(-1.0f, 0.0f, 0.0f);
+	glTexCoord2d(1.0f, 0.0f);
+	glVertex3f(-width, height, -length);
+	glTexCoord2d(1.0f, 1.0f);
+	glVertex3f(-width, -height, -length);
+	glTexCoord2d(0.0f, 1.0f);
+	glVertex3f(-width, -height, length);
+	glTexCoord2d(0.0f, 0.0f);
+	glVertex3f(-width, height, length);
+
+	glEnd();
+
+	glBindTexture(GL_TEXTURE_2D, m_Back);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glBegin(GL_QUADS);
+	
+	glNormal3f(0.0f, 0.0f, 1.0f);
+	glTexCoord2d(0.0f, 1.0f);
+	glVertex3f(width, -height, -length);
+	glTexCoord2d(1.0f, 1.0f);
+	glVertex3f(-width, -height, -length);
+	glTexCoord2d(1.0f, 0.0f);
+	glVertex3f(-width, height, -length);
+	glTexCoord2d(0.0f, 0.0f);
+	glVertex3f(width, height, -length);
+
+	glEnd();
+
+	glBindTexture(GL_TEXTURE_2D, m_Right);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glBegin(GL_QUADS);
+
+	glNormal3f(1.0f, 0.0f, 0.0f);
+	glTexCoord2d(0.0f, 0.0f);
+	glVertex3f(width, height, -length);
+	glTexCoord2d(1.0f, 0.0f);
+	glVertex3f(width, height, length);
+	glTexCoord2d(1.0f, 1.0f);
+	glVertex3f(width, -height, length);
+	glTexCoord2d(0.0f, 1.0f);
+	glVertex3f(width, -height, -length);
+
+	glEnd();
+
+	glBindTexture(GL_TEXTURE_2D, m_Bottom);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glBegin(GL_QUADS);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex3f(-width, -height, -length);
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex3f(width, -height, -length);
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex3f(width, -height, length);
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex3f(-width, -height, length);
+
+	glEnd();
+	
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glDisable(GL_TEXTURE_2D);
 }
+//--------------------------------------------------------------------------------------------

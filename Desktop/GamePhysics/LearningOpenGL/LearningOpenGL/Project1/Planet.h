@@ -1,6 +1,6 @@
 //============================================================================================
 //Create by Robert Bethune
-//PhysicsObject
+//Planet
 //Planet above Physics Object holds a name, texture and GLU quad so it can be drawn
 //using Gl's Soil
 //Creation Date 2/14/2015

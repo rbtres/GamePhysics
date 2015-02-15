@@ -5,8 +5,10 @@
 GameApp::GameApp()
 {
 	p_InputManager = new InputManager();
+	
+	mp_PlanetManager = new PlanetManager();
+
 	mp_SkyBox = new SkyBox();
-	mp_PlanetManager = new PlanetManager;
 }
 //--------------------------------------------------------------------------------------------
 
@@ -50,6 +52,7 @@ void GameApp::Init()
 void GameApp::Draw()
 {
 	mp_PlanetManager->Draw();
+	mp_SkyBox->RenderSkyBox();
 }
 //--------------------------------------------------------------------------------------------
 
