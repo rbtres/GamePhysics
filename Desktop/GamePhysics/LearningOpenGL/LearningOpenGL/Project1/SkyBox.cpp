@@ -6,6 +6,17 @@
 //--------------------------------------------------------------------------------------------
 SkyBox::SkyBox()
 {
+
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+SkyBox::~SkyBox()
+{
+}
+//--------------------------------------------------------------------------------------------
+void SkyBox::Init()
+{
 	//this method in case I wanted to save things later.
 	//As well this can be moved into an init requiring the vector
 	//Could do double vector for future.
@@ -18,7 +29,7 @@ SkyBox::SkyBox()
 	stars.push_back("Stars/Stars_right.jpg");
 	stars.push_back("Stars/Stars_top.jpg");
 	stars.push_back("Stars/Stars_bottom.jpg");
-	
+
 	LoadSkybox(stars[0], &m_Front);
 	LoadSkybox(stars[1], &m_Back);
 	LoadSkybox(stars[2], &m_Left);
@@ -26,14 +37,6 @@ SkyBox::SkyBox()
 	LoadSkybox(stars[4], &m_Top);
 	LoadSkybox(stars[5], &m_Bottom);
 }
-//--------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------
-SkyBox::~SkyBox()
-{
-}
-//--------------------------------------------------------------------------------------------
-
 //--------------------------------------------------------------------------------------------
 void SkyBox::LoadSkybox(char* locname, GLuint* tex)
 {

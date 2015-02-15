@@ -43,6 +43,7 @@ void GameApp::Init()
 {
 	p_InputManager->Init();
 	mp_PlanetManager->Init();
+	mp_SkyBox->Init();
 	p_InputManager->SetPlanetManager(mp_PlanetManager->gp_Planets);
 
 }
