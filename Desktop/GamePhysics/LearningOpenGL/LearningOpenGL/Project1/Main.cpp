@@ -17,6 +17,7 @@
 #include "GL/glut.h"
 #include "GameApp.h"
 #include "InputManager.h"
+#include "PhysicsObject.h"
 #include "Vector3D.h"
 #include "Vector2D.h"
 #include "Matrix.h"
@@ -41,6 +42,9 @@ void setString(char* s);
 void setPlanetText(char* s);
 void setFPSText(const char * s);
 void setSpeedText(const char* s);
+void setVel(const char* s);
+void setAcc(const char* s);
+void setMass(const char* s);
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
@@ -62,6 +66,11 @@ static GLUI_StaticText* text;
 static GLUI_StaticText* planetText;
 static GLUI_StaticText* fpsText;
 static GLUI_StaticText* DaysPerSecond;
+static GLUI_StaticText* CurrentVel;
+static GLUI_StaticText* CurrentMass;
+static GLUI_StaticText* CurrentAcc;
+
+PhysicsObject* currentObject;
 
 const int PLAY_ID = 1, STOP_ID = 2, PAUSE_ID = 3;
 //--------------------------------------------------------------------------------------------
@@ -123,11 +132,18 @@ void initialize()
 	gp_Glui->add_button("Pause", PAUSE_ID, buttons);
 	text = gp_Glui->add_statictext(currentText);
 	gp_Glui->add_column(1);
-	planetText = gp_Glui->add_statictext("None");
 	fpsText = gp_Glui->add_statictext("FPS: 60");
-	DaysPerSecond = gp_Glui->add_statictext("50 Days Per Frame");
-	//gp_Glui->add_column(1);
-
+	gp_Glui->add_statictext("DPF Days Per Frame");
+	DaysPerSecond = gp_Glui->add_statictext("50 DPF");
+	gp_Glui->add_statictext("o to lower DPF");
+	gp_Glui->add_statictext("p to raise DPF");
+	gp_Glui->add_column(1);
+	planetText = gp_Glui->add_statictext("None");
+	CurrentVel = gp_Glui->add_statictext("");
+	CurrentMass = gp_Glui->add_statictext("");
+	CurrentAcc = gp_Glui->add_statictext("");
+	gp_Glui->add_statictext("All vel and Acc are in such small numbers I multiply by 1000000000 to scale it");
+	gp_Glui->add_statictext("We use Solar Mass and distance is measured 1 = distance from earth to sun");
 	
 
 	glutMainLoop();
@@ -155,7 +171,7 @@ void idle()
 		const char* s = f.c_str();
 		setFPSText(s);
 		d = to_string(PlanetManager::DaysPerSecond);
-		c = " Days Per Frame";
+		c = " DPF";
 		f = d + c;
 		s = f.c_str();
 		setSpeedText(s);
@@ -210,7 +226,7 @@ void display()
 		setPlanetText("Venus");
 		break;
 	case 3:
-		setPlanetText("Earth & Sun");
+		setPlanetText("Earth & Moon");
 		break;
 	case 4:
 		setPlanetText("Mars");
@@ -228,6 +244,35 @@ void display()
 		setPlanetText("Neptune");
 		break;
 
+	}
+	int x = gp_GameApp->p_InputManager->GetCurrentPlanet();
+	if (x >= 0)
+	{
+		currentObject = gp_GameApp->p_InputManager->GetCurrentPlanetObject();
+		Vector3D v = currentObject->getAcc();
+		string x = to_string(v.X * 1000000000);
+		string y = to_string(v.Y * 1000000000);
+		string z = to_string(v.Z * 1000000000);
+		string c = " , ";
+		string d = "Acc = (";
+		string m = ")";
+		string f = d + x + c + y + c + z + m;
+		const char* acc = f.c_str();
+		setAcc(acc);
+		v = currentObject->getVel();
+		x = to_string(v.X * 1000000000);
+		y = to_string(v.Y * 1000000000);
+		z = to_string(v.Z * 1000000000);
+		d = "Vel = (";
+		f = d + x + c + y + c + z + m;
+		const char* vel = f.c_str();
+		setVel(vel);
+		d = "Mass = ";
+		float xx = currentObject->getMass();
+		y = to_string(xx);
+		f = d + y;
+		const char* mass = f.c_str();
+		setMass(mass);
 	}
 }
 //--------------------------------------------------------------------------------------------
@@ -331,3 +376,21 @@ void setSpeedText(const char* s)
 	DaysPerSecond->set_text(s);
 }
 //--------------------------------------------------------------------------------------------
+void setVel(const char* s)
+{
+	CurrentVel->set_text(s);
+}
+void setAcc(const char* s)
+{
+	CurrentAcc->set_text(s);
+}
+void setMass(const char* s)
+{
+	CurrentMass->set_text(s);
+}
+void setPlanetText(const char* vel, const char* acc, const char* mass)
+{
+	CurrentVel->set_text(vel);
+	CurrentAcc->set_text(acc);
+	CurrentMass->set_text(mass);
+}

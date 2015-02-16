@@ -40,6 +40,7 @@ public:
 	inline void addForce(Vector3D force) { m_Force += force; }
 	inline void setForce(Vector3D force) { m_Force = force; }
 	inline Vector3D getForce() { return m_Force; }
+	inline Vector3D getOldForce() { return m_OldForce; }
 
 	inline void setMass(float mass) { m_Mass = mass; }
 	inline float getMass(){ return m_Mass; }
@@ -61,6 +62,7 @@ protected:
 	float m_Mass;
 	float m_Radius;
 	Vector3D m_Force;
+	Vector3D m_OldForce;
 //--------------------------------------------------------------------------------------------
 };
 //============================================================================================

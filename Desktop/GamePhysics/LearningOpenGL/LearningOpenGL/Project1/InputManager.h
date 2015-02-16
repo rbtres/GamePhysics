@@ -34,6 +34,7 @@ public:
 	void SetPlanetManager(std::vector<PhysicsObject*> p){ mp_PlanetManager = p; }
 	void Enable();
 	int GetCurrentPlanet(){ return m_planetLookat; }
+	PhysicsObject* GetCurrentPlanetObject(){ return mp_PlanetManager[(m_planetLookat - 1) % mp_PlanetManager.size() ]; }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------

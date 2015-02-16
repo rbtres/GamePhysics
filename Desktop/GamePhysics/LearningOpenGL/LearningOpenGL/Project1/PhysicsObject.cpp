@@ -30,13 +30,15 @@ void PhysicsObject::Update(int msTime)
 {
 	//32557600 = Per Year
 	//86400 = per day
+	//our scale makes force * 10 - 20 too small to scale up reasonably in the UI without making it not fit
+	//with other scales
 	float time = (float)msTime / 1000 * 86400;
 	
 	if (m_Mass != 0)
 	{
 		m_Acc = m_Force / m_Mass;
 	}
-
+	m_OldForce = m_Force;
 	m_Pos += m_Vel * time;
 
 	m_Vel += m_Acc * time;

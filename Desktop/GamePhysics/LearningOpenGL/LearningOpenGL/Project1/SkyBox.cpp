@@ -67,9 +67,9 @@ void SkyBox::RenderSkyBox()
 	glDisable(GL_LIGHT0);
 	glDisable(GL_LIGHTING);
 
-	GLfloat width = 30;
-	GLfloat height = 30;
-	GLfloat length = 30;
+	GLfloat width = 50;
+	GLfloat height = 50;
+	GLfloat length = 50;
 
 	glBindTexture(GL_TEXTURE_2D, m_Top);
 
