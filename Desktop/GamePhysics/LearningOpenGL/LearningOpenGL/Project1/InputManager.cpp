@@ -89,7 +89,14 @@ void InputManager::HandleKeyDown(unsigned char key)
 	Vector2D radianRot = Vector2D();
 	radianRot.Y = (m_rot.Y / 180 * M_PI);
 	radianRot.X = (m_rot.X / 180 * M_PI);
-
+	if (key == 'o')
+	{
+		PlanetManager::ModifyDaysPerSecond(-5);
+	}
+	if (key == 'p')
+	{
+		PlanetManager::ModifyDaysPerSecond(5);
+	}
 	if (key == 'w')
 	{
 		m_pos.X += float(sin(radianRot.Y)) * m_cameraSpeed;

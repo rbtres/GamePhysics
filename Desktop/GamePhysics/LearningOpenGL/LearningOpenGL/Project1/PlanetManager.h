@@ -48,6 +48,7 @@ public:
 //--------------------------------------------------------------------------------------------
 	void Update(int msTime);
 	void Init();
+	static void ModifyDaysPerSecond(int modifier){ DaysPerSecond += modifier; if (DaysPerSecond < 1) DaysPerSecond = 1; if (DaysPerSecond > 150) DaysPerSecond = 150; }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------

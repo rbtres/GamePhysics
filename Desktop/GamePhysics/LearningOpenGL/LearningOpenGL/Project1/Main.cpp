@@ -40,6 +40,7 @@ void buttons(int playInt);
 void setString(char* s);
 void setPlanetText(char* s);
 void setFPSText(const char * s);
+void setSpeedText(const char* s);
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
@@ -60,6 +61,7 @@ bool g_isPlaying;
 static GLUI_StaticText* text;
 static GLUI_StaticText* planetText;
 static GLUI_StaticText* fpsText;
+static GLUI_StaticText* DaysPerSecond;
 
 const int PLAY_ID = 1, STOP_ID = 2, PAUSE_ID = 3;
 //--------------------------------------------------------------------------------------------
@@ -123,6 +125,7 @@ void initialize()
 	gp_Glui->add_column(1);
 	planetText = gp_Glui->add_statictext("None");
 	fpsText = gp_Glui->add_statictext("FPS: 60");
+	DaysPerSecond = gp_Glui->add_statictext("50 Days Per Frame");
 	//gp_Glui->add_column(1);
 
 	
@@ -151,6 +154,12 @@ void idle()
 		string f = c + d;
 		const char* s = f.c_str();
 		setFPSText(s);
+		d = to_string(PlanetManager::DaysPerSecond);
+		c = " Days Per Frame";
+		f = d + c;
+		s = f.c_str();
+		setSpeedText(s);
+			
 	}
 }
 //--------------------------------------------------------------------------------------------
@@ -313,5 +322,12 @@ void setPlanetText(char* s)
 void setFPSText(const char* s)
 {
 	fpsText->set_text(s);
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+void setSpeedText(const char* s)
+{
+	DaysPerSecond->set_text(s);
 }
 //--------------------------------------------------------------------------------------------
