@@ -52,26 +52,26 @@ void Planet::Draw()
 	//This draw reqires an actual gluQuadrice texture over just the GLuint like skybox
 	//Create it in new than set it at each draw to the current text.
 	//Not binding nad setting before tends to use just one texture for all planets
-	glEnable(GL_TEXTURE_2D);
+	//glEnable(GL_TEXTURE_2D);
 
-	glBindTexture(GL_TEXTURE_2D, m_Tex);
-	gluQuadricTexture(m_Sphere, m_Tex);
+	//glBindTexture(GL_TEXTURE_2D, m_Tex);
+	//gluQuadricTexture(m_Sphere, m_Tex);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	gluQuadricDrawStyle(m_Sphere, GLU_FILL);
-	gluQuadricTexture(m_Sphere, GL_TRUE);
-	gluQuadricNormals(m_Sphere, GLU_SMOOTH);
+	//gluQuadricDrawStyle(m_Sphere, GLU_FILL);
+	//gluQuadricTexture(m_Sphere, GL_TRUE);
+	//gluQuadricNormals(m_Sphere, GLU_SMOOTH);
 
-	glPushMatrix();
+	//glPushMatrix();
 
-	glTranslatef(m_Pos.X, m_Pos.Y, m_Pos.Z);
+	//glTranslatef(m_Pos.X, m_Pos.Y, m_Pos.Z);
 
-	gluSphere(m_Sphere,m_Radius, 25, 25);
-	
-	glPopMatrix();
-	glDisable(GL_TEXTURE_2D);
+	//gluSphere(m_Sphere,m_Radius, 25, 25);
+	//
+	//glPopMatrix();
+	//glDisable(GL_TEXTURE_2D);
 }
 //--------------------------------------------------------------------------------------------
 

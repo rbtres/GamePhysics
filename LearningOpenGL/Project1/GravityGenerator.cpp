@@ -24,7 +24,9 @@ GravityGenerator::~GravityGenerator()
 //--------------------------------------------------------------------------------------------
 void GravityGenerator::UpdateForce(PhysicsObject* object)
 {
-	//do some cool shit
+	Vector3D force;
+	force.Y = -9.8 * object->getMass();
+	object->addForce(force);
 }
 //--------------------------------------------------------------------------------------------
 

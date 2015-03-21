@@ -170,7 +170,7 @@ void idle()
 		string f = c + d;
 		const char* s = f.c_str();
 		setFPSText(s);
-		d = to_string(PlanetManager::DaysPerSecond);
+		//d = to_string(PlanetManager::DaysPerSecond);
 		c = " DPF";
 		f = d + c;
 		s = f.c_str();

@@ -92,11 +92,11 @@ void InputManager::HandleKeyDown(unsigned char key)
 	radianRot.X = (m_rot.X / 180 * M_PI);
 	if (key == 'o')
 	{
-		PlanetManager::ModifyDaysPerSecond(-5);
+		//PlanetManager::ModifyDaysPerSecond(-5);
 	}
 	if (key == 'p')
 	{
-		PlanetManager::ModifyDaysPerSecond(5);
+		//PlanetManager::ModifyDaysPerSecond(5);
 	}
 	if (key == 'w')
 	{

@@ -9,7 +9,7 @@
 #include "PhysicsObject.h"
 #include <vector>
 //============================================================================================
-struct ForceRegistration
+/*+struct ForceRegistration
 {
 	PhysicsObject* Planet;
 	GravityGenerator* Generator;
@@ -31,8 +31,9 @@ struct ForceRegistration
 		Planet->Update(msTime);
 	}
 };
+
 //============================================================================================
-typedef std::vector<ForceRegistration*> Registry;
+//typedef std::vector<ForceRegistration*> Registry;
 //============================================================================================
 class PlanetManager
 {
@@ -59,7 +60,7 @@ public:
 
 //--------------------------------------------------------------------------------------------
 	inline void Reset(){ for (auto i : m_SolarSystemRegistry) { i->Planet->Reset(); } };
-	inline void Draw(){ for (auto i : m_SolarSystemRegistry){ i->Planet->Draw(); } }
+	//inline void Draw(){ for (auto i : m_SolarSystemRegistry){ i->Planet->Draw(); } }
 	inline ForceRegistration GetForceReg(int index){ return *m_SolarSystemRegistry[index]; }
 	static int DaysPerSecond;
 	std::vector<PhysicsObject*> gp_Planets;
@@ -69,5 +70,5 @@ private:
 	Registry m_SolarSystemRegistry;
 };
 //============================================================================================
-
+*/
 

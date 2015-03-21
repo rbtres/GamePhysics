@@ -9,7 +9,9 @@
 
 #include "InputManager.h"
 #include "PhysicsObject.h"
-#include "PlanetManager.h"
+#include "Player.h"
+#include "Level.h"
+#include"Ground.h"
 
 class SkyBox;
 //============================================================================================
@@ -30,10 +32,13 @@ public:
 	void HandleMouseDown(Vector2D buttonAndState, Vector2D mousePos);
 //--------------------------------------------------------------------------------------------
 	InputManager* p_InputManager;
+	Level* p_Level;
 //============================================================================================
 private:
 	void update(int msTime);
 	SkyBox* mp_SkyBox;
+	Player* mp_Player;
+	Ground* mp_Ground;
 
 };
 //============================================================================================

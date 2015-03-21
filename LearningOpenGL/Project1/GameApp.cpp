@@ -5,8 +5,10 @@
 GameApp::GameApp()
 {
 	p_InputManager = new InputManager();
-
+	p_Level = new Level();
+	mp_Player = new Player();
 	mp_SkyBox = new SkyBox();
+	mp_Ground = new Ground();
 }
 //--------------------------------------------------------------------------------------------
 
@@ -40,7 +42,17 @@ void GameApp::CleanUp()
 void GameApp::Init()
 {
 	p_InputManager->Init();
+	p_Level->Init("hello");
 	mp_SkyBox->Init();
+	mp_Player->Init();
+	mp_Player->GetPlayer()->setMass(1);
+	p_Level->AddGameObject(mp_Player->GetPlayer());
+	mp_Ground->Init();
+	mp_Ground->setDamping(0);
+	mp_Ground->setMass(1000000000);
+	mp_Ground->SetTexture("grass.jpg");
+	mp_Ground->setPos(Vector3D(0, -20, 0));
+	mp_Ground->SetDim(Vector3D(50, -mp_Ground->getPos().Y, 50));
 
 }
 //--------------------------------------------------------------------------------------------
@@ -49,6 +61,8 @@ void GameApp::Init()
 void GameApp::Draw()
 {
 	mp_SkyBox->RenderSkyBox();
+	p_Level->Draw();
+	mp_Ground->Draw();
 }
 //--------------------------------------------------------------------------------------------
 
@@ -76,11 +90,14 @@ void GameApp::HandleMouseDown(Vector2D buttonAndState, Vector2D mousePos)
 //--------------------------------------------------------------------------------------------
 void GameApp::update(int msTime)
 {
+	p_Level->Update(msTime);
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
 void GameApp::Reset()
 {
+	mp_Player->Reset();
+	//reset Level
 }
 //--------------------------------------------------------------------------------------------

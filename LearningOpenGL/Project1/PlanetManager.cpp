@@ -1,6 +1,7 @@
 #include "PlanetManager.h"
 #include "Planet.h"
 //Days per frame so 50 days per 16.666 seconds
+/*
 int PlanetManager::DaysPerSecond = 50;
 //--------------------------------------------------------------------------------------------
 PlanetManager::PlanetManager()
@@ -161,3 +162,4 @@ void PlanetManager::AddForceReg(ForceRegistration* reg)
 	m_SolarSystemRegistry.push_back(reg);
 }
 //--------------------------------------------------------------------------------------------
+*/

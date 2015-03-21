@@ -98,7 +98,7 @@ std::vector<Particle*> Fireworks::CreateParticle(Vector3D pos, int amount)
 		velocity = velocity.Normalized() / 10;
 
 		Particle* newParticle = new Particle();
-		newParticle->Init(.1f,pos, velocity);
+//		newParticle->Init(.1f,pos, velocity);
 		newParticle->SetLife(m_ParticleLife);
 		newParticles.push_back(newParticle);
 	}
@@ -109,13 +109,13 @@ std::vector<Particle*> Fireworks::CreateParticle(Vector3D pos, int amount)
 //--------------------------------------------------------------------------------------------
 void Fireworks::Draw()
 {
-	std::vector<Particle*>::iterator it = m_ParticleVector.begin();
+	/*std::vector<Particle*>::iterator it = m_ParticleVector.begin();
 
 	while (it != m_ParticleVector.end())
 	{
 		(*it)->Draw();
 		it++;
-	}
+	}*/
 }
 //--------------------------------------------------------------------------------------------
 

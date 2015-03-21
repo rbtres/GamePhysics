@@ -6,14 +6,15 @@ class GameObject : public PhysicsObject
 public:
 	GameObject();
 	~GameObject();
-	inline void SetTexture(std::string fileName){ m_TexFileName = fileName.c_str; }
-	void Draw();
+	inline void SetTexture(std::string fileName){ m_TexFileName = fileName; LoadTexture(); }
+	inline void SetRadius(float radius){ m_Radius = radius; }
+	virtual void Draw();
 	
 protected:
 	void LoadTexture();
-	char* m_TexFileName;
+	std::string m_TexFileName;
 	GLUquadric* m_Sphere;
-	GLuint* m_Texture;
+	GLuint m_Texture;
 	float m_Radius;
 
 };
