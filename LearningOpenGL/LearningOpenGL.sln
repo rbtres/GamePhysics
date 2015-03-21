@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project1", "Project1\Project1.vcxproj", "{A0164091-3E47-4BE0-8227-17B7B9C0428E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{986F3969-1710-4AFB-BF23-0D49D1BA0890}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MathTests", "MathTests\MathTests.vcxproj", "{7F2DB2E4-97C5-4197-A290-FBB84EF65D6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0164091-3E47-4BE0-8227-17B7B9C0428E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A0164091-3E47-4BE0-8227-17B7B9C0428E}.Debug|Win32.Build.0 = Debug|Win32
+		{A0164091-3E47-4BE0-8227-17B7B9C0428E}.Release|Win32.ActiveCfg = Release|Win32
+		{A0164091-3E47-4BE0-8227-17B7B9C0428E}.Release|Win32.Build.0 = Release|Win32
+		{7F2DB2E4-97C5-4197-A290-FBB84EF65D6A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7F2DB2E4-97C5-4197-A290-FBB84EF65D6A}.Debug|Win32.Build.0 = Debug|Win32
+		{7F2DB2E4-97C5-4197-A290-FBB84EF65D6A}.Release|Win32.ActiveCfg = Release|Win32
+		{7F2DB2E4-97C5-4197-A290-FBB84EF65D6A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
