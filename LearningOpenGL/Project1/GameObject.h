@@ -15,7 +15,6 @@ protected:
 	std::string m_TexFileName;
 	GLUquadric* m_Sphere;
 	GLuint m_Texture;
-	float m_Radius;
 
 };
 

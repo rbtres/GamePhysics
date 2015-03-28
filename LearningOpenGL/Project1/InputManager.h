@@ -11,7 +11,7 @@
 //============================================================================================
 #include "Vector2D.h"
 #include "Vector3D.h"
-#include "PlanetManager.h"
+#include "PhysicsObject.h"
 #pragma once
 //============================================================================================
 class InputManager
@@ -33,6 +33,9 @@ public:
 	void Update(int msTime);
 	void Enable();
 	int GetCurrentPlanet(){ return m_planetLookat; }
+	inline void SetPos(Vector3D pos){ m_pos = pos; m_pos.Y = mp_Player->getPos().Y + 20; }
+
+	inline void SetPlayer(PhysicsObject* p){ mp_Player = p; }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
@@ -56,6 +59,7 @@ private:
 //--------------------------------------------------------------------------------------------
 	bool m_leftClickDown;
 	int m_planetLookat;
+	PhysicsObject* mp_Player;
 };
 //============================================================================================
 

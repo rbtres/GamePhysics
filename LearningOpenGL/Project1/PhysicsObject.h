@@ -43,6 +43,9 @@ public:
 
 	inline void setMass(float mass) { m_Mass = mass; }
 	inline float getMass(){ return m_Mass; }
+
+	inline void setRadius(float rad){ m_Radius = rad; }
+	inline float getRadius() { return m_Radius; }
 //--------------------------------------------------------------------------------------------
 //============================================================================================
 protected:
@@ -59,6 +62,7 @@ protected:
 
 	float m_Damping;
 	float m_Mass;
+	float m_Radius;
 
 	Vector3D m_Force;
 	Vector3D m_OldForce;

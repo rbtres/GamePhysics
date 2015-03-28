@@ -4,6 +4,6 @@ class ParticleContactGenerator
 {
 public:
 
-	virtual int AddContact(PhysicsManager &manager);
+	virtual void AddContact(PhysicsManager* manager) = 0;
 };
 

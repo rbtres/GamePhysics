@@ -2,7 +2,8 @@
 
 
 PhysicsManager::PhysicsManager()
-{
+{ 
+	m_Resolver.SetIterations(50);
 }
 
 
@@ -35,6 +36,8 @@ void PhysicsManager::RemovePhysicsObject(PhysicsObject* object)
 
 void PhysicsManager::Update(float msTime)
 {
+	m_Resolver.ResolveContacts(m_ContactVector, m_ContactVector.size(), msTime);
+	m_ContactVector.clear();
 	for (auto i : PhysicsRegistry)
 	{
 		i->UpdateForces();
@@ -43,5 +46,6 @@ void PhysicsManager::Update(float msTime)
 	{
 		i->Update(msTime);
 	}
+	
 }
 

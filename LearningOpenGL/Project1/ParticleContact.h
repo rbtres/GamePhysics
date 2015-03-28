@@ -6,7 +6,7 @@ public:
 	ParticleContact();
 	~ParticleContact();
 
-	Particle* particle[2];
+	PhysicsObject* particle[2];
 
 	float restitution;
 	float penetration;

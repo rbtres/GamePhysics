@@ -1,8 +1,9 @@
 #include "ParticleContact.h"
 
-
 ParticleContact::ParticleContact()
 {
+	particle[0] = NULL;
+	particle[1] = NULL;
 }
 
 ParticleContact::~ParticleContact()
@@ -19,7 +20,7 @@ void ParticleContact::resolve(float duration)
 float ParticleContact::calculateSeparatingVelocity()
 {
 	Vector3D relativeVelocity = particle[0]->getVel();
-	if (particle[1] != nullptr)
+	if (particle[1] != NULL)
 	{
 		relativeVelocity -= particle[1]->getVel();
 	}
@@ -45,14 +46,14 @@ void ParticleContact::resolveVelocity(float duration)
 		accCausedVelocity -= particle[1]->getAcc();
 	}
 
-	float realAccCausedSepVel = accCausedVelocity.Dot(contactNormal) * duration;
+	float realAccCausedSepVel =  accCausedVelocity.Dot(contactNormal) * duration / 1000;
 
 	if (realAccCausedSepVel < 0)
 	{
-		newSeparatingVelocity += restitution * realAccCausedSepVel;
+		separatingVelocity -= realAccCausedSepVel;
 	}
 
-	float deltaVelocity = (newSeparatingVelocity - separatingVelocity) * duration;
+	float deltaVelocity = (newSeparatingVelocity - separatingVelocity) ;
 
 	float invertMass = getInverseMass();
 
@@ -62,25 +63,25 @@ void ParticleContact::resolveVelocity(float duration)
 
 	Vector3D impulsePerMass = contactNormal * impulse;
 
-	particle[0]->setVel(particle[0]->getVel() + impulsePerMass * particle[0]->getMass());
+	particle[0]->setVel( particle[0]->getVel() + impulsePerMass * (1 / particle[0]->getMass()));
 
 	if (particle[1])
 	{
-		particle[1]->setVel(particle[1]->getVel() + impulsePerMass * -particle[1]->getMass());
+		particle[1]->setVel(particle[1]->getVel() + impulsePerMass * -(1 / particle[1]->getMass()));
 	}
 }
 float ParticleContact::getInverseMass()
 {
-	float invertMass = particle[0]->getMass();
+	float invertMass =  1 / particle[0]->getMass();
 	if (particle[1])
 	{
-		invertMass += particle[1]->getMass();
+		invertMass += 1 / particle[1]->getMass();
 	}
 	return invertMass;
 }
 void ParticleContact::resolveInterpenetration(float duration)
 {
-	if (penetration <= 0) return;
+	if (penetration >= 0) return;
 
 	float invertMass = getInverseMass();
 
@@ -88,21 +89,21 @@ void ParticleContact::resolveInterpenetration(float duration)
 
 	Vector3D movePerIMass = contactNormal * (penetration / invertMass);
 
-	Vector3D particleZeroMove = movePerIMass * particle[0]->getMass();
+	Vector3D particleZeroMove = movePerIMass *  (1 / particle[0]->getMass()) * duration / 1000;
 	Vector3D particleOneMove;
 
 	if (particle[1])
 	{
-		particleOneMove = movePerIMass* -particle[1]->getMass();
+		particleOneMove = movePerIMass* -(1 / particle[1]->getMass()) * duration / 1000;
 	}
 	else
 	{
 		particleOneMove = Vector3D::Zero;
 	}
 
-	particle[0]->setPos(particle[0]->getPos() + particleZeroMove);
+	particle[0]->setPos(particle[0]->getPos() - particleZeroMove);
 	if (particle[1])
 	{
-		particle[1]->setPos(particle[1]->getPos() + particleOneMove);
+		particle[1]->setPos(particle[1]->getPos() - particleOneMove);
 	}
 }

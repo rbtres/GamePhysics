@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Level.h"
 #include"Ground.h"
+#include "Bungie.h"
 
 class SkyBox;
 //============================================================================================
@@ -33,12 +34,14 @@ public:
 //--------------------------------------------------------------------------------------------
 	InputManager* p_InputManager;
 	Level* p_Level;
+	PhysicsObject* p_CameraPos;
 //============================================================================================
 private:
 	void update(int msTime);
 	SkyBox* mp_SkyBox;
 	Player* mp_Player;
 	Ground* mp_Ground;
+	Bungie* mp_CameraToPlayer;
 
 };
 //============================================================================================

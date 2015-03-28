@@ -1,13 +1,14 @@
 #pragma once
 #include "ParticleContact.h"
+#include <vector>
 class ParticleContactResolver
 {
 public:
-	ParticleContactResolver(int iterations);
+	ParticleContactResolver();
 	~ParticleContactResolver();
 
 	inline void SetIterations(int iterations){ m_iterations = iterations; }
-	void ResolveContacts(ParticleContact *contactArray, int numContacts, float duration);
+	void ResolveContacts(std::vector<ParticleContact> contactArray, int numContacts, float duration);
 	
 protected:
 	int m_iterations;

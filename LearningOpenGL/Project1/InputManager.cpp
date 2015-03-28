@@ -36,37 +36,12 @@ void InputManager::Init()
 //--------------------------------------------------------------------------------------------
 void InputManager::Update(int msTime)
 {
-	if (m_planetLookat < 0)
-	{
-		glLoadIdentity();
-		glRotatef(m_rot.X, 1.0, 0.0, 0.0);  //rotate our camera on teh x - axis(left and right)
-		glRotatef(m_rot.Y, 0.0, 1.0, 0.0);  //rotate our camera on the y - axis(up and down)
-		glTranslated(-m_pos.X, -m_pos.Y, -m_pos.Z); //translate the screen to the position of our camera
-	}
-	else if (m_planetLookat == 0)
-	{
-		m_pos.X = 0;
-		m_pos.Z = 25;
-		m_pos.Y = 0;
-		m_planetLookat = 0;
-		m_rot = Vector2D(0, 0);
-		glLoadIdentity();
-		glRotatef(m_rot.X, 1.0, 0.0, 0.0);  //rotate our camera on teh x - axis(left and right)
-		glRotatef(m_rot.Y, 0.0, 1.0, 0.0);  //rotate our camera on the y - axis(up and down)
-		glTranslated(-m_pos.X, -m_pos.Y, -m_pos.Z);
-	}
-	else if ( m_planetLookat > 0)
-	{
-		m_pos.X = 0;
-		m_pos.Z = 25;
-		m_pos.Y += 2.5;
-		m_rot.X = 90;
-		glLoadIdentity();
-		glRotatef(m_rot.X, 1.0, 0.0, 0.0);  //rotate our camera on teh x - axis(left and right)
-		glRotatef(m_rot.Y, 0.0, 1.0, 0.0);  //rotate our camera on the y - axis(up and down)
-		glTranslated(-m_pos.X, -m_pos.Y, -m_pos.Z);
-	}
+	glLoadIdentity();
+	glRotatef(90, 1.0, 0.0, 0.0);  //rotate our camera on teh x - axis(left and right)
+	glRotatef(m_rot.Y, 0.0, 1.0, 0.0);  //rotate our camera on the y - axis(up and down)
+	glTranslated(-m_pos.X, -m_pos.Y, -m_pos.Z); //translate the screen to the position of our camera
 	
+
 }
 //--------------------------------------------------------------------------------------------
 
@@ -87,9 +62,6 @@ void InputManager::CleanUp()
 //--------------------------------------------------------------------------------------------
 void InputManager::HandleKeyDown(unsigned char key)
 {
-	Vector2D radianRot = Vector2D();
-	radianRot.Y = (m_rot.Y / 180 * M_PI);
-	radianRot.X = (m_rot.X / 180 * M_PI);
 	if (key == 'o')
 	{
 		//PlanetManager::ModifyDaysPerSecond(-5);
@@ -100,43 +72,31 @@ void InputManager::HandleKeyDown(unsigned char key)
 	}
 	if (key == 'w')
 	{
-		m_pos.X += float(sin(radianRot.Y)) * m_cameraSpeed;
-		m_pos.Z -= float(cos(radianRot.Y)) * m_cameraSpeed;
-		m_pos.Y -= float(sin(radianRot.X)) * m_cameraSpeed;
-		m_planetLookat = -1;
+		mp_Player->addForce(Vector3D(0, 0, -10));
 	}
 
 	if (key == 's')
 	{
-		m_pos.X -= float(sin(radianRot.Y)) * m_cameraSpeed;
-		m_pos.Z += float(cos(radianRot.Y)) * m_cameraSpeed;
-		m_pos.Y += float(sin(radianRot.X)) * m_cameraSpeed;
-		m_planetLookat = -1;
+		mp_Player->addForce(Vector3D(0, 0, 10));
 	}
 
 	if (key == 'e')
 	{
-		m_pos.Y += float(cos(radianRot.Y)) * m_cameraSpeed;
-		m_planetLookat = -1;
+		mp_Player->addForce(Vector3D(0, 30, 0));
 	}
 	if (key == 'c')
 	{
-		m_pos.Y -= float(cos(radianRot.Y)) * m_cameraSpeed;
-		m_planetLookat = -1;
+		
 	}
 
 	if (key == 'd')
 	{
-		m_pos.X += float(cos(radianRot.Y)) * m_cameraSpeed;
-		m_pos.Z += float(sin(radianRot.Y)) * m_cameraSpeed;
-		m_planetLookat = -1;
+		mp_Player->addForce(Vector3D(10, 0, 0));
 	}
 
 	if (key == 'a')
 	{
-		m_pos.X -= float(cos(radianRot.Y)) * m_cameraSpeed;
-		m_pos.Z -= float(sin(radianRot.Y)) * m_cameraSpeed;
-		m_planetLookat = -1;
+		mp_Player->addForce(Vector3D(-10, 0, 0));
 	}
 	if (key == 'f')
 	{
@@ -150,10 +110,7 @@ void InputManager::HandleKeyDown(unsigned char key)
 
 	if (key == '0')
 	{
-		m_pos.X = 0;
-		m_pos.Z = 25;
-		m_pos.Y = 0;
-		m_planetLookat = 0;
+
 	}
 
 	if (key == '1')
@@ -200,6 +157,7 @@ void InputManager::HandleKeyDown(unsigned char key)
 //--------------------------------------------------------------------------------------------
 void InputManager::HandleMouse(Vector2D mousePos)
 {
+	/*
 	m_movedPos = mousePos;
 	if (m_oldPos.X == -1)
 	{
@@ -214,12 +172,14 @@ void InputManager::HandleMouse(Vector2D mousePos)
 		m_rot.Y += m_offset.X * m_mouseSpeed;
 		m_planetLookat = -1;
 	}
+	*/
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
 void InputManager::HandleMouseDown(Vector2D buttonAndState, Vector2D mousePos)
 {
+	/*
 	switch ((int)buttonAndState.X)
 	{
 	case GLUT_LEFT_BUTTON:
@@ -232,5 +192,6 @@ void InputManager::HandleMouseDown(Vector2D buttonAndState, Vector2D mousePos)
 			m_oldPos = mousePos;
 		}
 	}
+	*/
 }
 

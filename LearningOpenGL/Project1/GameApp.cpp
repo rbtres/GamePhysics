@@ -9,6 +9,8 @@ GameApp::GameApp()
 	mp_Player = new Player();
 	mp_SkyBox = new SkyBox();
 	mp_Ground = new Ground();
+	p_CameraPos = new PhysicsObject();
+	mp_CameraToPlayer = new Bungie();
 }
 //--------------------------------------------------------------------------------------------
 
@@ -22,8 +24,6 @@ GameApp::~GameApp()
 //--------------------------------------------------------------------------------------------
 void GameApp::Update(int msTime, bool isPlaying)
 {
-	p_InputManager->Update(msTime);
-
 	if (isPlaying)
 	{
 		update(msTime);
@@ -42,17 +42,32 @@ void GameApp::CleanUp()
 void GameApp::Init()
 {
 	p_InputManager->Init();
-	p_Level->Init("hello");
+	
 	mp_SkyBox->Init();
 	mp_Player->Init();
 	mp_Player->GetPlayer()->setMass(1);
 	p_Level->AddGameObject(mp_Player->GetPlayer());
+	
+	mp_CameraToPlayer->m_AnchorObject = mp_Player->GetPlayer();
 	mp_Ground->Init();
 	mp_Ground->setDamping(0);
 	mp_Ground->setMass(1000000000);
 	mp_Ground->SetTexture("grass.jpg");
 	mp_Ground->setPos(Vector3D(0, -20, 0));
 	mp_Ground->SetDim(Vector3D(50, -mp_Ground->getPos().Y, 50));
+	p_Level->Init("hello", -20);
+	p_Level->AddPyramid(Vector3D(10, 5, 5), 10);
+	p_Level->AddCube(Vector3D(-10, 15, 5), 10);
+	p_Level->AddCube(Vector3D(10, 0, 5), 5);
+	p_Level->AddCube(Vector3D(20, 0, 5), 5);
+	p_Level->AddCube(Vector3D(-15, 0, 5), 5);
+	p_Level->AddRandomShape(Vector3D(0,10,-10), 5);
+	p_CameraPos->setMass(1);
+	p_CameraPos->Init(Vector3D(mp_Player->GetPlayer()->getPos().X, mp_Player->GetPlayer()->getPos().Y - 10, mp_Player->GetPlayer()->getPos().Z));
+	p_CameraPos->setRadius(1);
+	p_Level->AddPhysics(p_CameraPos);
+	p_InputManager->SetPlayer(mp_Player->GetPlayer());
+	p_InputManager->SetPos(p_CameraPos->getPos());
 
 }
 //--------------------------------------------------------------------------------------------
@@ -90,7 +105,11 @@ void GameApp::HandleMouseDown(Vector2D buttonAndState, Vector2D mousePos)
 //--------------------------------------------------------------------------------------------
 void GameApp::update(int msTime)
 {
+	p_InputManager->Update(msTime);
+	mp_CameraToPlayer->UpdateForce(p_CameraPos);
 	p_Level->Update(msTime);
+	p_CameraPos->Update(msTime);
+	p_InputManager->SetPos(p_CameraPos->getPos());
 }
 //--------------------------------------------------------------------------------------------
 
@@ -98,6 +117,9 @@ void GameApp::update(int msTime)
 void GameApp::Reset()
 {
 	mp_Player->Reset();
+	p_Level->Reset();
+	p_CameraPos->Reset();
+	p_InputManager->SetPos(p_CameraPos->getPos());
 	//reset Level
 }
 //--------------------------------------------------------------------------------------------
