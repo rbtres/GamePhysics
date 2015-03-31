@@ -9,12 +9,13 @@ public:
 	inline void SetTexture(std::string fileName){ m_TexFileName = fileName; LoadTexture(); }
 	inline void SetRadius(float radius){ m_Radius = radius; }
 	virtual void Draw();
+	inline void SetTexture(GLuint* in){ m_Texture = in; m_Sphere = gluNewQuadric(); }
 	
 protected:
 	void LoadTexture();
 	std::string m_TexFileName;
 	GLUquadric* m_Sphere;
-	GLuint m_Texture;
+	GLuint* m_Texture;
 
 };
 

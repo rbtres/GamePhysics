@@ -76,6 +76,7 @@
     <ClCompile Include="GravityGenerator.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="GroundContactGenerator.cpp" />
+    <ClCompile Include="ImageHandler.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="GravityGenerator.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="GroundContactGenerator.h" />
+    <ClInclude Include="ImageHandler.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Matrix.h" />

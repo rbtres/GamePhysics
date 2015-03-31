@@ -15,7 +15,7 @@ PhysicsObject::PhysicsObject()
 
 	m_Mass = 0;
 	m_Force = Vector3D::Zero;
-	m_Damping = 1;
+	m_Damping = .99;
 }
 //--------------------------------------------------------------------------------------------
 

@@ -24,6 +24,7 @@
 #include <GL/glui.h>
 #include <stdlib.h>
 #include <time.h>  
+#include "ImageHandler.h"
 
 using namespace std;
 //--------------------------------------------------------------------------------------------
@@ -59,7 +60,7 @@ int g_delta_time;
 static char* currentText;
 GameApp* gp_GameApp;
 GLUI* gp_Glui;
-
+ImageHandler* Handler;
 bool g_isPlaying;
 
 static GLUI_StaticText* text;
@@ -111,6 +112,9 @@ void initialize()
 	glEnable(GL_LIGHT0); //enable LIGHT0, our Diffuse Light
 	glShadeModel(GL_SMOOTH); //set the shader to smooth shader
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
+	Handler = ImageHandler::GetInstance();
+	Handler->AddImage("snake.jpg", "snake");
 
 	gp_GameApp->Init();
 
