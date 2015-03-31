@@ -15,14 +15,13 @@ void GameObject::Draw()
 	glEnable(GL_TEXTURE_2D);
 
 	glBindTexture(GL_TEXTURE_2D, *m_Texture);
-	gluQuadricTexture(m_Sphere, *m_Texture);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	gluQuadricDrawStyle(m_Sphere, GLU_FILL);
-	gluQuadricTexture(m_Sphere, GL_TRUE);
-	gluQuadricNormals(m_Sphere, GLU_SMOOTH);
+	//gluQuadricDrawStyle(m_Sphere, GLU_FILL);
+	//gluQuadricTexture(m_Sphere, GL_TRUE);
+	//gluQuadricNormals(m_Sphere, GLU_SMOOTH);
 
 	glPushMatrix();
 
