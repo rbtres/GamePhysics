@@ -16,6 +16,14 @@ Level::~Level()
 	mp_GroundGenerator = nullptr;
 	delete mp_WallContact;
 	mp_WallContact = nullptr;
+	delete mp_ImageHandler;
+	mp_ImageHandler = nullptr;
+	for (int i = 0; i < mp_GameObjects.size(); i++)
+	{
+		delete mp_GameObjects[i];
+		mp_GameObjects[i] = nullptr;
+	}
+	mp_GameObjects.clear();
 }
 void Level::Init(std::string filePath, int height)
 {

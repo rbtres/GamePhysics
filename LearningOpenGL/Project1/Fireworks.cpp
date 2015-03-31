@@ -28,7 +28,7 @@ void Fireworks::Init(int maxVel, int minVel, int life)
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void Fireworks::Update(int msTime)
+void Fireworks::Update(float msTime)
 {
 	std::vector<Particle*>::iterator it = m_ParticleVector.begin();
 	std::vector<std::vector<Particle*>::iterator> toBeDeleted;

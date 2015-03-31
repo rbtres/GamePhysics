@@ -19,7 +19,7 @@ public:
 
 //--------------------------------------------------------------------------------------------
 	void Init(int maxVel, int minVel, int life);
-	void Update(int msTime);
+	void Update(float msTime);
 	std::vector<Particle*> CreateParticle(Vector3D pos, int amount);
 	void Draw();
 	void CleanUp();

@@ -19,7 +19,7 @@ public:
 
 //--------------------------------------------------------------------------------------------
 	virtual void Init(Vector3D pos = Vector3D::Zero, Vector3D startVel = Vector3D::Zero, Vector3D startAcc = Vector3D::Zero, Vector3D startRot = Vector3D::Zero);
-	virtual void Update(int msTime);
+	virtual void Update(float msTime);
 	virtual void Reset();
 //--------------------------------------------------------------------------------------------
 

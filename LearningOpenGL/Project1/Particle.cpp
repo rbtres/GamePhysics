@@ -14,7 +14,7 @@ Particle::~Particle()
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void Particle::UpdateLife(int msTime)
+void Particle::UpdateLife(float msTime)
 {
 	m_Life -= msTime;
 	Update(msTime);

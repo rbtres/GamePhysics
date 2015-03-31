@@ -15,7 +15,7 @@ PhysicsObject::PhysicsObject()
 
 	m_Mass = 0;
 	m_Force = Vector3D::Zero;
-	m_Damping = .99;
+	m_Damping = 1.0f;
 }
 //--------------------------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ PhysicsObject::~PhysicsObject()
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void PhysicsObject::Update(int msTime)
+void PhysicsObject::Update(float msTime)
 {
 	//32557600 = Per Year
 	//86400 = per day
