@@ -19,7 +19,7 @@ public:
 	
 //--------------------------------------------------------------------------------------------
 	inline void SetLife(int life){ m_Life = life; }
-	void UpdateLife(int msTime);
+	void UpdateLife(float msTime);
 
 	bool Alive();
 //--------------------------------------------------------------------------------------------

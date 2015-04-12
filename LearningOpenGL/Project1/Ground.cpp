@@ -17,7 +17,7 @@ void Ground::Draw()
 {
 	glEnable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHTING);
-	glBindTexture(GL_TEXTURE_2D, m_Texture);
+	glBindTexture(GL_TEXTURE_2D, *m_Texture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 

@@ -24,12 +24,13 @@
 #include <GL/glui.h>
 #include <stdlib.h>
 #include <time.h>  
+#include "ImageHandler.h"
 
 using namespace std;
 //--------------------------------------------------------------------------------------------
 void idle();
 void display();
-void update(int mstime);
+void update(float msTime);
 void initialize();
 void cleanup();
 void mousePos(int x, int y);
@@ -59,7 +60,7 @@ int g_delta_time;
 static char* currentText;
 GameApp* gp_GameApp;
 GLUI* gp_Glui;
-
+ImageHandler* Handler;
 bool g_isPlaying;
 
 static GLUI_StaticText* text;
@@ -78,7 +79,7 @@ const int PLAY_ID = 1, STOP_ID = 2, PAUSE_ID = 3;
 //--------------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
-	srand(time(NULL));
+	srand((unsigned) time(NULL));
 	gp_GameApp = new GameApp();
 	glutInit(&argc, argv);
 	currentText = "";
@@ -112,6 +113,9 @@ void initialize()
 	glShadeModel(GL_SMOOTH); //set the shader to smooth shader
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
+	Handler = ImageHandler::GetInstance();
+	Handler->AddImage("snake.jpg", "snake");
+
 	gp_GameApp->Init();
 
 	atexit(cleanup);
@@ -133,17 +137,14 @@ void initialize()
 	text = gp_Glui->add_statictext(currentText);
 	gp_Glui->add_column(1);
 	fpsText = gp_Glui->add_statictext("FPS: 60");
-	gp_Glui->add_statictext("DPF Days Per Frame");
-	DaysPerSecond = gp_Glui->add_statictext("50 DPF");
-	gp_Glui->add_statictext("o to lower DPF");
-	gp_Glui->add_statictext("p to raise DPF");
+	gp_Glui->add_statictext("Rods, Cables, and Spring Test");
 	gp_Glui->add_column(1);
 	planetText = gp_Glui->add_statictext("None");
-	CurrentVel = gp_Glui->add_statictext("");
-	CurrentMass = gp_Glui->add_statictext("");
-	CurrentAcc = gp_Glui->add_statictext("");
-	gp_Glui->add_statictext("All vel and Acc are in such small numbers I multiply by 1000000000 to scale it");
-	gp_Glui->add_statictext("We use Solar Mass and distance is measured 1 = distance from earth to sun");
+	//CurrentVel = gp_Glui->add_statictext("");
+	CurrentMass = gp_Glui->add_statictext("On start you will watch a square act like it is bouncing off a wall");
+	gp_Glui->add_statictext("This way you can see the Rods and contact in action, besides just the character");
+	gp_Glui->add_statictext("WASD to add force in a direction E to add force up");
+	gp_Glui->add_statictext("Currently there are 3 cubes 1 triangle and 1 3 sided diamonds");
 	
 
 	glutMainLoop();
@@ -163,27 +164,23 @@ void idle()
 	if (waste_time < 0.0)
 	{
 		g_delta_time = (int)(end_rendering_time - (g_start_time + (g_current_frame_number ) * TIME_PER_FRAME));
-		update(g_delta_time);
+		update((float)g_delta_time);
 		int x = 1000 / g_delta_time;
 		string d = to_string(x);
 		string c = "Fps: ";
 		string f = c + d;
 		const char* s = f.c_str();
 		setFPSText(s);
-		//d = to_string(PlanetManager::DaysPerSecond);
-		c = " DPF";
-		f = d + c;
-		s = f.c_str();
-		setSpeedText(s);
+
 			
 	}
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void update(int mstime)
+void update(float msTime)
 {
-	int time = mstime;
+	float time = msTime;
 	while (time > 1)
 	{
 		time /= 17;
@@ -197,7 +194,7 @@ void update(int mstime)
 
 	glutPostRedisplay();
 
-	gp_GameApp->Update(mstime, g_isPlaying);
+	gp_GameApp->Update(msTime, g_isPlaying);
 }
 //--------------------------------------------------------------------------------------------
 
@@ -214,34 +211,7 @@ void display()
 	//input manager / camera hybrid class.
 	switch (gp_GameApp->p_InputManager->GetCurrentPlanet())
 	{
-	case -1: setPlanetText("None");
-		break;
-	case 0:
-		setPlanetText("Sun");
-		break;
-	case 1:
-		setPlanetText("Mercury");
-		break;
-	case 2:
-		setPlanetText("Venus");
-		break;
-	case 3:
-		setPlanetText("Earth & Moon");
-		break;
-	case 4:
-		setPlanetText("Mars");
-		break;
-	case 5:
-		setPlanetText("Jupiter");
-		break;
-	case 6:
-		setPlanetText("Saturn");
-		break;
-	case 7:
-		setPlanetText("Uranus");
-		break;
-	case 8:
-		setPlanetText("Neptune");
+	case -1: setPlanetText("Camera is on a spring to the player ball");
 		break;
 
 	}
@@ -267,13 +237,14 @@ void display()
 		f = d + x + c + y + c + z + m;
 		const char* vel = f.c_str();
 		setVel(vel);
-		d = "Mass = ";
-		float xx = currentObject->getMass();
-		y = to_string(xx);
-		f = d + y;
+		*/
+		std::string d = "Mass = ";
+		float xx = gp_GameApp->GetPlayerMass();
+		std::string y = to_string(xx);
+		std::string f = d + y;
 		const char* mass = f.c_str();
 		setMass(mass);
-		*/
+		
 	}
 }
 //--------------------------------------------------------------------------------------------
@@ -305,7 +276,7 @@ void handleKeyDown(unsigned char key, int x, int y)
 //--------------------------------------------------------------------------------------------
 void handleKeyUp(unsigned char key, int x, int y)
 {
-
+	gp_GameApp->HandleKeyDown(key);
 }
 //--------------------------------------------------------------------------------------------
 
@@ -374,16 +345,16 @@ void setFPSText(const char* s)
 //--------------------------------------------------------------------------------------------
 void setSpeedText(const char* s)
 {
-	DaysPerSecond->set_text(s);
+	//DaysPerSecond->set_text("WASD to add force in a direction E to add force up");
 }
 //--------------------------------------------------------------------------------------------
 void setVel(const char* s)
 {
-	CurrentVel->set_text(s);
+	//CurrentVel->set_text(s);
 }
 void setAcc(const char* s)
 {
-	CurrentAcc->set_text(s);
+	//CurrentAcc->set_text(s);
 }
 void setMass(const char* s)
 {
@@ -391,7 +362,7 @@ void setMass(const char* s)
 }
 void setPlanetText(const char* vel, const char* acc, const char* mass)
 {
-	CurrentVel->set_text(vel);
-	CurrentAcc->set_text(acc);
+	//CurrentVel->set_text(vel);
+	//CurrentAcc->set_text(acc);
 	CurrentMass->set_text(mass);
 }

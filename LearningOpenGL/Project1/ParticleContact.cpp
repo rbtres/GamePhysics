@@ -46,7 +46,7 @@ void ParticleContact::resolveVelocity(float duration)
 		accCausedVelocity -= particle[1]->getAcc();
 	}
 
-	float realAccCausedSepVel =  accCausedVelocity.Dot(contactNormal) * duration / 1000;
+	float realAccCausedSepVel =  accCausedVelocity.Dot(contactNormal) * (duration / 1000);
 
 	if (realAccCausedSepVel < 0)
 	{
@@ -89,12 +89,12 @@ void ParticleContact::resolveInterpenetration(float duration)
 
 	Vector3D movePerIMass = contactNormal * (penetration / invertMass);
 
-	Vector3D particleZeroMove = movePerIMass *  (1 / particle[0]->getMass()) * duration / 1000;
+	Vector3D particleZeroMove = movePerIMass *  (1 / particle[0]->getMass()) * (duration / 1000);
 	Vector3D particleOneMove;
 
 	if (particle[1])
 	{
-		particleOneMove = movePerIMass* -(1 / particle[1]->getMass()) * duration / 1000;
+		particleOneMove = movePerIMass* -(1 / particle[1]->getMass()) * (duration / 1000);
 	}
 	else
 	{

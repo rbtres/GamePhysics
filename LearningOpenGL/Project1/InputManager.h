@@ -30,7 +30,7 @@ public:
 	void HandleKeyDown(unsigned char key);
 	void HandleMouse(Vector2D mousePos);
 	void HandleMouseDown(Vector2D buttonAndState, Vector2D mosPos);
-	void Update(int msTime);
+	void Update(float msTime);
 	void Enable();
 	int GetCurrentPlanet(){ return m_planetLookat; }
 	inline void SetPos(Vector3D pos){ m_pos = pos; m_pos.Y = mp_Player->getPos().Y + 20; }

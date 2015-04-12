@@ -26,7 +26,7 @@
 	{
 		Generator->UpdateForce(Planet, planet);
 	}
-	void UpdatePlanet(int msTime)
+	void UpdatePlanet(float msTime)
 	{
 		Planet->Update(msTime);
 	}
@@ -47,7 +47,7 @@ public:
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-	void Update(int msTime);
+	void Update(float msTime);
 	void Init();
 	static void ModifyDaysPerSecond(int modifier){ DaysPerSecond += modifier; if (DaysPerSecond < 1) DaysPerSecond = 0; if (DaysPerSecond > 150) DaysPerSecond = 150; }
 //--------------------------------------------------------------------------------------------

@@ -34,7 +34,7 @@ void InputManager::Init()
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void InputManager::Update(int msTime)
+void InputManager::Update(float msTime)
 {
 	glLoadIdentity();
 	glRotatef(90, 1.0, 0.0, 0.0);  //rotate our camera on teh x - axis(left and right)

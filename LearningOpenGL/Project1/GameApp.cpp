@@ -22,7 +22,7 @@ GameApp::~GameApp()
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void GameApp::Update(int msTime, bool isPlaying)
+void GameApp::Update(float msTime, bool isPlaying)
 {
 	if (isPlaying)
 	{
@@ -58,9 +58,9 @@ void GameApp::Init()
 	p_Level->Init("hello", -20);
 	p_Level->AddPyramid(Vector3D(10, 5, 5), 10);
 	p_Level->AddCube(Vector3D(-10, 15, 5), 10);
-	p_Level->AddCube(Vector3D(10, 0, 5), 5);
-	p_Level->AddCube(Vector3D(20, 0, 5), 5);
-	p_Level->AddCube(Vector3D(-15, 0, 5), 5);
+	p_Level->AddCube(Vector3D(-65, 0, -15), 5);
+	p_Level->AddCube(Vector3D(20, 0, 15), 5);
+	p_Level->AddCube(Vector3D(-10, 0, -25), 5);
 	p_Level->AddRandomShape(Vector3D(0,10,-10), 5);
 	p_CameraPos->setMass(1);
 	p_CameraPos->Init(Vector3D(mp_Player->GetPlayer()->getPos().X, mp_Player->GetPlayer()->getPos().Y - 10, mp_Player->GetPlayer()->getPos().Z));
@@ -103,7 +103,7 @@ void GameApp::HandleMouseDown(Vector2D buttonAndState, Vector2D mousePos)
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void GameApp::update(int msTime)
+void GameApp::update(float msTime)
 {
 	p_InputManager->Update(msTime);
 	mp_CameraToPlayer->UpdateForce(p_CameraPos);

@@ -22,11 +22,13 @@ public:
 	GameApp();
 	~GameApp();
 //--------------------------------------------------------------------------------------------
-	void Update(int msTime, bool isPlaying);
+	void Update(float msTime, bool isPlaying);
 	void Init();
 	void CleanUp();
 	void Draw();
 	void Reset();
+
+	inline float GetPlayerMass(){ return mp_Player->GetPlayer()->getMass(); }
 
 	void HandleKeyDown(unsigned char key);
 	void HandleMouse(Vector2D mousePos);
@@ -37,7 +39,7 @@ public:
 	PhysicsObject* p_CameraPos;
 //============================================================================================
 private:
-	void update(int msTime);
+	void update(float msTime);
 	SkyBox* mp_SkyBox;
 	Player* mp_Player;
 	Ground* mp_Ground;

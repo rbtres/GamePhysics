@@ -124,7 +124,7 @@ void PlanetManager::Init()
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void PlanetManager::Update(int msTime)
+void PlanetManager::Update(float msTime)
 {
 	for (int k = 0; k < DaysPerSecond; k++)
 	{

@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "ImageHandler.h"
 
 Player::Player()
 {
@@ -14,9 +14,10 @@ Player::~Player()
 void Player::Init()
 {
 	GameObject* g = new GameObject();
-	g->Init(Vector3D(0, 15, 0));
+	g->Init(Vector3D(-40, 15, 0));
 	g->SetRadius(2);
-	g->SetTexture("snake.jpg");
+	ImageHandler* m = ImageHandler::GetInstance();
+	g->SetTexture(m->GetImage("snake"));
 
 	mp_PlayerPieces = g;
 }
