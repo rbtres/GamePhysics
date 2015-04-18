@@ -29,8 +29,5 @@ public:
 	float I;
 	float J;
 	float K;
-private:
-
-	 
 };
 
