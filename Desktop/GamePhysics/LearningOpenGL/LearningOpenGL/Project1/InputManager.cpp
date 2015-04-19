@@ -212,6 +212,8 @@ void InputManager::HandleMouse(Vector2D mousePos)
 		m_rot.X += m_offset.Y * m_mouseSpeed;
 		m_rot.Y += m_offset.X * m_mouseSpeed;
 		m_planetLookat = -1;
+		SetCursorPos((int)(g_ScreenSize.X / 2.0f) + glutGet(GLUT_WINDOW_X), (int)(g_ScreenSize.Y / 2.0f) + glutGet(GLUT_WINDOW_Y));
+		m_oldPos = (int)(g_ScreenSize.X / 2.0f) + glutGet(GLUT_WINDOW_X), (int)(g_ScreenSize.Y / 2.0f) + glutGet(GLUT_WINDOW_Y));
 	}
 }
 //--------------------------------------------------------------------------------------------
@@ -230,6 +232,8 @@ void InputManager::HandleMouseDown(Vector2D buttonAndState, Vector2D mousePos)
 		{
 			m_oldPos = mousePos;
 		}
+
+  break;
 	}
 }
 

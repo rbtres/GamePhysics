@@ -19,6 +19,7 @@ public:
 //--------------------------------------------------------------------------------------------
 	virtual void UpdateForce(PhysicsObject* object);
 	virtual void UpdateForce(PhysicsObject* addedBody, PhysicsObject* otherBody);
+	virtual void UpdateForce(RigidBody* bodyOne, RigidBody* bodyTwo = NULL);
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------

@@ -58,6 +58,7 @@ private:
 	float m_cameraSpeed;
 //--------------------------------------------------------------------------------------------
 	bool m_leftClickDown;
+	bool m_mouseVis;
 	int m_planetLookat;
 	PhysicsObject* mp_Player;
 };

@@ -1,5 +1,6 @@
 #include "SkyBox.h"
 #include "GameApp.h"
+#include "ImageHandler.h"
 
 //--------------------------------------------------------------------------------------------
 GameApp::GameApp()
@@ -41,8 +42,11 @@ void GameApp::CleanUp()
 //--------------------------------------------------------------------------------------------
 void GameApp::Init()
 {
+	ImageHandler::GetInstance()->AddImage("grass.jpg", "grass");
+	ImageHandler::GetInstance()->AddImage("snake.jpg", "snake");
+	//ImageHandler::GetInstance()->AddImage
 	p_InputManager->Init();
-	
+	p_Level->Init("hello", -20);
 	mp_SkyBox->Init();
 	mp_Player->Init();
 	mp_Player->GetPlayer()->setMass(1);
@@ -52,16 +56,16 @@ void GameApp::Init()
 	mp_Ground->Init();
 	mp_Ground->setDamping(0);
 	mp_Ground->setMass(1000000000);
-	mp_Ground->SetTexture("grass.jpg");
+	mp_Ground->SetTexture("grass");
 	mp_Ground->setPos(Vector3D(0, -20, 0));
 	mp_Ground->SetDim(Vector3D(50, -mp_Ground->getPos().Y, 50));
-	p_Level->Init("hello", -20);
-	p_Level->AddPyramid(Vector3D(10, 5, 5), 10);
-	p_Level->AddCube(Vector3D(-10, 15, 5), 10);
-	p_Level->AddCube(Vector3D(10, 0, 5), 5);
-	p_Level->AddCube(Vector3D(20, 0, 5), 5);
-	p_Level->AddCube(Vector3D(-15, 0, 5), 5);
-	p_Level->AddRandomShape(Vector3D(0,10,-10), 5);
+	
+	//p_Level->AddPyramid(Vector3D(10, 5, 5), 10);
+	//p_Level->AddCube(Vector3D(-10, 15, 5), 10);
+	//p_Level->AddCube(Vector3D(10, 0, 5), 5);
+	//p_Level->AddCube(Vector3D(20, 0, 5), 5);
+	//p_Level->AddCube(Vector3D(-15, 0, 5), 5);
+	//p_Level->AddRandomShape(Vector3D(0,10,-10), 5);
 	p_CameraPos->setMass(1);
 	p_CameraPos->Init(Vector3D(mp_Player->GetPlayer()->getPos().X, mp_Player->GetPlayer()->getPos().Y - 10, mp_Player->GetPlayer()->getPos().Z));
 	p_CameraPos->setRadius(1);

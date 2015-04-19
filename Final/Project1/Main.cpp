@@ -99,7 +99,6 @@ void initialize()
 	glutInitWindowSize(720, 720);
 	glutInitWindowPosition(50, 50);
 	g_main_win = glutCreateWindow("Buttons");
-
 	
 	float lightPosition[] = { -2, 0, 0, 0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
@@ -171,10 +170,6 @@ void idle()
 		const char* s = f.c_str();
 		setFPSText(s);
 		//d = to_string(PlanetManager::DaysPerSecond);
-		c = " DPF";
-		f = d + c;
-		s = f.c_str();
-		setSpeedText(s);
 			
 	}
 }

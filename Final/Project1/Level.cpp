@@ -15,6 +15,12 @@ Level::~Level()
 	mp_GroundGenerator = nullptr;
 	delete mp_WallContact;
 	mp_WallContact = nullptr;
+	for (unsigned int i = 0; i < mp_GameObjects.size(); i++)
+	{
+		delete mp_GameObjects[i];
+		mp_GameObjects[i] = nullptr;
+	}
+	mp_GameObjects.clear();
 }
 void Level::Init(std::string filePath, int height)
 {
@@ -54,31 +60,31 @@ void Level::AddRandomShape(Vector3D center, float length)
 	GameObject* t = new GameObject();
 	t->Init(Vector3D(center.X, center.Y + length / 2, center.Z));
 	t->SetRadius(1);
-	t->SetTexture("snake.jpg");
+	t->SetTexture("snake");
 	t->setMass(1);
 
 	GameObject* br = new GameObject();
 	br->Init(Vector3D(center.X + length / 2, center.Y, center.Z + length / 2));
 	br->SetRadius(1);
-	br->SetTexture("snake.jpg");
+	br->SetTexture("snake");
 	br->setMass(1);
 
 	GameObject* bl = new GameObject();
 	bl->Init(Vector3D(center.X - length / 2, center.Y , center.Z + length / 2));
 	bl->SetRadius(1);
-	bl->SetTexture("snake.jpg");
+	bl->SetTexture("snake");
 	bl->setMass(1);
 
 	GameObject* bt = new GameObject();
 	bt->Init(Vector3D(center.X, center.Y, center.Z - length / 2));
 	bt->SetRadius(1);
-	bt->SetTexture("snake.jpg");
+	bt->SetTexture("snake");
 	bt->setMass(1);
 
 	GameObject* b = new GameObject();
 	b->Init(Vector3D(center.X, center.Y - length / 2, center.Z));
 	b->SetRadius(1);
-	b->SetTexture("snake.jpg");
+	b->SetTexture("snake");
 	b->setMass(1);
 
 	AddGameObject(t);
@@ -163,49 +169,49 @@ void Level::AddCube(Vector3D center, float length)
 	GameObject* tfl = new GameObject();
 	tfl->Init(Vector3D(center.X - length / 2, center.Y + length / 2, center.Z - length / 2));
 	tfl->SetRadius(1);
-	tfl->SetTexture("snake.jpg");
+	tfl->SetTexture("snake");
 	tfl->setMass(1);
 
 	GameObject* tfr = new GameObject();
 	tfr->Init(Vector3D(center.X + length / 2, center.Y + length / 2, center.Z - length / 2));
 	tfr->SetRadius(1);
-	tfr->SetTexture("snake.jpg");
+	tfr->SetTexture("snake");
 	tfr->setMass(1);
 
 	GameObject* tbl = new GameObject();
 	tbl->Init(Vector3D(center.X - length / 2, center.Y + length / 2, center.Z + length / 2));
 	tbl->SetRadius(1);
-	tbl->SetTexture("snake.jpg");
+	tbl->SetTexture("snake");
 	tbl->setMass(1);
 
 	GameObject* tbr = new GameObject();
 	tbr->Init(Vector3D(center.X + length / 2, center.Y + length / 2, center.Z + length / 2));
 	tbr->SetRadius(1);
-	tbr->SetTexture("snake.jpg");
+	tbr->SetTexture("snake");
 	tbr->setMass(1);
 
 	GameObject* bfl = new GameObject();
 	bfl->Init(Vector3D(center.X - length / 2, center.Y - length / 2, center.Z - length / 2));
 	bfl->SetRadius(1);
-	bfl->SetTexture("snake.jpg");
+	bfl->SetTexture("snake");
 	bfl->setMass(1);
 
 	GameObject* bfr = new GameObject();
 	bfr->Init(Vector3D(center.X + length / 2, center.Y - length / 2, center.Z - length / 2));
 	bfr->SetRadius(1);
-	bfr->SetTexture("snake.jpg");
+	bfr->SetTexture("snake");
 	bfr->setMass(1);
 
 	GameObject* bbl = new GameObject();
 	bbl->Init(Vector3D(center.X - length / 2, center.Y - length / 2, center.Z + length / 2));
 	bbl->SetRadius(1);
-	bbl->SetTexture("snake.jpg");
+	bbl->SetTexture("snake");
 	bbl->setMass(1);
 
 	GameObject* bbr = new GameObject();
 	bbr->Init(Vector3D(center.X + length / 2, center.Y - length / 2, center.Z + length / 2));
 	bbr->SetRadius(1);
-	bbr->SetTexture("snake.jpg");
+	bbr->SetTexture("snake");
 	bbr->setMass(1);
 
 	AddGameObject(bfl);
@@ -422,25 +428,25 @@ void Level::AddPyramid(Vector3D center, float length)
 	GameObject* t = new GameObject();
 	t->Init(Vector3D(center.X, center.Y + length / 2, center.Z));
 	t->SetRadius(1);
-	t->SetTexture("snake.jpg");
+	t->SetTexture("snake");
 	t->setMass(1);
 
 	GameObject* br = new GameObject();
 	br->Init(Vector3D(center.X + length / 2, center.Y - length / 2, center.Z + length / 2));
 	br->SetRadius(1);
-	br->SetTexture("snake.jpg");
+	br->SetTexture("snake");
 	br->setMass(1);
 
 	GameObject* bl = new GameObject();
 	bl->Init(Vector3D(center.X - length / 2, center.Y - length / 2, center.Z + length / 2));
 	bl->SetRadius(1);
-	bl->SetTexture("snake.jpg");
+	bl->SetTexture("snake");
 	bl->setMass(1);
 
 	GameObject* bt = new GameObject();
 	bt->Init(Vector3D(center.X, center.Y - length / 2, center.Z - length / 2));
 	bt->SetRadius(1);
-	bt->SetTexture("snake.jpg");
+	bt->SetTexture("snake");
 	bt->setMass(1);
 
 	AddGameObject(t);

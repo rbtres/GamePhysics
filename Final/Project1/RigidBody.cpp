@@ -3,6 +3,7 @@
 
 RigidBody::RigidBody()
 {
+	m_isAwake = false;
 }
 
 
@@ -120,4 +121,32 @@ void RigidBody::AddForceAtBody(const Vector3D &force, const Vector3D &point)
 {
 	AddForceAtPoint(force, point);
 	m_isAwake = true;
+}
+
+void RigidBody::Initialize(Vector3D pos, Vector3D startVel, Vector3D startAcc, Vector3D startRot, float linDam, float angDam)
+{
+	m_isAwake = false;
+
+	m_Pos = pos;
+	m_InitPos = pos;
+	
+	m_Rot = startRot;
+	m_InitRot = startRot;
+
+	m_Vel = startVel;
+	m_InitVel = startVel;
+
+	m_Acc = startAcc;
+	m_InitAcc = startAcc;
+
+	m_linearDampening = linDam;
+	m_angluarDampening = angDam;
+}
+
+void RigidBody::Reset()
+{
+	m_Pos = m_InitPos;
+	m_Rot = m_InitRot;
+	m_Vel = m_InitVel;
+	m_Acc = m_InitAcc;
 }

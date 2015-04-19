@@ -75,7 +75,20 @@ Matrix::~Matrix()
 {
 }
 //--------------------------------------------------------------------------------------------
+Matrix& Matrix::operator=(const Matrix& rhs)
+{
+	m_Rows = rhs.GetRowSize();
+	m_Columns = rhs.GetColumnSize();
+	m_Size = m_Rows * m_Columns;
+	mp_Matrix = new float[m_Size];
 
+	for (int i = 0; i < m_Size; i++)
+	{
+		mp_Matrix[i] = rhs.mp_Matrix[i];
+	}
+
+	return *this;
+}
 //--------------------------------------------------------------------------------------------
 void Matrix::Set(int row, int column, float value)
 {
@@ -123,7 +136,7 @@ Matrix Matrix::operator*(const Matrix& rhs) const
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-Matrix Matrix::operator*(const Vector3D& rhs) const
+Vector3D Matrix::operator*(const Vector3D& rhs) const
 {
 	float* newMatrix = new float[m_Rows];
 	if (m_Columns == 3)
@@ -132,12 +145,13 @@ Matrix Matrix::operator*(const Vector3D& rhs) const
 		{
 			newMatrix[i] = mp_Matrix[i * m_Rows] * rhs.X + mp_Matrix[i * m_Rows + 1] * rhs.Y + mp_Matrix[i * m_Rows + 2] * rhs.Z;
 		}
-		return Matrix(m_Rows, 1, newMatrix);
+		Vector3D newV = Vector3D(newMatrix[0], newMatrix[1], newMatrix[2]);
+		return newV;
 	}
 	else
 	{
 		//cout << "Wrong Size Matrix * Vector multiplication";
-		return *this;
+		return Vector3D::Zero;
 	}
 }
 //--------------------------------------------------------------------------------------------
@@ -245,9 +259,67 @@ float Matrix::Det()
 }
 //--------------------------------------------------------------------------------------------
 
-//--------------------------------------------------------------------------------------------
+//-----------http://www.sanfoundry.com/cpp-program-finds-inverse-graph-matrix/----------------
 Matrix Matrix::InvMatrix()
 {
-	return Matrix(2, 2);
+	Matrix inv = *this;
+	if (inv.Det() != 0)
+	{
+		int n = inv.GetRowSize();
+		int i, j, k;
+		float d;
+		for (int i = 1; i <= n; i++)
+		{
+			for (j = 1; j <= 2 * n; j++)
+			{
+				if (j == (i + n))
+				{
+					inv.Set(i, j, 1);
+				}
+			}
+		}
+		for (i = n; i > 1; i--)
+		{
+			if (inv.Get(i - 1,1) < inv.Get(i,1))
+			{
+				for (j = 1; j <= n * 2; j++)
+				{
+					d = inv.Get(i,j);
+					inv.Set(i,j, inv.Get(i - 1,j));
+					inv.Set(i - 1,j,d);
+				}
+			}
+		}
+		for (i = 1; i <= n; i++)
+		{
+			for (j = 1; j <= n * 2; j++)
+			{
+				if (j != i)
+				{
+					d = inv.Get(j,i) / inv.Get(i,i);
+					for (k = 1; k <= n * 2; k++)
+					{
+						inv.Set(j,k,inv.Get(j,k) - (inv.Get(i,k) * d));
+					}
+				}
+			}
+		}
+		for (i = 1; i <= n; i++)
+		{
+			d = inv.Get(i,i);
+			for (j = 1; j <= n * 2; j++)
+			{
+				inv.Set(i,j, inv.Get(i,j) / d);
+			}
+		}
+		return inv;
+	}
+
+	return Matrix(inv.m_Rows, inv.m_Columns);
+}
+
+Vector3D Matrix::Transform(const Vector3D &rhs)
+{
+	return *this * rhs;
 }
 //--------------------------------------------------------------------------------------------

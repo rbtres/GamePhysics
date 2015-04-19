@@ -22,7 +22,13 @@ void PhysicsManager::RemoveRegistry(PhysicsObject* object)
 {
 	//Should remove stuff later
 }
-
+void PhysicsManager::AddRigidBody(RigidBody* object)
+{
+	ForceRegistrationRigid* r = new ForceRegistrationRigid();
+	r->object = object;
+	RigidBodyRegistry.push_back(r);
+	mp_rigidBodies.push_back(object);
+}
 void PhysicsManager::AddPhysicsObject(PhysicsObject* object)
 {
 	mp_physicsObjects.push_back(object);
@@ -46,6 +52,13 @@ void PhysicsManager::Update(float msTime)
 	{
 		i->Update((int)msTime);
 	}
-	
+	for (auto i : RigidBodyRegistry)
+	{
+		i->UpdateForces();
+	}
+	for (auto i : mp_rigidBodies)
+	{
+		i->Intergrate(msTime);
+	}
 }
 

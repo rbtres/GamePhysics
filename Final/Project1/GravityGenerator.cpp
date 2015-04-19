@@ -28,6 +28,13 @@ void GravityGenerator::UpdateForce(PhysicsObject* object)
 	force.Y = -9.8f * object->getMass();
 	object->addForce(force);
 }
+
+void GravityGenerator::UpdateForce(RigidBody* bodyOne, RigidBody* bodyTwo)
+{
+	Vector3D force;
+	force.Y = -9.8f * bodyOne->GetMass();
+	bodyOne->AddForce(force);
+}
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------

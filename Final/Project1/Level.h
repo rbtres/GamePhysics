@@ -6,6 +6,8 @@
 #include "GroundContactGenerator.h"
 #include "ParticleRod.h"
 #include "WallContact.h"
+#include "ImageHandler.h"
+
 typedef std::vector<GameObject*> GameObjectVec;
 typedef std::vector<PhysicsObject*> PhysicObjectVec;
 
@@ -23,6 +25,7 @@ public:
 	void AddCube(Vector3D center, float length);
 	void AddRandomShape(Vector3D center, float length);
 	inline void AddPhysics(PhysicsObject* object){ mp_PhysicsManager->AddPhysicsObject(object); };
+	inline void AddPhysics(RigidBody* object){ mp_PhysicsManager->AddRigidBody(object); }
 	void remove(GameObject* gameObject){};
 	void Reset();
 

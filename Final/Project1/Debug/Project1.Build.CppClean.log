@@ -1,6 +1,5 @@
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\vc120.pdb
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\vc120.idb
-c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\level.obj
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\main.obj
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\matrix.obj
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\particle.obj
@@ -15,6 +14,7 @@ c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\planet.obj
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\planetmanager.obj
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\player.obj
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\quaternion.obj
+c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\rigidbody.obj
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\skybox.obj
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\springforcegenerator.obj
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\vector2d.obj
@@ -28,6 +28,8 @@ c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\gravitygenerato
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\ground.obj
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\groundcontactgenerator.obj
 c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\inputmanager.obj
+c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\level.obj
+c:\users\robert.bethune\desktop\gamephysics\final\project1\debug\imagehandler.obj
 c:\users\robert.bethune\desktop\gamephysics\final\debug\project1.ilk
 c:\users\robert.bethune\desktop\gamephysics\final\debug\project1.exe
 c:\users\robert.bethune\desktop\gamephysics\final\debug\project1.pdb

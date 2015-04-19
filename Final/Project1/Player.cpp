@@ -16,7 +16,7 @@ void Player::Init()
 	GameObject* g = new GameObject();
 	g->Init(Vector3D(0, 15, 0));
 	g->SetRadius(2);
-	g->SetTexture("snake.jpg");
+	g->SetTexture("snake");
 
 	mp_PlayerPieces = g;
 }

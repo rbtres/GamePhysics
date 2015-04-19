@@ -11,9 +11,13 @@ public:
 	inline void SetInertiaTensor(const Matrix &intertia) { m_intertiaTensor = intertia; m_intertiaTensor = m_intertiaTensor.InvMatrix(); }
 	inline void AddForce(const Vector3D &force){ m_ForceAcc += force; m_isAwake = true; }
 	inline void ClearAcc(){ m_ForceAcc = Vector3D::Zero;  m_TorqueAcc = Vector3D::Zero; }
+
+	void Initialize(Vector3D pos = Vector3D::Zero, Vector3D startVel = Vector3D::Zero, Vector3D startAcc = Vector3D::Zero, Vector3D startRot = Vector3D::Zero, float linDam = 1, float angDam = 1);
 	void Intergrate(float duration);
 	void AddForceAtPoint(const Vector3D &force, const Vector3D &point);
 	void AddForceAtBody(const Vector3D &force, const Vector3D &point);
+
+	void Reset();
 	
 	bool IsMassInf(){ return m_inverseMass == 1; }
 	
@@ -37,6 +41,11 @@ protected:
 	Vector3D m_Rot;
 	Vector3D m_ForceAcc;
 	Vector3D m_TorqueAcc;
+
+	Vector3D m_InitPos;
+	Vector3D m_InitAcc;
+	Vector3D m_InitVel;
+	Vector3D m_InitRot;
 
 	Matrix m_trans;
 	Matrix m_intertiaTensor;
