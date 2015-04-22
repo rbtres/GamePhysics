@@ -19,7 +19,7 @@ public:
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-	Vector3D operator*(const float& rhs);
+	Vector3D operator*(const float& rhs) const;
 	Vector3D operator/(const float& rhs);
 
 	Vector3D operator+(const Vector3D& rhs);
@@ -34,7 +34,7 @@ public:
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-	float Dot(const Vector3D& rhs);
+	float Dot(const Vector3D& rhs) const;
 	Vector3D Cross(const Vector3D& rhs);
 	
 	float Distance(const Vector3D& rhs);

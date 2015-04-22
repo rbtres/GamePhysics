@@ -323,3 +323,8 @@ Vector3D Matrix::Transform(const Vector3D &rhs)
 	return *this * rhs;
 }
 //--------------------------------------------------------------------------------------------
+
+Vector3D Matrix::GetAxis(unsigned int column) const
+{ 
+	return Vector3D(mp_Matrix[column], mp_Matrix[column + 4], mp_Matrix[column + 8]);
+}

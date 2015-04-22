@@ -64,9 +64,11 @@ public:
 	//Just Updates registrys
 	void Update(float msTime);
 
+
 private:
 	void AddRegistry(PhysicsObject* object);
 	void RemoveRegistry(PhysicsObject* object);
+	void updateComponents(float msTime);
 
 	Registry PhysicsRegistry;
 	RigidRegistry RigidBodyRegistry;

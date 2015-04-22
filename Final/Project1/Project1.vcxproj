@@ -70,6 +70,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bungie.cpp" />
+    <ClCompile Include="ColliisonSphere.cpp" />
+    <ClCompile Include="CollisionBox.cpp" />
+    <ClCompile Include="CollisionData.cpp" />
+    <ClCompile Include="CollisionDetector.cpp" />
+    <ClCompile Include="CollisionPlane.cpp" />
+    <ClCompile Include="CollisionPrimitive.cpp" />
     <ClCompile Include="Fireworks.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -94,6 +100,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="RigidContact.cpp" />
     <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="SpringForceGenerator.cpp" />
     <ClCompile Include="Vector2D.cpp" />
@@ -102,6 +109,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bungie.h" />
+    <ClInclude Include="CollisionSphere.h" />
+    <ClInclude Include="CollisionBox.h" />
+    <ClInclude Include="CollisionData.h" />
+    <ClInclude Include="CollisionDetector.h" />
+    <ClInclude Include="CollisionPlane.h" />
+    <ClInclude Include="CollisionPrimitive.h" />
     <ClInclude Include="Fireworks.h" />
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="GameApp.h" />
@@ -126,6 +139,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="RigidBody.h" />
+    <ClInclude Include="RigidContact.h" />
     <ClInclude Include="SkyBox.h" />
     <ClInclude Include="SpringForceGenerator.h" />
     <ClInclude Include="Vector2D.h" />

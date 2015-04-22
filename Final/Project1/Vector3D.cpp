@@ -55,7 +55,7 @@ void Vector3D::operator-=(const Vector3D& rhs)
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-Vector3D Vector3D::operator*(const float& rhs) 
+Vector3D Vector3D::operator*(const float& rhs) const 
 {
 	return Vector3D(X * rhs, Y * rhs, Z * rhs);
 }
@@ -104,7 +104,7 @@ Vector3D Vector3D::Cross(const Vector3D& rhs)
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-float Vector3D::Dot(const Vector3D& rhs)
+float Vector3D::Dot(const Vector3D& rhs) const
 {
 	return Y * rhs.Y + X * rhs.X + Z * rhs.Z;
 }

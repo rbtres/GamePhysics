@@ -34,6 +34,8 @@ public:
 	float Get(int row, int column) const;
 	inline float Get(int pos) const { return mp_Matrix[pos]; }
 
+	Vector3D GetAxis(unsigned int column) const;
+
 	bool SameDim(const Matrix& rhs) const;
 
 	float GetArrayIndex(int i) const { return mp_Matrix[i]; }

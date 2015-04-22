@@ -18,6 +18,8 @@ public:
 	void AddForceAtBody(const Vector3D &force, const Vector3D &point);
 
 	void Reset();
+
+	inline Matrix& GetTransformMatrix() { return m_trans; }
 	
 	bool IsMassInf(){ return m_inverseMass == 1; }
 	

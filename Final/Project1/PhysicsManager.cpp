@@ -48,17 +48,23 @@ void PhysicsManager::Update(float msTime)
 	{
 		i->UpdateForces();
 	}
-	for (auto i : mp_physicsObjects)
-	{
-		i->Update((int)msTime);
-	}
+
 	for (auto i : RigidBodyRegistry)
 	{
 		i->UpdateForces();
 	}
+
+}
+
+void PhysicsManager::updateComponents(float msTime)
+{
+	for (auto i : mp_physicsObjects)
+	{
+		i->Update((int)msTime);
+	}
+
 	for (auto i : mp_rigidBodies)
 	{
 		i->Intergrate(msTime);
 	}
 }
-

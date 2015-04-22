@@ -12,6 +12,7 @@ public:
 	float penetration;
 
 	Vector3D contactNormal;
+
 	float calculateSeparatingVelocity();
 	void resolve(float duration);
 
