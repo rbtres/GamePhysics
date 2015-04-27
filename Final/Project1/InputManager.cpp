@@ -76,17 +76,17 @@ void InputManager::HandleKeyDown(unsigned char key)
 	}
 	if (key == 'w')
 	{
-		mp_Player->addForce(Vector3D(0, 0, -10));
+		//mp_Player->addForce(Vector3D(0, 0, -10));
 	}
 
 	if (key == 's')
 	{
-		mp_Player->addForce(Vector3D(0, 0, 10));
+		//mp_Player->addForce(Vector3D(0, 0, 10));
 	}
 
 	if (key == 'e')
 	{
-		mp_Player->addForce(Vector3D(0, 30, 0));
+		//mp_Player->addForce(Vector3D(0, 30, 0));
 	}
 	if (key == 'w')
 	{
@@ -131,12 +131,12 @@ void InputManager::HandleKeyDown(unsigned char key)
 
 	if (key == 'd')
 	{
-		mp_Player->addForce(Vector3D(10, 0, 0));
+		//mp_Player->addForce(Vector3D(10, 0, 0));
 	}
 
 	if (key == 'a')
 	{
-		mp_Player->addForce(Vector3D(-10, 0, 0));
+		//mp_Player->addForce(Vector3D(-10, 0, 0));
 	}
 	if (key == 'f')
 	{

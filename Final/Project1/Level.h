@@ -7,9 +7,13 @@
 #include "ParticleRod.h"
 #include "WallContact.h"
 #include "ImageHandler.h"
+#include "SphereRender.h"
 
 typedef std::vector<GameObject*> GameObjectVec;
 typedef std::vector<PhysicsObject*> PhysicObjectVec;
+
+typedef std::vector<RigidBody*> Bodies;
+typedef std::vector<RigidRender*> RenderBodies;
 
 class Level
 {
@@ -21,11 +25,12 @@ public:
 	void Init(std::string filePath, int height);
 	void Update(float msTime);
 	void AddGameObject(GameObject* gameObject, bool needsPhysics = true);
+	void AddRenderObject(RigidRender* renderObject, bool needsPhysics = true);
 	void AddPyramid(Vector3D center, float length);
 	void AddCube(Vector3D center, float length);
 	void AddRandomShape(Vector3D center, float length);
 	inline void AddPhysics(PhysicsObject* object){ mp_PhysicsManager->AddPhysicsObject(object); };
-	inline void AddPhysics(RigidBody* object){ mp_PhysicsManager->AddRigidBody(object); }
+	inline void AddPhysics(RigidBody* object){ mp_PhysicsManager->AddRigidBody(object);}
 	void remove(GameObject* gameObject){};
 	void Reset();
 
@@ -36,5 +41,7 @@ private:
 	GroundContactGenerator* mp_GroundGenerator;
 	WallContact* mp_WallContact;
 	std::vector<ParticleRod*> mp_Rods;
+	RenderBodies mp_RenderBodies;
+
 };
 

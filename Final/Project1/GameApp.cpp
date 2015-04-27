@@ -1,6 +1,7 @@
 #include "SkyBox.h"
 #include "GameApp.h"
 #include "ImageHandler.h"
+#include "SphereRender.h"
 
 //--------------------------------------------------------------------------------------------
 GameApp::GameApp()
@@ -11,7 +12,7 @@ GameApp::GameApp()
 	mp_SkyBox = new SkyBox();
 	mp_Ground = new Ground();
 	p_CameraPos = new PhysicsObject();
-	mp_CameraToPlayer = new Bungie();
+	//mp_CameraToPlayer = new Bungie();
 }
 //--------------------------------------------------------------------------------------------
 
@@ -48,11 +49,11 @@ void GameApp::Init()
 	p_InputManager->Init();
 	p_Level->Init("hello", -20);
 	mp_SkyBox->Init();
-	mp_Player->Init();
-	mp_Player->GetPlayer()->setMass(1);
-	p_Level->AddGameObject(mp_Player->GetPlayer());
+	//mp_Player->Init();
+	//mp_Player->GetPlayer()->setMass(1);
+	//p_Level->AddGameObject(mp_Player->GetPlayer());
 	
-	mp_CameraToPlayer->m_AnchorObject = mp_Player->GetPlayer();
+	//mp_CameraToPlayer->m_AnchorObject = mp_Player->GetPlayer();
 	mp_Ground->Init();
 	mp_Ground->setDamping(0);
 	mp_Ground->setMass(1000000000);
@@ -67,12 +68,17 @@ void GameApp::Init()
 	//p_Level->AddCube(Vector3D(-15, 0, 5), 5);
 	//p_Level->AddRandomShape(Vector3D(0,10,-10), 5);
 	p_CameraPos->setMass(1);
-	p_CameraPos->Init(Vector3D(mp_Player->GetPlayer()->getPos().X, mp_Player->GetPlayer()->getPos().Y - 10, mp_Player->GetPlayer()->getPos().Z));
+	p_CameraPos->Init();
 	p_CameraPos->setRadius(1);
 	p_Level->AddPhysics(p_CameraPos);
 	p_InputManager->SetPlayer(mp_Player->GetPlayer());
 	p_InputManager->SetPos(p_CameraPos->getPos());
 
+	SphereRender* render = new SphereRender();
+	render->Initialize();
+	render->SetTexture("snake");
+	render->SetMass(10);
+	p_Level->AddRenderObject(render);
 }
 //--------------------------------------------------------------------------------------------
 
@@ -110,10 +116,10 @@ void GameApp::HandleMouseDown(Vector2D buttonAndState, Vector2D mousePos)
 void GameApp::update(int msTime)
 {
 	p_InputManager->Update(msTime);
-	mp_CameraToPlayer->UpdateForce(p_CameraPos);
+	//mp_CameraToPlayer->UpdateForce(p_CameraPos);
 	p_Level->Update((float)msTime);
-	p_CameraPos->Update(msTime);
-	p_InputManager->SetPos(p_CameraPos->getPos());
+	//p_CameraPos->Update(msTime);
+	//p_InputManager->SetPos(p_CameraPos->getPos());
 }
 //--------------------------------------------------------------------------------------------
 

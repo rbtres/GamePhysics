@@ -44,11 +44,18 @@ public:
 	static float Distance(const Vector3D& lhs, const Vector3D& rhs);
 	static Vector3D DistanceSqVec(const Vector3D& lhs, const Vector3D& rhs);
 
-	float Magnitude();
-	float MagnitudeSq();
+	float Magnitude()const;
+	float MagnitudeSq()const ;
 
 	void Normalize();
 	Vector3D Normalized();
+
+	inline void SetIndex(int x, float value){
+		if (x == 0) X = value; else if (x == 1) Y = value; else  Z = value;
+	}
+	inline float GetIndex(int x)const{
+		if (x == 0) return X; else if (x == 1)return Y; else return Z;
+	}
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------

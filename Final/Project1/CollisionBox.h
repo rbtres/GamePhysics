@@ -7,6 +7,9 @@ public:
 	CollisionBox();
 	~CollisionBox();
 
-	Vector3D Halfsize;
+	Vector3D Vertices[8];
+
+	void Init(Vector3D halfsize);
+	Vector3D HalfSize;
 };
 

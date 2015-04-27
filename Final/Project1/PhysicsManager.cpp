@@ -53,7 +53,7 @@ void PhysicsManager::Update(float msTime)
 	{
 		i->UpdateForces();
 	}
-
+	updateComponents(msTime);
 }
 
 void PhysicsManager::updateComponents(float msTime)

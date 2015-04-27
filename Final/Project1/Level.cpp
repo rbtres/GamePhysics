@@ -33,6 +33,10 @@ void Level::Draw()
 	{
 		i->Draw();
 	}
+	for (auto i : mp_RenderBodies)
+	{
+		i->Draw();
+	}
 }
 
 void Level::Update(float msTime)
@@ -44,14 +48,22 @@ void Level::Update(float msTime)
 		i->AddContact(mp_PhysicsManager);
 	}
 	mp_PhysicsManager->Update( msTime);
-}
 
+}
+void Level::AddRenderObject(RigidRender* renderObject, bool needsPhysics)
+{
+	mp_RenderBodies.push_back(renderObject);
+	if (needsPhysics)
+	{
+		AddPhysics(renderObject);
+	}
+}
 void Level::AddGameObject(GameObject* gameObject, bool needsPhysics)
 {
 	mp_GameObjects.push_back(gameObject);
 	if (needsPhysics)
 	{
-		mp_PhysicsManager->AddPhysicsObject(gameObject);
+		AddPhysics(gameObject);
 	}
 }
 
@@ -502,6 +514,10 @@ void Level::AddPyramid(Vector3D center, float length)
 void Level::Reset()
 {
 	for (auto i : mp_GameObjects)
+	{
+		i->Reset();
+	}
+	for (auto i : mp_RenderBodies)
 	{
 		i->Reset();
 	}

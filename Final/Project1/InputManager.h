@@ -33,7 +33,7 @@ public:
 	void Update(int msTime);
 	void Enable();
 	int GetCurrentPlanet(){ return m_planetLookat; }
-	inline void SetPos(Vector3D pos){ m_pos = pos; m_pos.Y = mp_Player->getPos().Y + 20; }
+	inline void SetPos(Vector3D pos){ m_pos = pos; m_pos.Y =  20; }
 
 	inline void SetPlayer(PhysicsObject* p){ mp_Player = p; }
 //--------------------------------------------------------------------------------------------

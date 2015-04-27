@@ -85,16 +85,16 @@ void RigidBody::Intergrate(float duration)
 
 	Vector3D angularAcc = m_intertiaTensor.Transform(m_TorqueAcc);
 	
-	m_Vel += (m_LastFrameAcc * duration);
+	m_Vel += (m_LastFrameAcc * 1/duration);
 
-	m_Rot += (angularAcc * duration);
+	m_Rot += (angularAcc * 1/duration);
 
-	m_Vel = m_Vel * (float)pow(m_linearDampening, duration);
-	m_Rot = m_Rot * (float)pow(m_angluarDampening, duration);
+	m_Vel = m_Vel * (float)pow(m_linearDampening, 1/duration);
+	m_Rot = m_Rot * (float)pow(m_angluarDampening, 1/duration);
 
-	m_Pos += (m_Vel * duration);
+	m_Pos += (m_Vel * 1/duration);
 
-	m_Orientation.AddScaleVector((m_Rot * duration), 1);
+	m_Orientation.AddScaleVector((m_Rot * 1/duration), 1);
 
 	calculateDerivedData();
 

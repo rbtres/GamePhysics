@@ -69,7 +69,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="BoxRender.cpp" />
     <ClCompile Include="Bungie.cpp" />
     <ClCompile Include="ColliisonSphere.cpp" />
     <ClCompile Include="CollisionBox.cpp" />
@@ -103,14 +103,16 @@
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="RigidContact.cpp" />
+    <ClCompile Include="RigidRender.cpp" />
     <ClCompile Include="SkyBox.cpp" />
+    <ClCompile Include="SphereRender.cpp" />
     <ClCompile Include="SpringForceGenerator.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="Vector3D.cpp" />
     <ClCompile Include="WallContact.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Box.h" />
+    <ClInclude Include="BoxRender.h" />
     <ClInclude Include="Bungie.h" />
     <ClInclude Include="CollisionSphere.h" />
     <ClInclude Include="CollisionBox.h" />
@@ -144,7 +146,9 @@
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="RigidContact.h" />
+    <ClInclude Include="RigidRender.h" />
     <ClInclude Include="SkyBox.h" />
+    <ClInclude Include="SphereRender.h" />
     <ClInclude Include="SpringForceGenerator.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Vector3D.h" />

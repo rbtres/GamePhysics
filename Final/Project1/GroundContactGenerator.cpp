@@ -4,7 +4,6 @@ GroundContactGenerator::GroundContactGenerator()
 {
 }
 
-
 GroundContactGenerator::~GroundContactGenerator()
 {
 }
