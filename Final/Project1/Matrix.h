@@ -43,9 +43,9 @@ public:
 	int  GetRowSize() const { return m_Rows; }
 	int  GetColumnSize() const { return m_Columns; }
 
-	Vector3D Transform( const Vector3D &rhs);
+	Vector3D Transform( const Vector3D &rhs)const;
 	float Det();
-	Matrix InvMatrix();
+	Matrix InvMatrix() const;
 
 //--------------------------------------------------------------------------------------------
 //============================================================================================

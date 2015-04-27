@@ -260,7 +260,7 @@ float Matrix::Det()
 //--------------------------------------------------------------------------------------------
 
 //-----------http://www.sanfoundry.com/cpp-program-finds-inverse-graph-matrix/----------------
-Matrix Matrix::InvMatrix()
+Matrix Matrix::InvMatrix() const
 {
 	Matrix inv = *this;
 	if (inv.Det() != 0)
@@ -318,7 +318,7 @@ Matrix Matrix::InvMatrix()
 	return Matrix(inv.m_Rows, inv.m_Columns);
 }
 
-Vector3D Matrix::Transform(const Vector3D &rhs)
+Vector3D Matrix::Transform(const Vector3D &rhs)const
 {
 	return *this * rhs;
 }

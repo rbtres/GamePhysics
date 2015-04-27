@@ -12,9 +12,12 @@ public:
 	inline void AddContacts(int num){ m_numContactsLeft += num; }
 	float Restitution;
 	float Friction;
+
+	std::vector<RigidContact*> Contacts;
 private:
 	int m_numContactsLeft;
 
+	
 	RigidContact* m_Contact;
 };
 
