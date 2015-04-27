@@ -4,6 +4,10 @@
 RigidBody::RigidBody()
 {
 	m_isAwake = false;
+	m_trans = new Matrix(4, 4);
+	m_inertiaTensor = new Matrix(4, 4);
+	m_transWorld = new Matrix(4, 4);
+	m_inverseTensorWorld = new Matrix(4, 4);
 }
 
 
@@ -141,6 +145,7 @@ void RigidBody::Initialize(Vector3D pos, Vector3D startVel, Vector3D startAcc, V
 
 	m_linearDampening = linDam;
 	m_angluarDampening = angDam;
+ 
 }
 
 void RigidBody::Reset()

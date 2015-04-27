@@ -2,6 +2,7 @@
 #include "Vector3D.h"
 #include "Quaternion.h"
 #include "Matrix.h"
+#include "CollisionSphere.h"
 class RigidBody
 {
 public:
@@ -27,6 +28,7 @@ public:
 	float GetMass(){ return 1 / m_inverseMass; }
 	static void TransformInvertiaTensor(Matrix &iitWorld, const Quaternion &quaternion, const Matrix &iitBody, const Matrix &rotationMatrix);
 	static void CalculateTransformMatrix(Matrix &trans, const Vector3D &pos, const Quaternion &orientation);
+
 protected:
 	void calculateDerivedData();
 	
@@ -55,6 +57,8 @@ protected:
 	Matrix m_inverseTensorWorld;
 
 	Quaternion m_Orientation;
+
+	CollisionSphere* m_ColSphere;
 
 };
 
