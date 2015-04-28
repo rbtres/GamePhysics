@@ -21,3 +21,8 @@ void RigidContact::Initialize(Vector3D contactPoint, Vector3D contactNormal, flo
 	m_bodyOne = one;
 	m_bodyTwo = two;
 }
+
+void RigidContact::Resolve(float msTime)
+{
+
+}

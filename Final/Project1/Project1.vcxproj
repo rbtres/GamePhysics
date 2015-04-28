@@ -102,6 +102,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="RigidBodyContactResolver.cpp" />
     <ClCompile Include="RigidContact.cpp" />
     <ClCompile Include="RigidRender.cpp" />
     <ClCompile Include="SkyBox.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="RigidBody.h" />
+    <ClInclude Include="RigidBodyContactResolver.h" />
     <ClInclude Include="RigidContact.h" />
     <ClInclude Include="RigidRender.h" />
     <ClInclude Include="SkyBox.h" />

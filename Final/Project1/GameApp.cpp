@@ -26,6 +26,7 @@ GameApp::~GameApp()
 //--------------------------------------------------------------------------------------------
 void GameApp::Update(int msTime, bool isPlaying)
 {
+	p_InputManager->Update(msTime);
 	if (isPlaying)
 	{
 		update(msTime);
@@ -115,7 +116,7 @@ void GameApp::HandleMouseDown(Vector2D buttonAndState, Vector2D mousePos)
 //--------------------------------------------------------------------------------------------
 void GameApp::update(int msTime)
 {
-	p_InputManager->Update(msTime);
+	
 	//mp_CameraToPlayer->UpdateForce(p_CameraPos);
 	p_Level->Update((float)msTime);
 	//p_CameraPos->Update(msTime);

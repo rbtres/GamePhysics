@@ -24,12 +24,13 @@
 #include <GL/glui.h>
 #include <stdlib.h>
 #include <time.h>  
+#include "ImageHandler.h"
 
 using namespace std;
 //--------------------------------------------------------------------------------------------
 void idle();
 void display();
-void update(int mstime);
+void update(float msTime);
 void initialize();
 void cleanup();
 void mousePos(int x, int y);
@@ -59,7 +60,7 @@ int g_delta_time;
 static char* currentText;
 GameApp* gp_GameApp;
 GLUI* gp_Glui;
-
+ImageHandler* Handler;
 bool g_isPlaying;
 
 static GLUI_StaticText* text;
@@ -78,7 +79,7 @@ const int PLAY_ID = 1, STOP_ID = 2, PAUSE_ID = 3;
 //--------------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
-	srand((unsigned int)time(NULL));
+	srand((unsigned)time(NULL));
 	gp_GameApp = new GameApp();
 	glutInit(&argc, argv);
 	currentText = "";
@@ -99,7 +100,8 @@ void initialize()
 	glutInitWindowSize(720, 720);
 	glutInitWindowPosition(50, 50);
 	g_main_win = glutCreateWindow("Buttons");
-	
+
+
 	float lightPosition[] = { -2, 0, 0, 0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 
@@ -111,14 +113,17 @@ void initialize()
 	glShadeModel(GL_SMOOTH); //set the shader to smooth shader
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
+	Handler = ImageHandler::GetInstance();
+	Handler->AddImage("snake.jpg", "snake");
+
 	gp_GameApp->Init();
 
 	atexit(cleanup);
 	glutDisplayFunc(display);
 	glutPassiveMotionFunc(mousePos);
 	glutKeyboardUpFunc(handleKeyUp);
-	
-	
+
+
 	GLUI_Master.set_glutKeyboardFunc(handleKeyDown);
 	GLUI_Master.set_glutMouseFunc(handleMouse);
 	GLUI_Master.set_glutReshapeFunc(reshape);
@@ -132,18 +137,15 @@ void initialize()
 	text = gp_Glui->add_statictext(currentText);
 	gp_Glui->add_column(1);
 	fpsText = gp_Glui->add_statictext("FPS: 60");
-	gp_Glui->add_statictext("DPF Days Per Frame");
-	DaysPerSecond = gp_Glui->add_statictext("50 DPF");
-	gp_Glui->add_statictext("o to lower DPF");
-	gp_Glui->add_statictext("p to raise DPF");
+	gp_Glui->add_statictext("Rods, Cables, and Spring Test");
 	gp_Glui->add_column(1);
 	planetText = gp_Glui->add_statictext("None");
-	CurrentVel = gp_Glui->add_statictext("");
-	CurrentMass = gp_Glui->add_statictext("");
-	CurrentAcc = gp_Glui->add_statictext("");
-	gp_Glui->add_statictext("All vel and Acc are in such small numbers I multiply by 1000000000 to scale it");
-	gp_Glui->add_statictext("We use Solar Mass and distance is measured 1 = distance from earth to sun");
-	
+	//CurrentVel = gp_Glui->add_statictext("");
+	CurrentMass = gp_Glui->add_statictext("Contact knows how to detect Collision up to box to box");
+	gp_Glui->add_statictext("However resolve is not in so it just falls");
+	gp_Glui->add_statictext("WASD to move camera");
+	gp_Glui->add_statictext("Gravity force generator for rigid body in the code");
+
 
 	glutMainLoop();
 }
@@ -152,7 +154,7 @@ void initialize()
 //--------------------------------------------------------------------------------------------
 void idle()
 {
-	
+
 	double end_frame_time, end_rendering_time, waste_time;
 
 	end_frame_time = g_start_time + (g_current_frame_number + 1) * TIME_PER_FRAME;
@@ -161,38 +163,38 @@ void idle()
 
 	if (waste_time < 0.0)
 	{
-		g_delta_time = (int)(end_rendering_time - (g_start_time + (g_current_frame_number ) * TIME_PER_FRAME));
-		update(g_delta_time);
+		g_delta_time = (int)(end_rendering_time - (g_start_time + (g_current_frame_number)* TIME_PER_FRAME));
+		update((float)g_delta_time);
 		int x = 1000 / g_delta_time;
 		string d = to_string(x);
 		string c = "Fps: ";
 		string f = c + d;
 		const char* s = f.c_str();
 		setFPSText(s);
-		//d = to_string(PlanetManager::DaysPerSecond);
-			
+
+
 	}
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
-void update(int mstime)
+void update(float msTime)
 {
-	int time = mstime;
+	float time = msTime;
 	while (time > 1)
 	{
 		time /= 17;
 		g_current_frame_number++;
 	}
-		
+
 	if (g_isPlaying)
 		g_rotation_number++;
-	
+
 	glutSetWindow(g_main_win);
 
 	glutPostRedisplay();
 
-	gp_GameApp->Update(mstime, g_isPlaying);
+	gp_GameApp->Update(msTime, g_isPlaying);
 }
 //--------------------------------------------------------------------------------------------
 
@@ -209,34 +211,7 @@ void display()
 	//input manager / camera hybrid class.
 	switch (gp_GameApp->p_InputManager->GetCurrentPlanet())
 	{
-	case -1: setPlanetText("None");
-		break;
-	case 0:
-		setPlanetText("Sun");
-		break;
-	case 1:
-		setPlanetText("Mercury");
-		break;
-	case 2:
-		setPlanetText("Venus");
-		break;
-	case 3:
-		setPlanetText("Earth & Moon");
-		break;
-	case 4:
-		setPlanetText("Mars");
-		break;
-	case 5:
-		setPlanetText("Jupiter");
-		break;
-	case 6:
-		setPlanetText("Saturn");
-		break;
-	case 7:
-		setPlanetText("Uranus");
-		break;
-	case 8:
-		setPlanetText("Neptune");
+	case -1: setPlanetText("Rigid Body Sphere falling due to gravity Gen");
 		break;
 
 	}
@@ -262,13 +237,14 @@ void display()
 		f = d + x + c + y + c + z + m;
 		const char* vel = f.c_str();
 		setVel(vel);
-		d = "Mass = ";
-		float xx = currentObject->getMass();
-		y = to_string(xx);
-		f = d + y;
+		*/
+		std::string d = "Mass = ";
+		float xx = 10;
+		std::string y = to_string(xx);
+		std::string f = d + y;
 		const char* mass = f.c_str();
 		setMass(mass);
-		*/
+
 	}
 }
 //--------------------------------------------------------------------------------------------
@@ -300,14 +276,14 @@ void handleKeyDown(unsigned char key, int x, int y)
 //--------------------------------------------------------------------------------------------
 void handleKeyUp(unsigned char key, int x, int y)
 {
-
+	gp_GameApp->HandleKeyDown(key);
 }
 //--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
 void handleMouse(int button, int state, int x, int y)
 {
-	gp_GameApp->HandleMouseDown(Vector2D((float)button, (float)state),Vector2D((float)x,(float)y));
+	gp_GameApp->HandleMouseDown(Vector2D(button, state), Vector2D(x, y));
 }
 //--------------------------------------------------------------------------------------------
 void reshape(int width, int height)
@@ -369,16 +345,16 @@ void setFPSText(const char* s)
 //--------------------------------------------------------------------------------------------
 void setSpeedText(const char* s)
 {
-	DaysPerSecond->set_text(s);
+	//DaysPerSecond->set_text("WASD to add force in a direction E to add force up");
 }
 //--------------------------------------------------------------------------------------------
 void setVel(const char* s)
 {
-	CurrentVel->set_text(s);
+	//CurrentVel->set_text(s);
 }
 void setAcc(const char* s)
 {
-	CurrentAcc->set_text(s);
+	//CurrentAcc->set_text(s);
 }
 void setMass(const char* s)
 {
@@ -386,7 +362,7 @@ void setMass(const char* s)
 }
 void setPlanetText(const char* vel, const char* acc, const char* mass)
 {
-	CurrentVel->set_text(vel);
-	CurrentAcc->set_text(acc);
+	//CurrentVel->set_text(vel);
+	//CurrentAcc->set_text(acc);
 	CurrentMass->set_text(mass);
 }

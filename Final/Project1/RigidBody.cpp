@@ -4,10 +4,10 @@
 RigidBody::RigidBody()
 {
 	m_isAwake = false;
-	m_trans = new Matrix(4, 4);
-	m_inertiaTensor = new Matrix(4, 4);
-	m_transWorld = new Matrix(4, 4);
-	m_inverseTensorWorld = new Matrix(4, 4);
+	m_trans =  Matrix(4, 4);
+	m_intertiaTensor = Matrix(4, 4);
+	m_transWorld =  Matrix(4, 4);
+	m_inverseTensorWorld = Matrix(4, 4);
 }
 
 
@@ -83,7 +83,10 @@ void RigidBody::calculateDerivedData()
 }
 
 void RigidBody::Intergrate(float duration)
-{
+{ 
+	//For bandicam videos. Something goes wrong when openGL becomes a background program my fps shoots to one
+	//however the actual fps stays at 60 so speed goes crazy
+	//duration = 1.0f / 17.0f;
 	m_LastFrameAcc = m_Acc;
 	m_LastFrameAcc += m_ForceAcc * m_inverseMass;
 

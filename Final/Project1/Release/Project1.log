@@ -1,0 +1,24 @@
+﻿Build started 4/28/2015 4:17:28 PM.
+     1>Project "C:\Users\robert.bethune\Desktop\GamePhysics\Final\Project1\Project1.vcxproj" on node 2 (Build target(s)).
+     1>RestorePackages:
+         "C:\Users\robert.bethune\Desktop\GamePhysics\Final\.nuget\NuGet.exe" install "C:\Users\robert.bethune\Desktop\GamePhysics\Final\Project1\packages.config" -source ""  -NonInteractive -RequireConsent -solutionDir "C:\Users\robert.bethune\Desktop\GamePhysics\Final\ "
+         Restoring NuGet packages...
+         To prevent NuGet from downloading packages during build, open the Visual Studio Options dialog, click on the Package Manager node and uncheck 'Allow NuGet to download missing packages'.
+         All packages listed in packages.config are already installed.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\robert.bethune\Desktop\GamePhysics\Final\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/ /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameObject.cpp ImageHandler.cpp Main.cpp Planet.cpp SkyBox.cpp
+         GameObject.cpp
+     1>GameObject.cpp(3): fatal error C1083: Cannot open include file: 'SOIL.h': No such file or directory
+         ImageHandler.cpp
+     1>ImageHandler.cpp(2): fatal error C1083: Cannot open include file: 'SOIL.h': No such file or directory
+         Main.cpp
+     1>Main.cpp(24): fatal error C1083: Cannot open include file: 'GL/glui.h': No such file or directory
+         Planet.cpp
+     1>Planet.cpp(3): fatal error C1083: Cannot open include file: 'SOIL.h': No such file or directory
+         SkyBox.cpp
+     1>SkyBox.cpp(3): fatal error C1083: Cannot open include file: 'SOIL.h': No such file or directory
+     1>Done Building Project "C:\Users\robert.bethune\Desktop\GamePhysics\Final\Project1\Project1.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:02.98

@@ -2,7 +2,6 @@
 #include "Vector3D.h"
 #include "Quaternion.h"
 #include "Matrix.h"
-#include "CollisionSphere.h"
 class RigidBody
 {
 public:
@@ -57,8 +56,6 @@ protected:
 	Matrix m_inverseTensorWorld;
 
 	Quaternion m_Orientation;
-
-	CollisionSphere* m_ColSphere;
 
 };
 

@@ -8,6 +8,7 @@ public:
 	~RigidContact();
 
 	void Initialize(Vector3D contactPoint, Vector3D contactNormal, float pen, float rest,float fric, RigidBody* one, RigidBody* two = nullptr);
+	void Resolve(float msTime);
 
 private:
 	Vector3D m_contactPoint;
