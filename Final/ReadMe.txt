@@ -5,7 +5,9 @@ camera works nicelyish and works no matter what.
 This is because there is an update and a private update.
 
 So far CollisionData and CollisionDetector hold all of the collision info,
-but there is no check so far.
+but there is no check so far the RigidRenders will need to hold a specific collisiontype and than some checking
+class for them with the CollisionsDetector. So all Spheres and PLanes, will need to check Sphere to planes. Any questions
+about the project feel free to email me it is a bit confusing.
 
 Rigid body has the gravity generator and proper update function.
 
