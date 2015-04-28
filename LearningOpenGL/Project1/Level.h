@@ -23,6 +23,7 @@ public:
 	void AddPyramid(Vector3D center, float length);
 	void AddCube(Vector3D center, float length);
 	void AddRandomShape(Vector3D center, float length);
+	void CreateSphere(Vector3D center, float rad);
 	inline void AddPhysics(PhysicsObject* object){ mp_PhysicsManager->AddPhysicsObject(object); };
 	void remove(GameObject* gameObject){};
 	void Reset();

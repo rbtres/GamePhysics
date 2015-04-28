@@ -57,7 +57,17 @@ void Level::AddGameObject(GameObject* gameObject, bool needsPhysics)
 		mp_PhysicsManager->AddPhysicsObject(gameObject);
 	}
 }
+void Level::CreateSphere(Vector3D center, float rad)
+{
+	GameObject* sphere = new GameObject();
+	
+	sphere->Init(Vector3D(center.X, center.Y + rad / 2, center.Z));
+	sphere->SetRadius(rad);
+	sphere->setMass(1);
+	sphere->SetTexture(mp_ImageHandler->GetImage("snake"));
 
+	AddGameObject(sphere);
+}
 void Level::AddRandomShape(Vector3D center, float length)
 {
 	GameObject* t = new GameObject();

@@ -230,7 +230,7 @@ float Matrix::Det()
 	{
 		for (int i = 0; i < m_Rows; i++)
 		{
-			for (int j = 0; j < m_Columns; j++)
+			for (int j = i + 1; j < m_Columns; j++)
 			{
 				if (j > i)
 				{

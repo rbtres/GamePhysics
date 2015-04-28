@@ -30,10 +30,10 @@ public:
 	void HandleKeyDown(unsigned char key);
 	void HandleMouse(Vector2D mousePos);
 	void HandleMouseDown(Vector2D buttonAndState, Vector2D mosPos);
-	void Update(float msTime);
+	void Update(int msTime);
 	void Enable();
 	int GetCurrentPlanet(){ return m_planetLookat; }
-	inline void SetPos(Vector3D pos){ m_pos = pos; m_pos.Y = mp_Player->getPos().Y + 20; }
+	inline void SetPos(Vector3D pos){ m_pos = pos; m_pos.Y =  20; }
 
 	inline void SetPlayer(PhysicsObject* p){ mp_Player = p; }
 //--------------------------------------------------------------------------------------------
@@ -58,6 +58,7 @@ private:
 	float m_cameraSpeed;
 //--------------------------------------------------------------------------------------------
 	bool m_leftClickDown;
+	bool m_mouseVis;
 	int m_planetLookat;
 	PhysicsObject* mp_Player;
 };
