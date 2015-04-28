@@ -39,3 +39,7 @@ int i;
 +	}
 
 proper resolve attempt now how I actually did it because it caused things to fall through ground
+
+Everytime you click and lose mouse the next time you click it re-centers your mouse
+
+The release folder does not work because SOIL can't be used in release currently
