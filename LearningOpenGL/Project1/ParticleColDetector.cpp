@@ -29,7 +29,7 @@ unsigned int ParticleColDetector::SphereandSphere( PhysicsObject &sphereOne, Phy
 
 	contact->particle[0] = &sphereOne;
 	contact->particle[1] = &sphereTwo;
-	contact->restitution = 1;
+	contact->restitution = .9;
 	contact->contactNormal = normal;
 	contact->penetration = sphereOne.getRadius() + sphereTwo.getRadius() - mag;
 
@@ -42,12 +42,13 @@ unsigned int ParticleColDetector::BoxandSphere(CubeGround &box, PhysicsObject  &
 {
 	Vector3D center = sphere.getPos();
 	Vector3D inverse = box.getPos();
+
 	inverse.Y = inverse.Y + (float)(box.Scale.Y / 2.0f) ;
 	Vector3D relCenter = center - inverse;
 	//relCenter = Vector3D(abs(relCenter.X), abs(relCenter.Y), abs(relCenter.Z));
 	Vector3D closestPt = Vector3D(0, 0, 0);
 	if ((relCenter.X - sphere.getRadius()) > box.Scale.X / 2 || (relCenter.Y - sphere.getRadius()) > box.Scale.Y / 2
-		|| (relCenter.X - sphere.getRadius()) > box.Scale.Z / 2)
+		|| (relCenter.Z - sphere.getRadius()) > box.Scale.Z / 2)
 		return 0;
 
 	float dist;
@@ -91,17 +92,17 @@ unsigned int ParticleColDetector::BoxandSphere(CubeGround &box, PhysicsObject  &
 		return 0;
 	}
 
-	Vector3D closestPtWorld = inverse;
+	Vector3D closestPtWorld = inverse + closestPt;
 
 	ParticleContact* contact = data->GetContact();
 
 	Vector3D contactNormal = (center - closestPtWorld);
 	contactNormal.Normalize();
 	Vector3D contactPoint = closestPtWorld;
-	float pen = sphere.getRadius() - dist;
+	float pen = dist;
 	contact->particle[0] = &sphere;
 	//contact->particle[1] = &box;
-	contact->restitution = 1;
+	contact->restitution = .9;
 	contact->contactNormal = contactNormal;
 	contact->penetration = pen;
 	//contact->Initialize(contactPoint, contactNormal, pen, data->Restitution, data->Friction, box.Body, sphere.Body);

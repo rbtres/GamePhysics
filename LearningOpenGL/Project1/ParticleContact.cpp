@@ -51,6 +51,7 @@ void ParticleContact::resolveVelocity(float duration)
 	if (realAccCausedSepVel < 0)
 	{
 		separatingVelocity -= realAccCausedSepVel;
+		
 	}
 
 	float deltaVelocity = (newSeparatingVelocity - separatingVelocity) ;
