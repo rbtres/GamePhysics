@@ -38,9 +38,9 @@ void InputManager::Init()
 void InputManager::Update(int msTime)
 {
 	glLoadIdentity();
-	glRotatef(20.7f, 1.0, 0.0, 0.0);  //rotate our camera on teh x - axis(left and right)
-	glRotatef(165.5, 0.0, 1.0, 0.0);  //rotate our camera on the y - axis(up and down)
-	glTranslated(4.4, 10.4, 11); //translate the screen to the position of our cameraera
+	glRotatef(m_rot.X, 1.0, 0.0, 0.0);  //rotate our camera on teh x - axis(left and right)
+	glRotatef(m_rot.Y, 0.0, 1.0, 0.0);  //rotate our camera on the y - axis(up and down)
+	glTranslated(-m_pos.X, -m_pos.Y, -m_pos.Z);
 	
 
 }

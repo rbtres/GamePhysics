@@ -29,7 +29,7 @@ unsigned int ParticleColDetector::SphereandSphere( PhysicsObject &sphereOne, Phy
 
 	contact->particle[0] = &sphereOne;
 	contact->particle[1] = &sphereTwo;
-	contact->restitution = .9;
+	contact->restitution = 1.0;
 	contact->contactNormal = normal;
 	contact->penetration = sphereOne.getRadius() + sphereTwo.getRadius() - mag;
 
@@ -102,7 +102,7 @@ unsigned int ParticleColDetector::BoxandSphere(CubeGround &box, PhysicsObject  &
 	float pen = dist;
 	contact->particle[0] = &sphere;
 	//contact->particle[1] = &box;
-	contact->restitution = .9;
+	contact->restitution = 1.0;
 	contact->contactNormal = contactNormal;
 	contact->penetration = pen;
 	//contact->Initialize(contactPoint, contactNormal, pen, data->Restitution, data->Friction, box.Body, sphere.Body);
