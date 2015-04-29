@@ -4,6 +4,8 @@
 #include <vector>
 #include "ParticleContactResolver.h"
 #include "ParticleContact.h"
+#include "ParticleColDetector.h"
+#include "CollisionDataParticle.h"
 struct ForceRegistration
 {
 	PhysicsObject* object;
@@ -48,5 +50,7 @@ private:
 	std::vector<ParticleContact> m_ContactVector;
 
 	ParticleContactResolver m_Resolver;
+	ParticleColDetector m_Detector;
+	CollisionDataParticle* m_Data;
 };
 

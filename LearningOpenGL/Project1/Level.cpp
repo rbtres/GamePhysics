@@ -7,6 +7,7 @@ Level::Level()
 	mp_PhysicsManager = new PhysicsManager();
 	mp_GroundGenerator = new GroundContactGenerator();
 	mp_WallContact = new WallContact();
+
 }
 
 
