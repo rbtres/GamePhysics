@@ -7,6 +7,7 @@
 #include "ParticleRod.h"
 #include "WallContact.h"
 #include "ImageHandler.h"
+#include "CubeGround.h"
 
 typedef std::vector<GameObject*> GameObjectVec;
 typedef std::vector<PhysicsObject*> PhysicObjectVec;
@@ -34,8 +35,10 @@ private:
 	GameObjectVec mp_GameObjects;
 	PhysicsManager* mp_PhysicsManager;
 	GroundContactGenerator* mp_GroundGenerator;
+	
 	WallContact* mp_WallContact;
 	std::vector<ParticleRod*> mp_Rods;
+	std::vector<CubeGround*> mp_GroundCubes;
 	ImageHandler* mp_ImageHandler;
 
 };

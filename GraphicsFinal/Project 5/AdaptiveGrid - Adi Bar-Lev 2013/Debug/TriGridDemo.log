@@ -1,0 +1,33 @@
+﻿Build started 2/16/2015 6:40:14 PM.
+     1>Project "C:\Users\Rob\Desktop\Physics\GamePhysics\GraphicsFinal\Project 5\AdaptiveGrid - Adi Bar-Lev 2013\TriGridDemo.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Rob\Desktop\Physics\GamePhysics\GraphicsFinal\Project 5\AdaptiveGrid - Adi Bar-Lev 2013\packages\directxtk_desktop_2013.2015.1.26.1\build\native\../../build/native/include/" /ZI /nologo /W3 /WX- /Od /Oy- /D HAS_DIRECTXTK /D WIN32 /D _DEBUG /D _WINDOWS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp Clouds.cpp d3dApp.cpp d3dUtil.cpp DirectInput.cpp FFT.cpp GfxStats.cpp GridManager.cpp LensFlare.cpp SkyBox.cpp TriGridDemo.cpp Vertex.cpp
+         Vertex.cpp
+     1>c:\users\rob\desktop\physics\gamephysics\graphicsfinal\project 5\adaptivegrid - adi bar-lev 2013\vertex.h(11): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+         TriGridDemo.cpp
+     1>c:\users\rob\desktop\physics\gamephysics\graphicsfinal\project 5\adaptivegrid - adi bar-lev 2013\d3dutil.h(21): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+         SkyBox.cpp
+     1>c:\users\rob\desktop\physics\gamephysics\graphicsfinal\project 5\adaptivegrid - adi bar-lev 2013\d3dutil.h(21): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+         LensFlare.cpp
+     1>c:\users\rob\desktop\physics\gamephysics\graphicsfinal\project 5\adaptivegrid - adi bar-lev 2013\lensflare.h(13): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+         GridManager.cpp
+     1>c:\users\rob\desktop\physics\gamephysics\graphicsfinal\project 5\adaptivegrid - adi bar-lev 2013\gridmanager.h(16): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+         GfxStats.cpp
+     1>c:\users\rob\desktop\physics\gamephysics\graphicsfinal\project 5\adaptivegrid - adi bar-lev 2013\d3dutil.h(21): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+         FFT.cpp
+         DirectInput.cpp
+     1>c:\users\rob\desktop\physics\gamephysics\graphicsfinal\project 5\adaptivegrid - adi bar-lev 2013\d3dutil.h(21): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+         d3dUtil.cpp
+     1>c:\users\rob\desktop\physics\gamephysics\graphicsfinal\project 5\adaptivegrid - adi bar-lev 2013\d3dutil.h(21): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+         d3dApp.cpp
+     1>c:\users\rob\desktop\physics\gamephysics\graphicsfinal\project 5\adaptivegrid - adi bar-lev 2013\d3dutil.h(21): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+         Clouds.cpp
+     1>c:\users\rob\desktop\physics\gamephysics\graphicsfinal\project 5\adaptivegrid - adi bar-lev 2013\clouds.h(13): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+         Camera.cpp
+     1>c:\users\rob\desktop\physics\gamephysics\graphicsfinal\project 5\adaptivegrid - adi bar-lev 2013\camera.h(14): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+         Generating Code...
+     1>Done Building Project "C:\Users\Rob\Desktop\Physics\GamePhysics\GraphicsFinal\Project 5\AdaptiveGrid - Adi Bar-Lev 2013\TriGridDemo.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:04.01

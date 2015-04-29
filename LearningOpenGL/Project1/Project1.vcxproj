@@ -71,6 +71,7 @@
   <ItemGroup>
     <ClCompile Include="Bungie.cpp" />
     <ClCompile Include="CollisionDataParticle.cpp" />
+    <ClCompile Include="CubeGround.cpp" />
     <ClCompile Include="Fireworks.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -103,6 +104,7 @@
   <ItemGroup>
     <ClInclude Include="Bungie.h" />
     <ClInclude Include="CollisionDataParticle.h" />
+    <ClInclude Include="CubeGround.h" />
     <ClInclude Include="Fireworks.h" />
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="GameApp.h" />

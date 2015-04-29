@@ -59,9 +59,13 @@ void GameApp::Init()
 	p_Level->Init("hello", -20);
 	
 	p_Level->CreateSphere(Vector3D(0, 10, 0), .5f);
+	
 	p_Level->CreateSphere(Vector3D(-2.5, 10, 0), .5f);
+	
 	p_Level->CreateSphere(Vector3D(2.5, 10, 0), .5f);
+	
 	p_Level->CreateSphere(Vector3D(1, 10, 0), .5f);
+	
 	p_Level->CreateSphere(Vector3D(0, 10, 2), .5f);
 	p_Level->CreateSphere(Vector3D(-2, 10, -2), .5f);
 	p_Level->CreateSphere(Vector3D(2, 10, 0), .5f);
@@ -75,7 +79,9 @@ void GameApp::Init()
 	p_Level->CreateSphere(Vector3D(2.5, 8, 0), .5f);
 	p_Level->CreateSphere(Vector3D(1, 8, 0), .5f);
 	p_Level->CreateSphere(Vector3D(0, 8, 2), .5f);
+	
 	p_Level->CreateSphere(Vector3D(-2, 8, -2), .5f);
+	
 	p_Level->CreateSphere(Vector3D(2, 8, 0), .5f);
 	p_Level->CreateSphere(Vector3D(2.5, 8, 2.5), .5f);
 	p_Level->CreateSphere(Vector3D(0, 8     , 1), .5f);

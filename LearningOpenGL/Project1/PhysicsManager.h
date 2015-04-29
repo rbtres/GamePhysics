@@ -6,6 +6,7 @@
 #include "ParticleContact.h"
 #include "ParticleColDetector.h"
 #include "CollisionDataParticle.h"
+#include "CubeGround.h"
 struct ForceRegistration
 {
 	PhysicsObject* object;
@@ -37,6 +38,7 @@ public:
 	void AddPhysicsObject(PhysicsObject* object);
 	void RemovePhysicsObject(PhysicsObject* object);
 	inline std::vector<PhysicsObject*> GetPhysicsVector(){ return mp_physicsObjects; }
+	inline void AddCube(CubeGround* Cube){ mp_CubeObjects.push_back(Cube); }
 	inline void AddContact(ParticleContact contact){ m_ContactVector.push_back(contact); }
 	//Just Updates registrys
 	void Update(float msTime);
@@ -48,6 +50,7 @@ private:
 	Registry PhysicsRegistry;
 	std::vector<PhysicsObject*> mp_physicsObjects;
 	std::vector<ParticleContact> m_ContactVector;
+	std::vector<CubeGround*> mp_CubeObjects;
 
 	ParticleContactResolver m_Resolver;
 	ParticleColDetector m_Detector;

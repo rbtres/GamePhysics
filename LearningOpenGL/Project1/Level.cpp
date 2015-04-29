@@ -30,6 +30,38 @@ void Level::Init(std::string filePath, int height)
 {
 	m_GroundHeight = height; 
 	mp_GroundGenerator->GroundHeight = (float)m_GroundHeight; 
+
+	CubeGround* ground = new CubeGround();
+	ground->setMass(10);
+	ground->Scale = Vector3D(1, 4, 1);
+	ground->setPos(Vector3D(-1, -20, 1));
+	ground->setDamping(0);
+	AddGameObject(ground, false);
+	mp_PhysicsManager->AddCube(ground);
+
+	ground = new CubeGround();
+	ground->setMass(10);
+	ground->Scale = Vector3D(1, 6, 2);
+	ground->setPos(Vector3D(-2, -20, 3));
+	ground->setDamping(0);
+	AddGameObject(ground, false);
+	mp_PhysicsManager->AddCube(ground);
+
+	ground = new CubeGround();
+	ground->setMass(10);
+	ground->Scale = Vector3D(2, 2, 2);
+	ground->setPos(Vector3D(-1, -20, -1));
+	ground->setDamping(0);
+	AddGameObject(ground, false);
+	mp_PhysicsManager->AddCube(ground);
+
+	ground = new CubeGround();
+	ground->setMass(10);
+	ground->Scale = Vector3D(2, 8, 3);
+	ground->setPos(Vector3D(2, -20, 1));
+	ground->setDamping(0);
+	AddGameObject(ground, false);
+	mp_PhysicsManager->AddCube(ground);
 }
 void Level::Draw()
 {

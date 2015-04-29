@@ -45,7 +45,13 @@ void PhysicsManager::Update(float msTime)
 			m_Detector.SphereandSphere(*mp_physicsObjects[i], *mp_physicsObjects[j], m_Data);
 		}
 	}
-
+	for (unsigned int i = 0; i < mp_physicsObjects.size(); i++)
+	{
+		for (unsigned int j = 0; j < mp_CubeObjects.size(); j++)
+		{
+			m_Detector.BoxandSphere(*mp_CubeObjects[j], *mp_physicsObjects[i], m_Data);
+		}
+	}
 	std::vector<ParticleContact*>  sphere = m_Data->GetContacts();
 	
 	for (int i = 0; i < sphere.size(); i++)
