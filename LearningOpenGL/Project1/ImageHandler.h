@@ -8,7 +8,7 @@ class ImageHandler
 {
 public:
 	ImageHandler();
-	static ImageHandler* GetInstance(){ if (m_ImageHandler != NULL) return m_ImageHandler; else m_ImageHandler = new ImageHandler();}
+	static ImageHandler* GetInstance(){ if (m_ImageHandler != NULL) return m_ImageHandler; else m_ImageHandler = new ImageHandler(); return m_ImageHandler; }
 	~ImageHandler();
 	GLuint* AddImage(std::string filePath, std::string name);
 	GLuint* GetImage(std::string name);

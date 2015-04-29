@@ -25,7 +25,7 @@ GravityGenerator::~GravityGenerator()
 void GravityGenerator::UpdateForce(PhysicsObject* object)
 {
 	Vector3D force;
-	force.Y = -9.8 * object->getMass();
+	force.Y = -9.8f * object->getMass();
 	object->addForce(force);
 }
 //--------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ void GravityGenerator::UpdateForce(PhysicsObject* addedBody, PhysicsObject* othe
 	float magSq = distanceBetweenSq.MagnitudeSq();
 
 	
-	forceBetweenObjects = normalDir * (-GRAVITY * ((M1 * M2) / (magSq)));
+	forceBetweenObjects = normalDir * (float)(-GRAVITY * ((M1 * M2) / (magSq)));
 
 	addedBody->addForce(forceBetweenObjects);
 	

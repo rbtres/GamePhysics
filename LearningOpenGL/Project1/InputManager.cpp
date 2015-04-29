@@ -64,8 +64,8 @@ void InputManager::CleanUp()
 void InputManager::HandleKeyDown(unsigned char key)
 {
 	Vector2D radianRot = Vector2D();
-	radianRot.Y = (m_rot.Y / 180 * M_PI);
-	radianRot.X = (m_rot.X / 180 * M_PI);
+	radianRot.Y = (m_rot.Y / 180 * (float)M_PI);
+	radianRot.X = (m_rot.X / 180 * (float)M_PI);
 	if (key == 'o')
 	{
 		//PlanetManager::ModifyDaysPerSecond(-5);

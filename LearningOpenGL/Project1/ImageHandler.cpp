@@ -40,7 +40,7 @@ GLuint* ImageHandler::AddImage(std::string filePath, std::string name)
 			return it->second;
 		}
 	}
-	
+	return NULL;
 }
 GLuint* ImageHandler::GetImage(std::string name)
 {

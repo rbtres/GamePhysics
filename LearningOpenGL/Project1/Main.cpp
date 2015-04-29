@@ -283,7 +283,8 @@ void handleKeyUp(unsigned char key, int x, int y)
 //--------------------------------------------------------------------------------------------
 void handleMouse(int button, int state, int x, int y)
 {
-	gp_GameApp->HandleMouseDown(Vector2D(button, state),Vector2D(x,y));
+	//x and y are ints because you can't have half a pixel =
+	gp_GameApp->HandleMouseDown(Vector2D((float)button, (float)state),Vector2D((float)x,(float)y));
 }
 //--------------------------------------------------------------------------------------------
 void reshape(int width, int height)

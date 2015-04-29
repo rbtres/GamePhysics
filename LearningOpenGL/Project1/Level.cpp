@@ -18,7 +18,7 @@ Level::~Level()
 	mp_WallContact = nullptr;
 	delete mp_ImageHandler;
 	mp_ImageHandler = nullptr;
-	for (int i = 0; i < mp_GameObjects.size(); i++)
+	for (unsigned int i = 0; i < mp_GameObjects.size(); i++)
 	{
 		delete mp_GameObjects[i];
 		mp_GameObjects[i] = nullptr;
@@ -28,7 +28,7 @@ Level::~Level()
 void Level::Init(std::string filePath, int height)
 {
 	m_GroundHeight = height; 
-	mp_GroundGenerator->GroundHeight = m_GroundHeight; 
+	mp_GroundGenerator->GroundHeight = (float)m_GroundHeight; 
 }
 void Level::Draw()
 {
